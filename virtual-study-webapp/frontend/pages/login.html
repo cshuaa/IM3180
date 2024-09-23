@@ -1,47 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Log in - Cloudy</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
     <header>
-        <nav>
-            <div class="logo">
-                <a href="index.html"><img src="images/logo.png" alt="Cloudy Logo"></a>
-            </div>
-            <ul>
-                <li><a href="about.html">About</a></li>
-                <li><a href="rules.html">Rules</a></li>
-                <li><a href="register.html">Sign up</a></li>
-            </ul>
-        </nav>
+      <nav>
+        <div class="logo">
+          <a href="../../../index.html"
+            ><img src="../images/logo.png" alt="Cloudy Logo"
+          /></a>
+        </div>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="rules.html">Rules</a></li>
+          <li><a href="register.html">Sign up</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-        <div class="cloud-header">
-            <img src="images/loginCloud.png" alt="Log in to Cloudy">
-        </div>
-        <div class="login-text-box">
-            <form action="login" method="post">
-                <div class="input-container">
-                    <label for="userName"><b>Username</b></label>
-                    <input type="text" id="userName" placeholder="Enter Username" name="userName" required>
-                </div>
+      <div class="cloud-header">
+        <img src="../images/loginCloud.png" alt="Log in to Cloudy" />
+      </div>
+      <div class="login-text-box">
+        <form action="/IM3180/login" method="post">
+          <div class="input-container">
+            <label for="userName"><b>Username</b></label>
+            <input
+              type="text"
+              id="userName"
+              placeholder="Enter Username"
+              name="userName"
+              required
+            />
+          </div>
 
-                <div class="input-container">
-                    <label for="password"><b>Password</b></label>
-                    <input type="password" id="password" placeholder="Enter Password" name="password" required>
-                </div>
-                
-                <button type="submit">Login</button>
-            </form>
-            <div class="register-link">
-                <p>Not a user? Create an account <a href="register.html">here</a></p>
-            </div>
+          <div class="input-container">
+            <label for="password"><b>Password</b></label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter Password"
+              name="password"
+              required
+            />
+          </div>
+
+          <button type="submit">Login</button>
+        </form>
+        <div class="register-link">
+          <p>Not a user? Create an account <a href="register.html">here</a></p>
         </div>
+      </div>
     </main>
-</body>
+  </body>
 </html>

@@ -1,9 +1,11 @@
 import uitoolkit from "./videosdk-ui-toolkit/index.js";
 
-var sessionName = "sessionName";
-var sessionKey = "sessionKey";
-var userName = "userName";
+// Define variables for sessionName and sessionKey at the top but leave them empty
+let sessionName = "";
+let sessionKey = "";
+let userName = "";
 
+// This function generates the signature (it uses sessionName and sessionKey)
 function generateSignature(
   sdkKey,
   sdkSecret,
@@ -33,40 +35,90 @@ function generateSignature(
   return sdkJWT;
 }
 
-var signature = generateSignature(
-  "kC1ECojrY3byf9i2lxjUyYgTs84A4F1zjQKF",
-  "wCFI4yiMMlLo2qEykh8uS8MK2GcqZVCsQIOx",
-  sessionName,
-  1,
-  sessionKey,
-  userName
-);
+// Fetch session data from the servlet when the page loads
+window.onload = fetchSessionData;
 
-console.log(signature);
+function fetchSessionData() {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", "roomdata", true); // Replace with the correct path to the servlet
 
-var config = {
-  videoSDKJWT: signature,
-  sessionName: sessionName,
-  userName: userName,
-  sessionPasscode: sessionKey,
-  features: ["preview", "video", "audio", "share", "chat", "users", "settings"],
-  options: {
-    init: {},
-    audio: {},
-    video: { enforceMultipleVideos: true },
-    share: {},
-  },
-  virtualBackground: {
-    allowVirtualBackground: true,
-    allowVirtualBackgroundUpload: true,
-    //virtualBackgrounds: ['https://images.example.com/image', 'http://example.com/assets/backgrounds/sample.png']
-  },
-};
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // Parse the JSON response
+      const sessionData = JSON.parse(xhr.responseText);
 
-function startCall() {
+      // Log the sessionData to check the values (optional)
+      console.log(sessionData);
+
+      // Set the global sessionName and sessionKey variables with the retrieved data
+      sessionName = sessionData.sessionName;
+      sessionKey = sessionData.sessionPassword;
+      userName = sessionData.userName;
+
+      // Optionally display the sessionName and sessionPassword on the HTML page
+      document.getElementById("sessionName").textContent = sessionName;
+      document.getElementById("sessionPassword").textContent = sessionKey;
+      document.getElementById("userName").textContent = userName;
+
+      // Log the updated sessionName and sessionKey (optional)
+      console.log("Updated sessionName: ", sessionName);
+      console.log("Updated sessionPassword (sessionKey): ", sessionKey);
+      console.log("Updated userName: ", userName);
+
+      // Now that sessionName and sessionKey are updated, you can generate the signature
+      const signature = generateSignature(
+        "kC1ECojrY3byf9i2lxjUyYgTs84A4F1zjQKF",
+        "wCFI4yiMMlLo2qEykh8uS8MK2GcqZVCsQIOx",
+        sessionName,
+        1, // Assuming role 1 is constant
+        sessionKey,
+        userName
+      );
+
+      console.log("Generated signature: ", signature);
+
+      // Now you can use the updated sessionName and sessionKey in your config object
+      var config = {
+        videoSDKJWT: signature,
+        sessionName: sessionName,
+        userName: userName,
+        sessionPasscode: sessionKey,
+        features: [
+          "preview",
+          "video",
+          "audio",
+          "share",
+          "chat",
+          "users",
+          "settings",
+        ],
+        options: {
+          init: {},
+          audio: {},
+          video: { enforceMultipleVideos: true },
+          share: {},
+        },
+        virtualBackground: {
+          allowVirtualBackground: true,
+          allowVirtualBackgroundUpload: true,
+        },
+      };
+
+      // Bind the session data to the call initiation function
+      document
+        .getElementById("startCallBtn")
+        .addEventListener("click", function () {
+          startCall(config);
+        });
+    } else {
+      console.error("Error fetching session data");
+    }
+  };
+
+  xhr.send();
+}
+
+function startCall(config) {
   const sessionContainer = document.getElementById("sessionContainer");
   uitoolkit.joinSession(sessionContainer, config);
 }
-
-// Bind the function to the button click event
-document.getElementById("startCallBtn").addEventListener("click", startCall);

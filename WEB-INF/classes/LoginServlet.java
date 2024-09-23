@@ -56,11 +56,14 @@ public class LoginServlet extends HttpServlet {
                                                                                                     //
                         PreparedStatement preparedStatement = conn.prepareStatement(sqlStr1);
 
-                        // username = request.getParameter("username");
-                        // password = request.getParameter("password")
+                        username = request.getParameter("userName");
+                        password = request.getParameter("password");
+
                         // For testing
-                        username = "testuser1";
-                        password = "xxxx";
+                        // username = "testuser1";
+                        // password = "xxxx";
+                        System.out.println("Username: " + username);
+                        System.out.println("Password: " + password);
 
                         // Set parameters for the prepared statement
                         preparedStatement.setString(1, username);
@@ -72,24 +75,16 @@ public class LoginServlet extends HttpServlet {
                                 customerId = rset.getString("user_id");
                                 username = rset.getString("username");
 
-                                // Send data and redirect to landing page servlet
-                                message = "success";
-                                out.println("<script type=\"text/javascript\">");
-                                out.println("Swal.fire({\r\n" + //
-                                                "  title: \"Success\",\r\n" + //
-                                                "  text: \"" + message + "\",\r\n" + //
-                                                "  allowOutsideClick: false,\r\n" + //
-                                                "  allowEscapeKey: false,\r\n" + //
-                                                "  allowEnterKey: false,\r\n" + //
-                                                "  icon: \"success\",\r\n" + //
-                                                "}).then((result) => {\r\n" + //
-                                                "  if (result.isConfirmed) {\r\n" + //
-                                                " location = 'index.html';" +
-                                                "  }\r\n" + //
-                                                "});");
-                                out.println("</script>");
+                                // Store session data in HttpSession
+                                HttpSession session = request.getSession();
+                                session.setAttribute("userName", username);
+
+                                System.out.println("LoginServlet userName: " + username);
+
+                                // Redirect to testLandingPage
+                                response.sendRedirect("testLandingPage.html");
+
                         } else {
-                                out.println("<p>WRONGGGGG</p>");
                                 message = "Incorrect username or password";
                                 out.println("<script type=\"text/javascript\">");
                                 out.println("Swal.fire({\r\n" + //
@@ -101,7 +96,7 @@ public class LoginServlet extends HttpServlet {
                                                 "  icon: \"error\",\r\n" + //
                                                 "}).then((result) => {\r\n" + //
                                                 "  if (result.isConfirmed) {\r\n" + //
-                                                " location = 'index.html';" +
+                                                " location = 'virtual-study-webapp/frontend/pages/login.html';" +
                                                 "  }\r\n" + //
                                                 "});");
                                 out.println("</script>");
