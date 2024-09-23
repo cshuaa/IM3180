@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="virtual-study-webapp/ZoomTestApp/videosdk-ui-toolkit/dist/videosdk-ui-toolkit.css"
+    />
+    <script
+      src="virtual-study-webapp/ZoomTestApp/videosdk-ui-toolkit/index.js"
+      type="module"
+    ></script>
+    <script
+      src="virtual-study-webapp/ZoomTestApp/script.js"
+      type="module"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/8.0.20/jsrsasign-all-min.js"></script>
+    <title>Test Zoom UI</title>
+  </head>
+  <body>
+    <button id="startCallBtn">Start call</button>
+    <form id="inputForm" method="post" action="login">
+      <button id="testServletBtn" type="submit">Test Servlet</button>
+    </form>
+    <p id="sessionName"></p>
+    <p id="sessionPassword"></p>
+    <p id="userName"></p>
+    <!-- sessionContainer is needed to load in zoom call interface -->
+    <div id="sessionContainer"></div>
+  </body>
+</html>

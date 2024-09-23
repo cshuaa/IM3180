@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session Input</title>
+    <script src="virtual-study-webapp/scripts/jquery-3.5.1.min.js"></script>
+    <script>
+      let userName = "";
+
+      window.onload = getUserName;
+
+      function getUserName() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "userdata", true); // Replace with the correct path to the servlet
+
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            // Parse the JSON response
+            const userData = JSON.parse(xhr.responseText);
+
+            // Log the userData to check the values (optional)
+            console.log(userData);
+
+            // Set the global sessionName and sessionKey variables with the retrieved data
+            userName = userData.userName;
+
+            // Optionally display the sessionName and sessionPassword on the HTML page
+            document.getElementById("userName").textContent = userName;
+
+            // Log the updated sessionName and sessionKey (optional)
+            console.log("Retrieved userName: ", userName);
+          } else {
+            console.error("Error fetching session data");
+          }
+        };
+
+        xhr.send();
+      }
+
+      function sendData(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const sessionName = document.getElementById("sessionName").value;
+        const sessionPassword =
+          document.getElementById("sessionPassword").value;
+        const userName = document.getElementById("userName").innerHTML;
+
+        // Create an AJAX request
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "createroom", true);
+        xhr.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
+
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            // Redirect to HTML Page 2
+            window.location.href = "video-room.html";
+          } else {
+            console.error("Error sending data to the servlet");
+          }
+        };
+
+        // Send session data to the servlet
+        xhr.send(
+          `sessionName=${encodeURIComponent(
+            sessionName
+          )}&sessionPassword=${encodeURIComponent(
+            sessionPassword
+          )}&userName=${encodeURIComponent(userName)}`
+        );
+      }
+
+      // Notifications
+      $(document).ready(function () {
+        $("#notiBtn").click(function () {
+          // Make AJAX request to the servlet
+          $.ajax({
+            url: "notifications", // Servlet URL
+            method: "GET",
+            success: function (response) {
+              // Clear any existing notifications
+              $("#notificationsContainer").empty();
+
+              // Loop through the notifications and display them
+              response.forEach(function (notification) {
+                $("#notificationsContainer").append(
+                  "<p>" +
+                    notification.noti_id +
+                    " | " +
+                    notification.sender_username +
+                    " | " +
+                    notification.receiver_username +
+                    " | " +
+                    notification.notification +
+                    " (" +
+                    notification.status +
+                    ")</p>"
+                );
+              });
+            },
+            error: function (xhr, status, error) {
+              console.error("Error fetching notifications: " + error);
+            },
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Enter Session Details</h1>
+    <form onsubmit="sendData(event)">
+      <label for="sessionName">Session Name:</label>
+      <input type="text" id="sessionName" required /><br />
+      <label for="sessionPassword">Session Password:</label>
+      <input type="password" id="sessionPassword" required /><br />
+      <button type="submit">Submit</button>
+    </form>
+    <p id="userName"></p>
+    <button id="notiBtn">Notifications</button>
+    <div id="notificationsContainer"></div>
+  </body>
+</html>
