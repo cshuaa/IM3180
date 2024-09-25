@@ -66,7 +66,7 @@ public class RegisterServlet extends HttpServlet {
                         "  icon: \"success\",\r\n" + //
                         "}).then((result) => {\r\n" + //
                         "  if (result.isConfirmed) {\r\n" + //
-                        " location = 'login.html';" +
+                        " location = 'virtual-study-webapp/frontend/pages/login.html';" +
                         "  }\r\n" + //
                         "});");
                 out.println("</script>");
@@ -84,7 +84,7 @@ public class RegisterServlet extends HttpServlet {
                         "  icon: \"warning\",\r\n" + //
                         "}).then((result) => {\r\n" + //
                         "  if (result.isConfirmed) {\r\n" + //
-                        " location = 'login.html';" +
+                        " location = 'virtual-study-webapp/frontend/pages/login.html';" +
                         "  }\r\n" + //
                         "});");
                 out.println("</script>");
