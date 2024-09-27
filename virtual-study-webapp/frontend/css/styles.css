@@ -79,6 +79,18 @@ nav ul li a:active {
   background-color: #ccc;
   color: #000;
 }
+.base-eclipse {
+  position: fixed;
+  bottom:-5%;
+  left:0;
+  width: 100%;
+}
+
+.base-eclipse img {
+  width: 100%;
+  height: auto;
+  display:block;
+}
 .cloud-image-container,.cloud-header {
   display: flex;
   justify-content: center;  

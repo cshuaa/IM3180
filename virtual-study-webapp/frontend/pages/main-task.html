@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Tasks - Cloudy</title>
+    <link rel="stylesheet" href="../css/style-main.css">
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="logoHome">
+        <div class="logoBackground"></div>
+        <a href="main-home.html"><img src="../images/logoHome.png" alt="Cloudy Logo Home Page"></a>
+    </div>
+
+    <div class="logoRectangle"></div>
+
+    <nav class="vertical-nav">
+        <ul>
+            <li>
+                <a href="#" class="username">
+                    &lt;Username&gt;
+                    <img src="../images/Ellipse 22.png" alt="Profile Picture" class="profile-pic">
+                </a>
+            </li>
+            <li><a href="main-home.html">Main</a></li>
+            <li><a href="main-rules.html">Rules</a></li>
+            <li><a class="current" href="main-task.html">Set Tasks</a></li>
+            <li><a href="main-friends.html">Friends</a></li>
+            <li><a href="index.html">Log Out</a></li>
+        </ul>
+    </nav>
+    <div class="task-container">
+        <div class="task-ellipse">
+            <img src="../images/taskEllipse.png" class="ellipse1" alt="pink ellipse top-left">
+            <img src="../images/taskEllipse.png" class="ellipse2" alt="pink ellipse top-right">
+            <img src="../images/taskEllipse.png" class="ellipse3" alt="pink ellipse bottom-left">
+            <img src="../images/taskEllipse.png" class="ellipse4" alt="pink ellipse bottom-right">
+        </div>
+        
+        <!-- Task Input Section -->
+        <div class="add-task-section">
+            <h1>Set Tasks</h1>
+            <hr width="100%" size="2"><br>
+            <form id="addTaskForm">
+                <label for="task-input" class="task-label">Add Task:</label>
+                <input type="text" id="taskInput" placeholder="Enter a new task..."required>
+                <button id="submit">+</button>
+            </form>
+        </div>
+        <br><hr width="100%" size="2">
+        <!-- Checklist Section -->
+        <div class="checklist-section">
+            <h1>Checklist</h1>
+            <ul id="task-list" class="checklist">
+                <!-- Tasks will be added here dynamically -->
+            </ul>
+        </div>
+    </div>
+    <script src="../js/task.js"></script>
+</body>
+</html>
