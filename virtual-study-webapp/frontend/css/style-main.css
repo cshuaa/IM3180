@@ -1,39 +1,35 @@
 body, html {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    box-sizing: border-box; 
-    overflow: hidden;
-  }
-  
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box; 
+  overflow: hidden;
+}
+
 /* Background Image */
 .background {
-  background-image: url("../images/MainPage.png");
+  background-image: url('images/MainPage.png'); 
   background-size: cover; 
   background-position: center top; /* You can change this to 'center' or 'center bottom' */
   background-repeat: no-repeat; 
   width: 100vw;
   height: 100vh;
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  }
-  
+}
+
 /* Logo Section */
 .logoHome {
   position: absolute;
   top: 0; 
   left: 0; 
-  z-index: 1; 
+  z-index: 10; 
   display: flex; 
   align-items: center; 
   justify-content: center; 
   width: 200px; /* Width of the square */
   height: 200px; /* Height of the square */
 }
-  
+
 .logoBackground {
   background-color: rgba(225, 235, 242, 0.8); 
   position: absolute; 
@@ -43,48 +39,42 @@ body, html {
   height: 200px; /* Height of the square */
   z-index: -1; 
 }
-  
+
 .logoHome img {
   width: 220px; /* Adjust logo size as needed */
   height: auto;
   margin-left: 40px; /* Optional adjustment */
 }
-  
+
 /* Vertical Navigation */
 .vertical-nav {
   position: absolute;
   top: 200px;
   left: 0;
   width: 200px; /* Adjusted width */
-  height: 100vh;
   background-color: transparent; 
-  z-index: 1;
-  display: flex;
-  flex-direction: column; /* Stack items vertically */
-  justify-content: space-between; /* Ensure items are spaced to fill the container */
-  overflow-y: auto; /* Enable vertical scrolling if items overflow */
+  z-index: 5;
 }
-  
+
 .vertical-nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  flex-grow: 1; /* Ensure that the items grow to fill available space */
   display: flex; 
   flex-direction: column; /* Stack items vertically */
   text-align: center; /* Center the text */
 }
-  
-vertical-nav ul li {
+
+.vertical-nav ul li {
   margin: 0; 
 }
-  
+
 .vertical-nav ul li a {
   display: block; 
   width: 100%; /* Adjust width */
-  padding: 19px; /* Adjust padding for height */
+  padding: 27px; /* Adjust padding for height */
   text-decoration: none; 
-  color: #8bade1; /* Lighter blue for the text */
+  color: #b2c7e6; /* Lighter blue for the text */
   font-weight: bold; /* Bold font */
   font-size: 20px; /* Adjusted font size */
   background: rgba(0, 0, 0, 0.95); 
@@ -94,20 +84,21 @@ vertical-nav ul li {
   opacity: 0.9; /* Slightly higher opacity */
   transition: opacity 0.3s, background-color 0.3s, color 0.3s; /* Smooth transition for opacity, background, and color */
 }
-  
+
 .vertical-nav ul li a:hover {
-  background-color: rgb(93, 99, 108); /* Hover and active background color */
+  background-color: rgba(0, 0, 0, 0.6); /* Hover and active background color */
   color: #fff; /* Hover text color */
   opacity: 1; /* Full opacity when active */
 }
-  
+
+
 .vertical-nav .username {
   color: #fff; 
   display: block;
   text-align: center;
   font-weight: bold; /* Make username bold */
 }
-  
+
 .vertical-nav .profile-pic {
   width: 60px; /* Slightly larger profile picture */
   height: 60px; 
@@ -115,173 +106,183 @@ vertical-nav ul li {
   display: block;
   margin: 0 auto; 
 }
-  
+
 .vertical-nav .current {
-  background-color: rgb(105, 112, 122); /* Same as hover background color */
+  background-color: rgba(0, 0, 0, 0.8); /* Same as hover background color */
   color: #fff; /* Same as hover text color */
   font-weight: bold; /* Keep it bold */
   transition: none; /* No transition for the active tab */
-  }
-/*Rules Part*/
-.cloud-rules-header img{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  width: 23%;
-  height: auto;
-  margin-top: 3%;
-  margin-left:45%;
-  z-index: 10;
-  position: relative;
+}
 
+/* Search container styling */
+.search-container {
+  position: absolute; /* Allow precise positioning */
+  top: 155px; /* Space from the top edge of the screen */
+  right: 80px; /* Space from the right edge */
+  width: calc(100% - 240px); /* Adjust width considering the left-side nav and padding */
+  display: flex;
+  justify-content: flex-end; /* Align the search bar to the right */
+  z-index: 15; /* Ensure it appears above the logo */
+  padding-left: 220px; /* Ensure padding from the logo background */
+  border-radius: 0px;
 }
-.main-rules-text-box {
-  background-color: rgba(142, 178, 211, 0.90);
-  color:white;
-  padding: 2%;
-  width: 70%;
-  height:65%;
-  margin-left:20%;
-  margin-top: -2.5%;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
-  font-size: 18px;
-  position: relative; 
-  border: 1px solid white;
+
+/* Input field styling */
+#search-input {
+  width: 1090px !important; /* Enforce width change with !important */
+  padding: 30px; /* Padding inside the input */
+  border: 3px solid white; /* 3px white border */
+  border-radius: 0px; /* Rounded corners */
+  background-color: rgba(142, 178, 211, 0.7); /* Background with 70% opacity */
+  font-size: 22px; /* Font size */
+  color: rgb(56, 54, 54); /* Text color inside input */
+  text-align: center; /* Centralize the placeholder text */
+  box-sizing: border-box;
+  background-image: url(images/search.png);
+  background-repeat: no-repeat;
+  background-position: 365px;
+  background-size: 24px 24px;
 }
-/* Task Part*/
-.task-container {
-  background-color: rgba(0, 0, 0, 0.85);
-  color:white;
-  padding: 2%;
-  width: 70%;
-  height: 80%;
-  margin-left:21%;
-  margin-top: 5%;
+
+/* Placeholder text color */
+#search-input::placeholder {
+  color: rgb(56, 54, 54); /* Change placeholder text color to black */
+  opacity: 1; /* Ensure placeholder is fully opaque */
+  font-weight: bold;
+}
+
+/* Dropdown styling */
+.dropdown-content {
+  position: absolute;
+  top: 100%; /* Position it right below the input field */
+  right: 0; /* Align it with the search bar */
+  width: 1090px; /* Make the dropdown width the same as the search bar */
+  max-height: 150px; /* Limit the height */
+  overflow-y: auto; /* Scroll if content is too long */
+  background-color: white; /* Background color */
+  border: 1px solid #ccc; /* Border */
+  border-radius: 4px; /* Rounded corners */
+  display: none; /* Hide by default */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+/* Dropdown item styling */
+.dropdown-item {
+  display: flex; /* Flexbox to align the text and button */
+  justify-content: space-between; /* Space between text and button */
+  padding: 10px; /* Padding for dropdown items */
+  transition: background-color 0.3s; /* Smooth background color change */
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0; /* Highlight on hover */
+}
+
+.add-btn {
+  padding: 5px 10px; /* Padding for the button */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  font-size: 14px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.add-btn:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Show the dropdown when it has content */
+#dropdown.show {
+  display: block; /* Show the dropdown */
+}
+
+
+
+/* Grey box*/
+.create-room-box {
+  background-color: #030405B2; /* Background color with 70% opacity */
+  width: 1130px; /* Adjustable width */
   padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
-  border: 1px solid white;
-  position: relative; 
-  z-index:2;
+  position: absolute; /* Position it relative to the viewport */
+  right: 30px; /* Distance from the right edge of the screen (adds a gap) */
+  top: 40px; /* Adjust the distance from the top to come under the vertical nav */
+  border-radius: 0px;
+  border: 3px solid #1C1212; /* Top border */
+  display: flex; /* Use flexbox to align elements horizontally */
+  align-items: center; /* Vertically center text and button */
+  justify-content: center; /* Evenly space out the elements */
+  color: #dbdbdb;
+  font-size: 24px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Ensure it's above other elements */
 }
-/* Position the ellipses */
-.task-ellipse {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index:1;
+
+.create-room-text {
+  margin-right: 40px; /* Add some space between text and button */
+  font-size: 29px;
 }
-.ellipse1, .ellipse2, .ellipse3, .ellipse4 {
-  width: 30px; /* Size of the ellipses */
-  height: 30px;
-  position: absolute;
-}
-.ellipse1 {
-  top: 5%;
-  left: 5%;
-}
-.ellipse2{
-  top:5%;
-  right:5%
-}
-.ellipse3{
-  top:90%;
-  left:5%;
-}
-.ellipse4{
-  top:90%;
-  right:5%;
-}
-.task-label {
-  font-size: 20px;         
-  font-weight: bold;       
-  color: #f2c7c7;                   
-  margin-bottom: 10px;     
-}
-.add-task-section,.checklist-section {
-  position: relative;
-  z-index: 3; 
-}
-.add-task-section input[type="text"] {
-  width: 60%;
-  padding: 10px;
-  margin-left:12px;
-  margin-right: 12px;
-  font-size: 18px;
-}
-.add-task-section button {
+
+.create-room-btn {
+  background-color: #9b59b6;
+  color: #fff;
   padding: 10px 20px;
-  background-color: rgba(242, 199, 199);
-  color: white;
   border: none;
+  border-radius: 3px;
+  font-size: 20px;
   cursor: pointer;
-  font-size: 18px;
-  font-weight:900;
+  transition: background-color 0.3s;
 }
-.add-task-section button:hover {
-  background-color: rgba(242, 199, 199, 0.756);
+
+.create-room-btn:hover {
+  background-color: #8e44ad;
 }
-.add-task-section button:active {
-  background-color: rgba(242, 199, 199, 0.337);
-}
-.checklist-section {
-  max-height: 55%; /* Set the maximum height for the checklist section */
-  overflow-y: auto; /* Enable vertical scrolling when tasks overflow */
-}
-.checklist-section ul {
-  list-style-type: style type none;;
-  padding: 0;
-}
-.checklist-section li {
-  background-color: #8bade1;
-  padding: 15px;
-  margin-left:3%;
-  margin-bottom: 10px;
+
+/*new container*/
+.content-container {
+  position: absolute; /* Allow precise positioning */
+  top: 180px; /* Space from the top edge of the screen */
+  right: 80px; /* Space from the right edge */
+  width: calc(100% - 240px); /* Adjust width considering the left-side nav and padding */
   display: flex;
+  justify-content: flex-end; /* Align the search bar to the right */
+  padding-left: 220px; /* Ensure padding from the logo background */
+  border-radius: 0px;
+  margin-top: 110px; /* Gap between search container and content */
+  padding: 20px 80px 40px 80px; /* Padding around the container */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
   justify-content: space-between;
-  align-items: center;
-  border-radius: 5px;
-  width:90%;
-}
-.checklist-section li span {
-  font-size: 18px;
-  font-weight:bold;
-  color: white;
+  height: calc(100vh - 300px); /* Fill the rest of the screen */
+  background-color: rgba(142, 178, 211, 0.7);
+  width: 925px !important;
+  border: 3px solid white;
 }
 
-.checklist-section li input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
+/* Main heading styling */
+.main-heading {
+  font-size: 25px;
+  color: rgb(35, 34, 34);
+  text-align: center; /* Left-align the main heading */
+  margin-bottom: 10px; /* Space below the heading */
+  font-family: Arial;
 }
 
-.checklist-section li:hover {
-  background-color: #8eb2d3c9;
+/* Subheading styling */
+.subheading {
+  font-size: 20px;
+  color: rgb(35, 34, 34);
+  text-align: center; /* Left-align the subheading */
+  margin: 10px 0; /* Space around the subheadings */
+  font-family: Arial;
 }
-.task-item.completed {
-  background-color: #88d698; /* Light green background */
-  transition: background-color 0.1s ease; /* Smooth transition effect */
+
+/* Image styling */
+.centered-image {
+  display: block;
+  margin: 0 auto 10px auto; /* Center the image and space it below */
+  max-width: 20%; /* Make sure the image is responsive */
+  height: auto;
 }
-/* Friends Part*/
-.search-bar {
-  top:10%;
-  left:2%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-.search-bar input[type="text"] {
-  width: 40%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background: rgba(142, 178, 211, 0.70);
-}
+
