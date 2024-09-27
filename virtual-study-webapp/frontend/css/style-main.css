@@ -82,7 +82,7 @@ vertical-nav ul li {
 .vertical-nav ul li a {
   display: block; 
   width: 100%; /* Adjust width */
-  padding: 19px; /* Adjust padding for height */
+  padding: 27px; /* Adjust padding for height */
   text-decoration: none; 
   color: #8bade1; /* Lighter blue for the text */
   font-weight: bold; /* Bold font */
@@ -122,12 +122,185 @@ vertical-nav ul li {
   font-weight: bold; /* Keep it bold */
   transition: none; /* No transition for the active tab */
   }
+
+/*Home Part*/
+/* Search container styling */
+.search-container {
+  position: absolute; /* Allow precise positioning */
+  top: 155px; /* Space from the top edge of the screen */
+  right: 80px; /* Space from the right edge */
+  width: calc(100% - 240px); /* Adjust width considering the left-side nav and padding */
+  display: flex;
+  justify-content: flex-end; /* Align the search bar to the right */
+  z-index: 15; /* Ensure it appears above the logo */
+  padding-left: 220px; /* Ensure padding from the logo background */
+  border-radius: 0px;
+}
+
+/* Input field styling */
+#search-input {
+  width: 1090px !important; /* Enforce width change with !important */
+  padding: 30px; /* Padding inside the input */
+  border: 3px solid white; /* 3px white border */
+  border-radius: 0px; /* Rounded corners */
+  background-color: rgba(142, 178, 211, 0.7); /* Background with 70% opacity */
+  font-size: 22px; /* Font size */
+  color: rgb(56, 54, 54); /* Text color inside input */
+  text-align: center; /* Centralize the placeholder text */
+  box-sizing: border-box;
+  background-image: url("../images/search.png");
+  background-repeat: no-repeat;
+  background-position: 365px;
+  background-size: 24px 24px;
+}
+
+/* Placeholder text color */
+#search-input::placeholder {
+  color: rgb(56, 54, 54); /* Change placeholder text color to black */
+  opacity: 1; /* Ensure placeholder is fully opaque */
+  font-weight: bold;
+}
+
+/* Dropdown styling */
+.dropdown-content {
+  position: absolute;
+  top: 100%; /* Position it right below the input field */
+  right: 0; /* Align it with the search bar */
+  width: 1090px; /* Make the dropdown width the same as the search bar */
+  max-height: 150px; /* Limit the height */
+  overflow-y: auto; /* Scroll if content is too long */
+  background-color: white; /* Background color */
+  border: 1px solid #ccc; /* Border */
+  border-radius: 4px; /* Rounded corners */
+  display: none; /* Hide by default */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+/* Dropdown item styling */
+.dropdown-item {
+  display: flex; /* Flexbox to align the text and button */
+  justify-content: space-between; /* Space between text and button */
+  padding: 10px; /* Padding for dropdown items */
+  transition: background-color 0.3s; /* Smooth background color change */
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0; /* Highlight on hover */
+}
+
+.add-btn {
+  padding: 5px 10px; /* Padding for the button */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  font-size: 14px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.add-btn:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Show the dropdown when it has content */
+#dropdown.show {
+  display: block; /* Show the dropdown */
+}
+
+/* Grey box*/
+.create-room-box {
+  background-color: #030405B2; /* Background color with 70% opacity */
+  width: 1130px; /* Adjustable width */
+  padding: 20px;
+  position: absolute; /* Position it relative to the viewport */
+  right: 30px; /* Distance from the right edge of the screen (adds a gap) */
+  top: 40px; /* Adjust the distance from the top to come under the vertical nav */
+  border-radius: 0px;
+  border: 3px solid #1C1212; /* Top border */
+  display: flex; /* Use flexbox to align elements horizontally */
+  align-items: center; /* Vertically center text and button */
+  justify-content: center; /* Evenly space out the elements */
+  color: #dbdbdb;
+  font-size: 24px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+.create-room-text {
+  margin-right: 40px; /* Add some space between text and button */
+  font-size: 29px;
+}
+
+.create-room-btn {
+  background-color: #9b59b6;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-room-btn:hover {
+  background-color: #8e44ad;
+}
+
+/*new container*/
+.content-container {
+  position: absolute; /* Allow precise positioning */
+  top: 180px; /* Space from the top edge of the screen */
+  right: 80px; /* Space from the right edge */
+  width: calc(100% - 240px); /* Adjust width considering the left-side nav and padding */
+  display: flex;
+  justify-content: flex-end; /* Align the search bar to the right */
+  padding-left: 220px; /* Ensure padding from the logo background */
+  border-radius: 0px;
+  margin-top: 110px; /* Gap between search container and content */
+  padding: 20px 80px 40px 80px; /* Padding around the container */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: space-between;
+  height: calc(100vh - 300px); /* Fill the rest of the screen */
+  background-color: rgba(142, 178, 211, 0.7);
+  width: 925px !important;
+  border: 3px solid white;
+}
+
+/* Main heading styling */
+.main-heading {
+  font-size: 25px;
+  color: rgb(35, 34, 34);
+  text-align: center; /* Left-align the main heading */
+  margin-bottom: 10px; /* Space below the heading */
+  font-family: Arial;
+}
+
+/* Subheading styling */
+.subheading {
+  font-size: 20px;
+  color: rgb(35, 34, 34);
+  text-align: center; /* Left-align the subheading */
+  margin: 10px 0; /* Space around the subheadings */
+  font-family: Arial;
+}
+
+/* Image styling */
+.centered-image {
+  display: block;
+  margin: 0 auto 10px auto; /* Center the image and space it below */
+  max-width: 20%; /* Make sure the image is responsive */
+  height: auto;
+}
+
+
 /*Rules Part*/
 .cloud-rules-header img{
   display:flex;
   justify-content: center;
   align-items: center;
-  width: 23%;
+  width: 25%;
   height: auto;
   margin-top: 3%;
   margin-left:45%;
@@ -140,14 +313,14 @@ vertical-nav ul li {
   color:white;
   padding: 2%;
   width: 70%;
-  height:65%;
+  height:70%;
   margin-left:20%;
   margin-top: -2.5%;
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   position: relative; 
   border: 1px solid white;
 }
@@ -169,7 +342,6 @@ vertical-nav ul li {
   position: relative; 
   z-index:2;
 }
-/* Position the ellipses */
 .task-ellipse {
   position: absolute;
   top: 0;
@@ -269,19 +441,8 @@ vertical-nav ul li {
   background-color: #88d698; /* Light green background */
   transition: background-color 0.1s ease; /* Smooth transition effect */
 }
-/* Friends Part*/
-.search-bar {
-  top:10%;
-  left:2%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-.search-bar input[type="text"] {
-  width: 40%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background: rgba(142, 178, 211, 0.70);
-}
+
+
+
+
+

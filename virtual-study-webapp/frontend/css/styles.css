@@ -34,7 +34,7 @@ nav {
   margin: 0; 
 }
 .logo img {
-  width: 130px;
+  width: 150px;
   height: auto;
   margin-left: 1em;
 }
@@ -154,7 +154,7 @@ nav ul li a:active {
   position: relative; 
   display: block; 
   color: white;
-  font-size: 14px;
+  font-size: 16px;
   text-align: left;
   padding-left: 15%;
   top: 2px;
@@ -162,17 +162,17 @@ nav ul li a:active {
 .login-text-box input[type="text"], .login-text-box input[type="password"], 
 .login-text-box input[type="email"] {
   width: 70%;
-  padding: 10px;
+  padding: 15px;
   margin: 5px;
   border: none;
   border-radius: 5px;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .login-text-box button[type="submit"] {
   width: 70%;
-  padding: 10px;
+  padding: 15px;
   margin-top: 30px;
   background-color: rgba(142, 178, 211, 0.90);
   color: white;
@@ -180,6 +180,7 @@ nav ul li a:active {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  font-weight: bold;
 }
 
 .login-text-box button[type="submit"]:hover {
@@ -197,7 +198,7 @@ nav ul li a:active {
 }
 
 .login-text-box .register-link a:hover {
-  color: #edff76;
+  color: #edfb8f;
   text-decoration: none;
 }
 
