@@ -188,7 +188,7 @@ vertical-nav ul li {
   background-color: #f0f0f0; /* Highlight on hover */
 }
 
-.add-btn {
+.join-btn {
   padding: 5px 10px; /* Padding for the button */
   border: none; /* No border */
   border-radius: 4px; /* Rounded corners */
@@ -199,7 +199,7 @@ vertical-nav ul li {
   transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
-.add-btn:hover {
+.join-btn:hover {
   background-color: #45a049; /* Darker green on hover */
 }
 
@@ -309,11 +309,11 @@ vertical-nav ul li {
 
 }
 .main-rules-text-box {
-  background-color: rgba(142, 178, 211, 0.90);
+  background-color: rgba(142, 178, 211, 0.80);
   color:white;
   padding: 2%;
   width: 70%;
-  height:63%;
+  height:70%;
   margin-left:20%;
   margin-top: -2.5%;
   border-radius: 10px;
@@ -326,7 +326,7 @@ vertical-nav ul li {
 }
 /* Task Part*/
 .task-container {
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.80);
   color:white;
   padding: 2%;
   width: 70%;
@@ -355,22 +355,11 @@ vertical-nav ul li {
   height: 30px;
   position: absolute;
 }
-.ellipse1 {
-  top: 5%;
-  left: 5%;
-}
-.ellipse2{
-  top:5%;
-  right:5%
-}
-.ellipse3{
-  top:90%;
-  left:5%;
-}
-.ellipse4{
-  top:90%;
-  right:5%;
-}
+.ellipse1 { top: 5%; left: 5%; }
+.ellipse2 { top: 5%; right: 5%; }
+.ellipse3 { top: 90%; left: 5%; }
+.ellipse4 { top: 90%; right: 5%; }
+
 .task-label {
   font-size: 20px;         
   font-weight: bold;       
@@ -441,6 +430,226 @@ vertical-nav ul li {
   background-color: #88d698; /* Light green background */
   transition: background-color 0.1s ease; /* Smooth transition effect */
 }
+/* Friends Part*/
+.friend-search-container,.friend-conatiner{
+  position: relative;
+  width: 35%;
+  margin-left: 18%;
+  margin-top:3%;
+  text-align: center;
+}
+#friend-search-input {
+  width: 500px;
+  height:80px;
+  padding: 10px 10px 10px 55px;
+  border: 2px solid white;
+  border-radius: 5px;
+  font-size: 22px;
+  background: rgba(142, 178, 211, 0.85);;
+  background-image: url("../images/search.png");
+  background-repeat: no-repeat;
+  background-position: 20px;
+  background-size: 24px 24px;
+  box-sizing: border-box;
+  
+}
+#friend-search-input::placeholder {
+  color: black; 
+  font-style: italic; 
+  opacity: 1; 
+  font-weight: bold;
+  font-size:22px;
+}
+.friend-dropdown-content {
+  position: absolute;
+  width: 100%;  
+  max-height: 200px;  /* Limit the dropdown height */
+  background-color: white;  
+  border: 2px solid rgba(142, 178, 211, 0.85);  
+  border-radius: 5px; 
+  justify-content: center; 
+  overflow-y: auto;  
+  z-index: 10;  
+  display: none;  /* Hidden by default */
+  text-align: left;
+}
+
+.friend-dropdown-content div {
+  padding: 12px;
+  font-size: 22px;
+  color: black;
+  cursor: pointer;
+  background-color: rgb(160, 199, 235);  
+}
+
+.friend-dropdown-content div:hover {
+  background-color: rgba(160, 199, 235, 0.725);  
+  color: white;  
+}
+.add-friend-btn {
+    background-color:rgb(76, 175, 80); 
+    color: white;  
+    border: none;  
+    border-radius: 5px;  
+    padding: 5px 10px;  
+    cursor: pointer;  
+    font-size: 16px;  
+}
+
+.add-friend-btn:hover {
+    background-color:rgb(81, 221, 86);   
+}
+.added-text {
+  color: rgba(76, 80, 87, 0.66);
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+/* Friend List*/
+.friend-conatiner {
+  position:relative;
+  width:500px;
+  height:350px;
+  top:25%;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: white;
+  border-radius: 15px;
+  border: 2px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  font-family: Arial, sans-serif;
+  overflow-y: auto;
+  font-size:18px;
+}
+.friend-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.friend-list li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.friend-list img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.friend-list li  {
+  color: #85B2F5;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight:bold;
+}
+/* Friend request*/
+.friend-requests-container {
+  position: absolute;
+  right: 5%;  
+  top: 6%;  
+  width: 500px; 
+  height:655px; 
+  background-color: rgba(0, 0, 0, 0.80);
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border: 2px solid white;
+  padding: 10px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+}
+.ellipse5, .ellipse6, .ellipse7, .ellipse8 {
+  width: 30px; 
+  height: 30px;
+  position: absolute;
+}
+.ellipse5 { top: 2%; left: 5%; }
+.ellipse6 { top: 2%; right: 5%; }
+.ellipse7 { bottom: 2%; left: 5%; }
+.ellipse8 { bottom: 2%; right: 5%; }
+
+.friends-request-section{
+  position:relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height:600px;
+}
+.request-list {
+  list-style-type: none;  
+  padding: 0;
+  margin: 0;
+}
+
+.request-list li {
+  display: flex;  
+  align-items: center;
+  justify-content: space-between;  
+  background-color: rgba(0, 0, 0, 0.7); 
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;  /* Space between requests */
+  transition: background-color 0.3s ease;
+  position:relative;
+}
+.request-list img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.request-list  {
+  color: #85B2F5;  /* Light blue text */
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: auto;  /* Push the name to the left */
+}
+.accept-friend-btn {
+  background-color: rgb(76, 175, 80);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.accept-friend-btn:hover {
+  background-color: rgba(76, 175, 79, 0.635);
+}
+
+.decline-friend-btn {
+  background-color: rgb(223, 126, 178);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.decline-friend-btn:hover {
+  background-color: rgba(223, 126, 178, 0.616);
+}
+/* Notification dot for pending friend requests */
+.vertical-nav ul li .notification-dot {
+  position: absolute;
+  top: 400px; 
+  right:40px;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(255, 82, 82); 
+  border-radius: 50%;
+  display: none; /* Hidden by default */
+  z-index: 1;
+}
+
+
 
 
 

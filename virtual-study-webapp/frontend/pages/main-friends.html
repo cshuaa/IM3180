@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends - Cloudy</title>
+    <link rel="stylesheet" href="../css/style-main.css">
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="logoHome">
+        <div class="logoBackground"></div>
+        <a href="main-home.html"><img src="../images/logoHome.png" alt="Cloudy Logo Home Page"></a>
+    </div>
+
+    <div class="logoRectangle"></div>
+
+    <nav class="vertical-nav">
+        <ul>
+            <li>
+                <a href="#" class="username">
+                    &lt;Username&gt;
+                    <img src="../images/Ellipse 22.png" alt="Profile Picture" class="profile-pic">
+                </a>
+            </li>
+            <li><a href="main-home.html">Main</a></li>
+            <li><a href="main-rules.html">Rules</a></li>
+            <li><a href="main-task.html">Set Tasks</a></li>
+            <li><a class="current" href="main-friends.html">Friends
+                <span class="notification-dot" id="friends-notification"></span> 
+            </a></li>
+            <li><a href="index.html">Log Out</a></li>
+        </ul>
+    </nav>
+
+    <!-- Search Bar with Dropdown -->
+    <div class="friend-search-container">
+        <input type="text" id="friend-search-input" placeholder="Search for friends..." onkeyup="filterFriends()">
+        <div id="friend-dropdown" class="friend-dropdown-content">
+            <!-- Dynamic search suggestions will appear here -->
+        </div>
+    </div>
+
+    <!-- Friends Section -->
+    <div class="friend-conatiner">
+        <h2>Your Friends:</h2>
+        <ul class="friend-list" id="friendList">
+            <!-- Friends will be loaded here dynamically -->
+        </ul>
+    </div>
+
+    <!-- Pending Friend Request -->
+    <div class="friend-requests-container">
+        <div class="friend-ellipse"></div>
+        <img src="../images/taskEllipse.png" class="ellipse5" alt="pink ellipse top-left">
+        <img src="../images/taskEllipse.png" class="ellipse6" alt="pink ellipse top-right">
+        <img src="../images/taskEllipse.png" class="ellipse7" alt="pink ellipse bottom-left">
+        <img src="../images/taskEllipse.png" class="ellipse8" alt="pink ellipse bottom-right">
+    
+        <div class="friends-request-section">
+            <h2>Friend Requests</h2>
+            <hr width="100%" size="2"><br>
+            <ul class="request-list" id="requestList">
+                <!-- Friend requests will be loaded here dynamically -->
+            </ul>
+        </div>
+    </div>
+    <script src="../js/friend-search.js"></script>
+    <script src="../js/notifications.js"></script>
+    
+    
+</body>
+</html>
