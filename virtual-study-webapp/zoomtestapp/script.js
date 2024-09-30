@@ -4,6 +4,8 @@ import uitoolkit from "./videosdk-ui-toolkit/index.js";
 let sessionName = "";
 let sessionKey = "";
 let userName = "";
+let userId = "";
+const sessionContainer = document.getElementById("sessionContainer");
 
 // This function generates the signature (it uses sessionName and sessionKey)
 function generateSignature(
@@ -54,6 +56,7 @@ function fetchSessionData() {
       sessionName = sessionData.sessionName;
       sessionKey = sessionData.sessionPassword;
       userName = sessionData.userName;
+      userId = sessionData.userId;
 
       // Optionally display the sessionName and sessionPassword on the HTML page
       document.getElementById("sessionName").textContent = sessionName;
@@ -64,6 +67,7 @@ function fetchSessionData() {
       console.log("Updated sessionName: ", sessionName);
       console.log("Updated sessionPassword (sessionKey): ", sessionKey);
       console.log("Updated userName: ", userName);
+      console.log("Updated userId: ", userId);
 
       // Now that sessionName and sessionKey are updated, you can generate the signature
       const signature = generateSignature(
@@ -119,6 +123,36 @@ function fetchSessionData() {
 }
 
 function startCall(config) {
-  const sessionContainer = document.getElementById("sessionContainer");
   uitoolkit.joinSession(sessionContainer, config);
+  uitoolkit.onSessionJoined(sessionJoined);
+  uitoolkit.onSessionClosed(sessionClosed);
 }
+
+var sessionJoined = () => {
+  console.log("session joined");
+};
+
+var sessionClosed = () => {
+  console.log("session closed");
+  uitoolkit.closeSession(sessionContainer);
+
+  // Call Servlet to delete session from active sessions
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "closeroom", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      // Redirect to HTML Page 2
+      window.location.href = "video-room.html";
+    } else {
+      console.error("Error sending data to the servlet");
+    }
+  };
+
+  // Send session data to the servlet
+  xhr.send(
+    `sessionName=${encodeURIComponent(sessionName)}
+    &userId=${encodeURIComponent(userId)}`
+  );
+};

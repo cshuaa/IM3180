@@ -12,10 +12,12 @@ public class UserDataServlet extends HttpServlet {
         // Retrieve session data from HttpSession
         HttpSession session = request.getSession();
         String userName = (String) session.getAttribute("userName");
+        String userId = (String) session.getAttribute("userId");
 
         // Create a JSON object to store the session details
         JSONObject jsonResponse = new JSONObject();
         jsonResponse.put("userName", userName);
+        jsonResponse.put("userId", userId);
 
         // Set response type to JSON
         response.setContentType("application/json");
