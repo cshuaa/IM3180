@@ -10,8 +10,8 @@ import org.json.JSONObject;
 //import javax.servlet.http.*;
 //import javax.servlet.annotation.*;
 
-@WebServlet("/createroom") // Configure the request URL for this servlet (Tomcat 7/Servlet 3.0 upwards)
-public class CreateRoomServlet extends HttpServlet {
+@WebServlet("/closeroom") // Configure the request URL for this servlet (Tomcat 7/Servlet 3.0 upwards)
+public class CloseRoomServlet extends HttpServlet {
 
     // The doGet() runs once per HTTP GET request to this servlet.
     @Override
@@ -21,7 +21,7 @@ public class CreateRoomServlet extends HttpServlet {
         response.setContentType("text/html");
         // Get a output writer to write the response message into the network socket
         PrintWriter out = response.getWriter();
-        String sessionName = "", sessionPassword = "", message = "", userName = "";
+        String sessionName = "", sessionPassword = "", message = "", userName = "", userId = "";
         // Print an HTML page as the output of the query
         out.println("<html>");
         out.println("<head>");
@@ -43,21 +43,30 @@ public class CreateRoomServlet extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
 
-        try {
+        try (
+                // Step 1: Allocate a database 'Connection' object
+                Connection conn = DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/cloudydb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC",
+                        "myuser", "xxxx"); // For MySQL
+
+                // Step 2: Allocate a 'Statement' object in the Connection
+                Statement stmt = conn.createStatement();) {
 
             sessionName = request.getParameter("sessionName");
-            sessionPassword = request.getParameter("sessionPassword");
-            userName = request.getParameter("userName");
+            userId = request.getParameter("userId");
 
-            System.out.println("CreateRoomServlet sessionName: " + sessionName);
-            System.out.println("CreateRoomServlet sessionPassword: " + sessionPassword);
-            System.out.println("CreateRoomServlet userName: " + userName);
+            System.out.println("CloseRoomServlet sessionName: " + sessionName);
+            System.out.println("CloseRoomServlet userId: " + userId);
 
-            // Store session data in HttpSession
-            HttpSession session = request.getSession();
-            session.setAttribute("sessionName", sessionName);
-            session.setAttribute("sessionPassword", sessionPassword);
-            session.setAttribute("userName", userName);
+            // Step 3: Execute a SQL SELECT query
+            String sqlStr1 = "DELETE FROM Sessions WHERE host_id = ?;"; // Single-quote
+            PreparedStatement preparedStatement = conn.prepareStatement(sqlStr1);
+
+            // Set parameters for the prepared statement
+            preparedStatement.setString(1, userId);
+            preparedStatement.executeUpdate(); // Send the query to the server
+
+            System.out.print("Room" + sessionName + " closed");
 
             // Redirect to video-room.html
             response.sendRedirect("video-room.html");

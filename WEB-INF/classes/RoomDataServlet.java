@@ -14,12 +14,26 @@ public class RoomDataServlet extends HttpServlet {
         String sessionName = (String) session.getAttribute("sessionName");
         String sessionPassword = (String) session.getAttribute("sessionPassword");
         String userName = (String) session.getAttribute("userName");
+        String userId = (String) session.getAttribute("userId");
+        Boolean publicRoom = (Boolean) session.getAttribute("public");
+
+        System.out.println("RoomDataServlet: " + sessionName);
+        System.out.println("RoomDataServlet: " + sessionPassword);
+        System.out.println("RoomDataServlet: " + userName);
+        System.out.println("RoomDataServlet: " + userId);
+        System.out.println("RoomDataServlet: " + publicRoom + "\n");
 
         // Create a JSON object to store the session details
         JSONObject jsonResponse = new JSONObject();
         jsonResponse.put("sessionName", sessionName);
-        jsonResponse.put("sessionPassword", sessionPassword);
+        // Set default public room password
+        if (publicRoom) {
+            jsonResponse.put("sessionPassword", "Public123!");
+        } else {
+            jsonResponse.put("sessionPassword", sessionPassword);
+        }
         jsonResponse.put("userName", userName);
+        jsonResponse.put("userId", userId);
 
         // Set response type to JSON
         response.setContentType("application/json");

@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
                 response.setContentType("text/html");
                 // Get a output writer to write the response message into the network socket
                 PrintWriter out = response.getWriter();
-                String customerId = "", username = "", password = "", message = "";
+                String userId = "", username = "", password = "", message = "";
                 // Print an HTML page as the output of the query
                 out.println("<html>");
                 out.println("<head>");
@@ -72,14 +72,15 @@ public class LoginServlet extends HttpServlet {
 
                         // Check if user exists and login info is correct before showing main page
                         if (rset.next()) {
-                                customerId = rset.getString("user_id");
+                                userId = rset.getString("user_id");
                                 username = rset.getString("username");
 
                                 // Store session data in HttpSession
                                 HttpSession session = request.getSession();
                                 session.setAttribute("userName", username);
+                                session.setAttribute("userId", userId);
 
-                                System.out.println("LoginServlet userName: " + username);
+                                System.out.println("LoginServlet userName: " + userId);
 
                                 // Redirect to testLandingPage
                                 response.sendRedirect("testLandingPage.html");
