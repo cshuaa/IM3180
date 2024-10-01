@@ -1,3 +1,5 @@
+//includes code for the search room dropdown, the show/hide password toggle and the private/public room toggle
+
 function filterFunction() {
     var input, filter, dropdown, items, i;
     input = document.getElementById("search-input");
