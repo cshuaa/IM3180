@@ -1,0 +1,717 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box; 
+  overflow: hidden;
+}
+
+/* Background Image */
+.background {
+  background-image: url('images/MainPage.png'); 
+  background-size: cover; 
+  background-position: center top; /* You can change this to 'center' or 'center bottom' */
+  background-repeat: no-repeat; 
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Logo Section */
+.logoHome {
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  z-index: 10; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  width: 200px; /* Width of the square */
+  height: 200px; /* Height of the square */
+}
+
+.logoBackground {
+  background-color: rgba(225, 235, 242, 0.8); 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 200px; /* Width of the square */
+  height: 200px; /* Height of the square */
+  z-index: -1; 
+}
+
+.logoHome img {
+  width: 220px; /* Adjust logo size as needed */
+  height: auto;
+  margin-left: 40px; /* Optional adjustment */
+}
+
+/* Vertical Navigation */
+.vertical-nav {
+  position: absolute;
+  top: 200px;
+  left: 0;
+  width: 200px; /* Adjusted width */
+  background-color: transparent; 
+  z-index: 5;
+  display: flex; 
+  flex-direction: column; /* Stack items vertically */ 
+  justify-content: space-between; /* Ensure items are spaced to fill the container */ 
+  overflow-y: auto; /* Enable vertical scrolling if items overflow */ 
+}
+
+.vertical-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; 
+  flex-direction: column; /* Stack items vertically */
+  text-align: center; /* Center the text */
+}
+
+.vertical-nav ul li {
+  margin: 0; 
+}
+
+.vertical-nav ul li a {
+  display: block; 
+  width: 100%; /* Adjust width */
+  padding: 27px; /* Adjust padding for height */
+  text-decoration: none; 
+  color: #85B2F5; /* Lighter blue for the text */
+  font-weight: bold; /* Bold font */
+  font-size: 20px; /* Adjusted font size */
+  background: rgba(0, 0, 0, 0.95); 
+  border: 1px solid #fff; 
+  border-radius: 0; 
+  box-sizing: border-box; 
+  opacity: 0.9; /* Slightly higher opacity */
+  transition: opacity 0.3s, background-color 0.3s, color 0.3s; /* Smooth transition for opacity, background, and color */
+}
+
+.vertical-nav ul li a:hover {
+  background-color: rgba(93, 99, 108); /* Hover and active background color */
+  color: #fff; /* Hover text color */
+  opacity: 1; /* Full opacity when active */
+}
+
+
+.vertical-nav .username {
+  color: #fff; 
+  display: block;
+  text-align: center;
+  font-weight: bold; /* Make username bold */
+}
+
+.vertical-nav .profile-pic {
+  width: 60px; /* Slightly larger profile picture */
+  height: 60px; 
+  border-radius: 50%; 
+  display: block;
+  margin: 0 auto; 
+}
+
+.vertical-nav .current {
+  background-color: rgba(105, 112, 122); /* Same as hover background color */
+  color: #fff; /* Same as hover text color */
+  font-weight: bold; /* Keep it bold */
+  transition: none; /* No transition for the active tab */
+}
+
+/* Search container styling */
+.search-container {
+  position: absolute; /* Allow precise positioning */
+  top: 155px; /* Space from the top edge of the screen */
+  right: 80px; /* Space from the right edge */
+  width: calc(100% - 240px); /* Adjust width considering the left-side nav and padding */
+  display: flex;
+  justify-content: flex-end; /* Align the search bar to the right */
+  z-index: 15; /* Ensure it appears above the logo */
+  padding-left: 220px; /* Ensure padding from the logo background */
+  border-radius: 0px;
+}
+
+/* Input field styling */
+#search-input {
+  width: 1090px !important; /* Enforce width change with !important */
+  padding: 30px; /* Padding inside the input */
+  border: 3px solid white; /* 3px white border */
+  border-radius: 0px; /* Rounded corners */
+  background-color: rgba(142, 178, 211, 0.8); /* Background with 70% opacity */
+  font-size: 22px; /* Font size */
+  color: rgb(56, 54, 54); /* Text color inside input */
+  text-align: center; /* Centralize the placeholder text */
+  box-sizing: border-box;
+  background-image: url(images/search.png);
+  background-repeat: no-repeat;
+  background-position: 365px;
+  background-size: 24px 24px;
+}
+
+/* Placeholder text color */
+#search-input::placeholder {
+  color: rgb(56, 54, 54); /* Change placeholder text color to black */
+  opacity: 1; /* Ensure placeholder is fully opaque */
+  font-weight: bold;
+}
+
+/* Dropdown styling */
+.dropdown-content {
+  position: absolute;
+  top: 100%; /* Position it right below the input field */
+  right: 0; /* Align it with the search bar */
+  width: 1090px; /* Make the dropdown width the same as the search bar */
+  max-height: 150px; /* Limit the height */
+  overflow-y: auto; /* Scroll if content is too long */
+  background-color: white; /* Background color */
+  border: 1px solid #ccc; /* Border */
+  border-radius: 4px; /* Rounded corners */
+  display: none; /* Hide by default */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+/* Dropdown item styling */
+.dropdown-item {
+  display: flex; /* Flexbox to align the text and button */
+  justify-content: space-between; /* Space between text and button */
+  padding: 10px; /* Padding for dropdown items */
+  transition: background-color 0.3s; /* Smooth background color change */
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0; /* Highlight on hover */
+}
+
+.join-btn {
+  padding: 5px 10px; /* Padding for the button */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  font-size: 14px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.join-btn:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Show the dropdown when it has content */
+#dropdown.show {
+  display: block; /* Show the dropdown */
+}
+
+
+
+/* Grey box*/
+.create-room-box {
+  background-color: #030405B2; /* Background color with 70% opacity */
+  width: 1130px; /* Adjustable width */
+  padding: 20px;
+  position: absolute; /* Position it relative to the viewport */
+  right: 30px; /* Distance from the right edge of the screen (adds a gap) */
+  top: 40px; /* Adjust the distance from the top to come under the vertical nav */
+  border-radius: 0px;
+  border: 3px solid #1C1212; /* Top border */
+  display: flex; /* Use flexbox to align elements horizontally */
+  align-items: center; /* Vertically center text and button */
+  justify-content: center; /* Evenly space out the elements */
+  color: #dbdbdb;
+  font-size: 24px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+.create-room-text {
+  margin-right: 40px; /* Add some space between text and button */
+  font-size: 29px;
+}
+
+.create-room-btn {
+  background-color: #9b59b6;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-room-btn:hover {
+  background-color: #8e44ad;
+}
+
+/*new container*/
+.content-container {
+  position: absolute; /* Allow precise positioning */
+  top: 180px; /* Space from the top edge of the screen */
+  right: 80px; /* Space from the right edge */
+  width: calc(100% - 240px); /* Adjust width considering the left-side nav and padding */
+  display: flex;
+  justify-content: flex-end; /* Align the search bar to the right */
+  padding-left: 220px; /* Ensure padding from the logo background */
+  border-radius: 0px;
+  margin-top: 110px; /* Gap between search container and content */
+  padding: 20px 80px 40px 80px; /* Padding around the container */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: space-between;
+  height: calc(100vh - 350px); /* Fill the rest of the screen */
+  background-color: rgba(142, 178, 211, 0.8);
+  width: 925px !important;
+  border: 3px solid white;
+}
+
+/* Main heading styling */
+.main-heading {
+  font-size: 25px;
+  color: rgb(35, 34, 34);
+  text-align: center; /* Left-align the main heading */
+  margin-bottom: 10px; /* Space below the heading */
+  font-family: Arial;
+}
+
+/* Subheading styling */
+.subheading {
+  font-size: 20px;
+  color: rgb(35, 34, 34);
+  text-align: center; /* Left-align the subheading */
+  margin: 10px 0; /* Space around the subheadings */
+  font-family: Arial;
+}
+
+/* Image styling */
+.centered-image {
+  display: block;
+  margin: 0 auto 10px auto; /* Center the image and space it below */
+  max-width: 20%; /* Make sure the image is responsive */
+  height: auto;
+}
+
+.create-call-container {
+  position: absolute;
+  top: 50%;
+  left: 57%; /* Center horizontally */
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 600px;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #030405B2;
+  border: 3px solid #1C1212;
+  box-sizing: border-box;
+}
+
+/* Centralize the room name, password, and toggle containers */
+.room-name-container,
+.room-password-container,
+.room-toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 60%;
+}
+
+.create-room-name,
+.create-room-password,
+.create-room-type {
+  margin-right: 10px;
+  color: #fff;
+  font-size: 22px; /* Same size for all labels */
+}
+
+/* Style the input fields */
+input.name,
+input.password {
+  background: rgba(197, 217, 223, 0.7);
+  border: 3px solid #fff;
+  padding: 10px 40px 10px 10px;
+  color: #000;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 100%; /* Ensure all input fields are of the same width */
+  box-sizing: border-box;
+}
+
+/* Password input container */
+.password-input-container {
+  position: relative;
+  width: 100%; /* Same width as input fields */
+}
+
+/* Style the toggle icon */
+.toggle-password {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
+}
+
+/* Button styles */
+.enter-create-room-btn {
+  background-color: #15141491;
+  color: #fff;
+  border: 3px solid #fff;
+  padding: 10px 20px;
+  border-radius: 3px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.enter-create-room-btn:hover {
+  background-color: #000000;
+  color: #bdbdbdb2;
+}
+
+.create-call-container {
+  position: absolute;
+  top: 50%;
+  left: 57%; /* Center horizontally */
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 630px;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #030405B2;
+  border: 3px solid #1C1212;
+  box-sizing: border-box;
+}
+
+/* Centralize the room name, password, and toggle containers */
+.room-name-container,
+.room-password-container,
+.room-toggle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 60%;
+}
+
+.create-room-name {
+  margin-right: 400px;
+  color: #fff;
+  font-size: 22px; /* Same size for all labels */
+}
+
+.create-room-password {
+  margin-right: 425px;
+  color: #fff;
+  font-size: 22px; /* Same size for all labels */
+}
+
+/* Style the input fields */
+input.name,
+input.password {
+  background: rgba(197, 217, 223, 0.7);
+  border: 3px solid #fff;
+  padding: 10px 40px 10px 10px;
+  color: #000;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 100%; /* Ensure all input fields are of the same width */
+  box-sizing: border-box;
+}
+
+/* Password input container */
+.password-input-container {
+  position: relative;
+  width: 100%; /* Same width as input fields */
+}
+
+/* Style the toggle icon */
+.toggle-password {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
+}
+
+/* Add more space between the toggle and the button */
+.room-toggle-container {
+  margin-bottom: 40px; /* Increase space between toggle and button */
+}
+
+/* Button styles */
+.enter-create-room-btn {
+  background-color: #15141491;
+  color: #fff;
+  border: 3px solid #fff;
+  padding: 10px 20px;
+  border-radius: 3px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+}
+
+.enter-create-room-btn:hover {
+  background-color: #000000;
+  color: #bdbdbdb2;
+}
+
+/* Image styling */
+.newRoom-image {
+  display: block;
+  margin: -20px auto 10px auto;
+  max-width: 30%;
+  height: auto;
+}
+
+/* Toggle switch styles */
+.toggle-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px; /* Reduced space for better alignment */
+  transform: translateY(2px);
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  width: 34px;
+  height: 20px;
+  background-color: #2ECC71;
+  border-radius: 34px;
+  position: relative;
+  transition: background-color 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 1px;
+  bottom: 1px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #E74C3C;
+}
+
+input:checked + .slider:before {
+  transform: translateX(14px);
+}
+
+/* Toggle label */
+.toggle-label {
+  margin-left: 10px;
+  color: #fff;
+  font-size: 22px; /* Match label size with room name and password */
+}
+
+
+/* Toggle switch styles */
+.toggle-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px; /* Reduced space for better alignment */
+  transform: translateY(2px);
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  width: 34px;
+  height: 20px;
+  background-color: #2ECC71;
+  border-radius: 34px;
+  position: relative;
+  transition: background-color 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 1px;
+  bottom: 1px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #E74C3C;
+}
+
+input:checked + .slider:before {
+  transform: translateX(14px);
+}
+
+/* Toggle label */
+.toggle-label {
+  margin-left: 10px;
+  color: #fff;
+  font-size: 22px; /* Match label size with room name and password */
+  font-weight: bold;
+}
+
+
+.enter-call-container {
+  position: absolute;
+  top: 60%;
+  left: 57%;
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 450px;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #030405B2;
+  border: 3px solid #1C1212;
+  box-sizing: border-box;
+  padding-top: 0;
+}
+
+.highlight-studyspace {
+  color: #85B2F5; /* You can specify any shade of blue, e.g., #0000FF */
+}
+
+/* Wrapping image and text */
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 40%;
+  height: auto;
+  text-align: center; /* Ensure the text aligns at the center */
+}
+/* Move the image higher */
+.enterRoom-image {
+  display: block;
+  margin: -30px auto 10px auto;
+  width: 100%; /* Make the image responsive */
+  height: auto;
+  position: relative;
+  z-index: 1; /* Make sure the image is below the text */
+}
+/* Styling the StudySpace text */
+.study-space-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  color: black;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  z-index: 2; /* Make sure the text is above the image */
+  text-align: center;
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+
+/* Container for Enter Room Password */
+.enter-room-password-container {
+  display: flex;
+  flex-direction: column; /* Stack the heading on top of the input */
+  align-items: center; /* Center-align the input */
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Heading for Enter Room Password */
+.enter-room-password {
+  margin-bottom: 10px; /* Space between the heading and the input */
+  margin-left: -310px; /* Push the heading slightly to the left */
+  color: #fff;
+  font-size: 22px; /* Adjust font size if necessary */
+  margin-top: 0px;
+  position: relative;
+  top: -10px;
+}
+
+/* Password input container with eye icon */
+.enter-password-input-container {
+  position: relative;
+  width: 55%;
+}
+
+/* Style for the password input */
+.enter-password {
+  background: rgba(197, 217, 223, 0.7);
+  border: 3px solid #fff;
+  padding: 10px 40px 10px 10px;
+  color: #000;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Style for the toggle icon */
+.enter-toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
+}
+
+.enter-room-text {
+  margin-right: 40px;
+  font-size: 29px;
+  font-family: Arial;
+}
+
+/* Button styles */
+.enter-room-btn {
+  background-color: #15141491;
+  color: #fff;
+  border: 3px solid #fff;
+  padding: 10px 20px;
+  border-radius: 3px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+  margin-top: 20px;
+  
+}
+
+.enter-room-btn:hover {
+  background-color: #000000;
+  color: #bdbdbdb2;
+}
