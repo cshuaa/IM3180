@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClouDy</title>
+    <link rel="stylesheet" href="styles-main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="logoHome">
+        <div class="logoBackground"></div>
+        <img src="images/logoHome.png" alt="ClouDy Logo Home Page">
+    </div>
+
+    <div class="logoRectangle"></div>
+
+    <nav class="vertical-nav">
+        <ul>
+            <li>
+                <a href="#" class="username">
+                    &lt;Username&gt;
+                    <img src="images/Ellipse 22.png" alt="Profile Picture" class="profile-pic">
+                </a>
+            </li>
+            <li><a class="current" href="main-home.html">Main</a></li>
+            <li><a href="#">Rules</a></li>
+            <li><a href="#">Set Tasks</a></li>
+            <li><a href="#">Friends</a></li>
+            <li><a href="#">Log Out</a></li>
+        </ul>
+    </nav>
+    
+    <div class="create-call-container">
+        <img src="images/newRoom.png" alt="newRoom" class="newRoom-image">
+    
+        <!-- Room name and input container -->
+        <div class="room-name-container">
+            <h1 class="create-room-name">Room Name:</h1>
+            <input type="text" class="name" placeholder="Enter room name">
+        </div>
+    
+        <!-- Room password and input container -->
+        <div class="room-password-container">
+            <h1 class="create-room-password">Password:</h1>
+            
+            <div class="password-input-container">
+                <input type="password" class="password" placeholder="Enter password" id="password-field">
+                <img src="images/show-password-white.png" alt="Toggle Password" class="toggle-password" id="eye-icon" onclick="togglePassword()">
+            </div>
+        </div>
+
+        <!-- Room type toggle switch container -->
+        <div class="room-toggle-container">
+            <h1 class="create-room-type"></h1>
+            <label class="toggle-switch">
+                <input type="checkbox" id="privacy-toggle" checked> <!-- Set checked by default -->
+                <span class="slider"></span>
+                <span class="toggle-label">Private Room</span> <!-- Default label -->
+            </label>
+        </div>
+    
+        <button class="enter-create-room-btn">Join room</button>
+    </div>    
+    
+    <script src="script.js"></script>
+</body>
+</html>
