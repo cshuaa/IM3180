@@ -1,93 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home - Cloudy</title>
-    <link rel="stylesheet" href="../css/style-main.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap"
-      rel="stylesheet"
-    />
-    <script src="../js/userinfo.js"></script>
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClouDy</title>
+    <link rel="stylesheet" href="styles-main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+
+</head>
+<body>
     <div class="background"></div>
 
     <div class="logoHome">
-      <div class="logoBackground"></div>
-      <a href="main-home.html"
-        ><img src="../images/logoHome.png" alt="Cloudy Logo Home Page"
-      /></a>
+        <div class="logoBackground"></div>
+        <img src="images/logoHome.png" alt="ClouDy Logo Home Page">
     </div>
 
     <div class="logoRectangle"></div>
 
     <nav class="vertical-nav">
-      <ul>
-        <li>
-          <a href="#" class="username">
-            Username
-            <img
-              src="../images/Ellipse 22.png"
-              alt="Profile Picture"
-              class="profile-pic"
-            />
-          </a>
-        </li>
-        <li><a class="current" href="main-home.html">Main</a></li>
-        <li><a href="main-rules.html">Rules</a></li>
-        <li><a href="main-task.html">Set Tasks</a></li>
-        <li><a href="main-friends.html">Friends</a></li>
-        <li><a href="../../../index.html">Log Out</a></li>
-      </ul>
+        <ul>
+            <li>
+                <a href="#" class="username">
+                    &lt;Username&gt;
+                    <img src="images/Ellipse 22.png" alt="Profile Picture" class="profile-pic">
+                </a>
+            </li>
+            <li><a class="current" href="main-home.html">Main</a></li>
+            <li><a href="#">Rules</a></li>
+            <li><a href="#">Set Tasks</a></li>
+            <li><a href="#">Friends</a></li>
+            <li><a href="#">Log Out</a></li>
+        </ul>
     </nav>
 
     <div class="search-container">
-      <input
-        type="text"
-        id="search-input"
-        placeholder="Search for a study room..."
-        onkeyup="filterFunction()"
-      />
-      <div id="dropdown" class="dropdown-content">
-        <div class="dropdown-item">
-          <span>Option 1</span>
-          <button class="join-btn">Join</button>
+        <input type="text" id="search-input" placeholder="Search for a study room..." onkeyup="filterFunction()">
+        <div id="dropdown" class="dropdown-content">
+            <div class="dropdown-item">
+                <span>Option 1</span>
+                <button class="join-btn" onclick="location.href='main-join.html';">Join</button>
+            </div>
+            <div class="dropdown-item">
+                <span>Option 2</span>
+                <button class="join-btn" onclick="location.href='main-join.html';">Join</button>
+            </div>
+            <div class="dropdown-item">
+                <span>Option 3</span>
+                <button class="join-btn" onclick="location.href='main-join.html';">Join</button>
+            </div>
+            <div class="dropdown-item">
+                <span>Option 4</span>
+                <button class="join-btn" onclick="location.href='main-join.html';">Join</button>
+            </div>
         </div>
-        <div class="dropdown-item">
-          <span>Option 2</span>
-          <button class="join-btn">Join</button>
-        </div>
-        <div class="dropdown-item">
-          <span>Option 3</span>
-          <button class="join-btn">Join</button>
-        </div>
-        <div class="dropdown-item">
-          <span>Option 4</span>
-          <button class="join-btn">Join</button>
-        </div>
-      </div>
     </div>
 
-    <script src="../js/room-search.js"></script>
+    <script src="script.js"></script>
 
     <div class="create-room-box">
-      <span class="create-room-text">Create a new room here:</span>
-      <button class="create-room-btn">Click to create a room</button>
-    </div>
-
+        <span class="create-room-text">Create a new room here:</span>
+        <button class="create-room-btn" onclick="location.href='main-create.html';">Click to create a room</button>
+    </div>   
+    
     <div class="content-container">
-      <h1 class="main-heading">About Our CLOUDY Users</h1>
-      <h2 class="subheading">Average time users spend on CLOUDY: 128 Hrs</h2>
-      <img src="../images/graph 1.png" alt="Image 1" class="centered-image" />
-
-      <h2 class="subheading">
-        Average time users spend on CLOUDY per session: 2 Hrs
-      </h2>
-      <img src="../images/graph 2.png" alt="Image 2" class="centered-image" />
+        <h1 class="main-heading">About Our CLOUDY Users</h1>
+        <h2 class="subheading">Average time users spend on CLOUDY:   128 Hrs</h2>
+        <img src="images/graph 1.png" alt="Image 1" class="centered-image">
+        
+        <h2 class="subheading">Average time users spend on CLOUDY per session:   2 Hrs</h2>
+        <img src="images/graph 2.png" alt="Image 2" class="centered-image">
     </div>
-  </body>
+
+</body>
 </html>
