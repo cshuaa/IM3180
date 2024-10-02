@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClouDy</title>
-    <link rel="stylesheet" href="styles-main.css">
+    <title>Create - Cloudy</title>
+    <link rel="stylesheet" href="../css/styles-main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="background"></div>
 
     <div class="logoHome">
         <div class="logoBackground"></div>
-        <img src="images/logoHome.png" alt="ClouDy Logo Home Page">
+        <a href="main-home.html"
+        ><img src="../images/logoHome.png" alt="ClouDy Logo Home Page">
+        /></a>
     </div>
 
     <div class="logoRectangle"></div>
@@ -24,19 +27,19 @@
             <li>
                 <a href="#" class="username">
                     &lt;Username&gt;
-                    <img src="images/Ellipse 22.png" alt="Profile Picture" class="profile-pic">
+                    <img src="../images/Ellipse 22.png" alt="Profile Picture" class="profile-pic">
                 </a>
             </li>
             <li><a class="current" href="main-home.html">Main</a></li>
-            <li><a href="#">Rules</a></li>
-            <li><a href="#">Set Tasks</a></li>
-            <li><a href="#">Friends</a></li>
-            <li><a href="#">Log Out</a></li>
+            <li><a href="main-rules.html">Rules</a></li>
+            <li><a href="main-task.html">Set Tasks</a></li>
+            <li><a href="main-friends.html">Friends</a></li>
+            <li><a href="../../../index.html">Log Out</a></li>
         </ul>
     </nav>
     
     <div class="create-call-container">
-        <img src="images/newRoom.png" alt="newRoom" class="newRoom-image">
+        <img src="../images/newRoom.png" alt="newRoom" class="newRoom-image">
     
         <!-- Room name and input container -->
         <div class="room-name-container">
@@ -50,7 +53,7 @@
             
             <div class="password-input-container">
                 <input type="password" class="password" placeholder="Enter password" id="password-field">
-                <img src="images/show-password-white.png" alt="Toggle Password" class="toggle-password" id="eye-icon" onclick="togglePassword()">
+                <img src="../images/show-password-white.png" alt="Toggle Password" class="toggle-password" id="eye-icon" onclick="togglePassword()">
             </div>
         </div>
 
@@ -67,6 +70,6 @@
         <button class="enter-create-room-btn">Join room</button>
     </div>    
     
-    <script src="script.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>

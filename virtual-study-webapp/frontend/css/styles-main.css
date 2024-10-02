@@ -9,12 +9,16 @@ body, html {
 
 /* Background Image */
 .background {
-  background-image: url('images/MainPage.png'); 
+  background-image: url("../images/MainPage.png");
   background-size: cover; 
   background-position: center top; /* You can change this to 'center' or 'center bottom' */
   background-repeat: no-repeat; 
   width: 100vw;
   height: 100vh;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* Logo Section */
@@ -22,7 +26,7 @@ body, html {
   position: absolute;
   top: 0; 
   left: 0; 
-  z-index: 10; 
+  z-index: 1; 
   display: flex; 
   align-items: center; 
   justify-content: center; 
@@ -52,18 +56,20 @@ body, html {
   top: 200px;
   left: 0;
   width: 200px; /* Adjusted width */
+  height: 100vh;
   background-color: transparent; 
-  z-index: 5;
-  display: flex; 
-  flex-direction: column; /* Stack items vertically */ 
-  justify-content: space-between; /* Ensure items are spaced to fill the container */ 
-  overflow-y: auto; /* Enable vertical scrolling if items overflow */ 
+  z-index: 1;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  justify-content: space-between; /* Ensure items are spaced to fill the container */
+  overflow-y: auto; /* Enable vertical scrolling if items overflow */
 }
 
 .vertical-nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  flex-grow: 1; /* Ensure that the items grow to fill available space */
   display: flex; 
   flex-direction: column; /* Stack items vertically */
   text-align: center; /* Center the text */
@@ -78,7 +84,7 @@ body, html {
   width: 100%; /* Adjust width */
   padding: 27px; /* Adjust padding for height */
   text-decoration: none; 
-  color: #85B2F5; /* Lighter blue for the text */
+  color: #8bade1; /* Lighter blue for the text */
   font-weight: bold; /* Bold font */
   font-size: 20px; /* Adjusted font size */
   background: rgba(0, 0, 0, 0.95); 
@@ -90,11 +96,10 @@ body, html {
 }
 
 .vertical-nav ul li a:hover {
-  background-color: rgba(93, 99, 108); /* Hover and active background color */
+  background-color: rgb(93, 99, 108); /* Hover and active background color */
   color: #fff; /* Hover text color */
   opacity: 1; /* Full opacity when active */
 }
-
 
 .vertical-nav .username {
   color: #fff; 
@@ -112,12 +117,11 @@ body, html {
 }
 
 .vertical-nav .current {
-  background-color: rgba(105, 112, 122); /* Same as hover background color */
+  background-color: rgb(105, 112, 122); /* Same as hover background color */
   color: #fff; /* Same as hover text color */
   font-weight: bold; /* Keep it bold */
   transition: none; /* No transition for the active tab */
 }
-
 /* Search container styling */
 .search-container {
   position: absolute; /* Allow precise positioning */
@@ -714,4 +718,358 @@ input:checked + .slider:before {
 .enter-room-btn:hover {
   background-color: #000000;
   color: #bdbdbdb2;
+}
+
+/*Rules Part*/
+.cloud-rules-header img{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: auto;
+  margin-top: 3%;
+  margin-left:45%;
+  z-index: 10;
+  position: relative;
+
+}
+.main-rules-text-box {
+  background-color: rgba(142, 178, 211, 0.80);
+  color:white;
+  padding: 2%;
+  width: 70%;
+  height:70%;
+  margin-left:20%;
+  margin-top: -2.5%;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  position: relative; 
+  border: 1px solid white;
+}
+/* Task Part*/
+.task-container {
+  background-color: rgba(0, 0, 0, 0.80);
+  color:white;
+  padding: 2%;
+  width: 70%;
+  height: 85%;
+  margin-left:21%;
+  margin-top: 3%;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  border: 1px solid white;
+  position: relative; 
+  z-index:2;
+}
+.task-ellipse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index:1;
+}
+.ellipse1, .ellipse2, .ellipse3, .ellipse4 {
+  width: 30px; /* Size of the ellipses */
+  height: 30px;
+  position: absolute;
+}
+.ellipse1 { top: 5%; left: 5%; }
+.ellipse2 { top: 5%; right: 5%; }
+.ellipse3 { top: 90%; left: 5%; }
+.ellipse4 { top: 90%; right: 5%; }
+
+.task-label {
+  font-size: 20px;         
+  font-weight: bold;       
+  color: #f2c7c7;                   
+  margin-bottom: 10px;     
+}
+.add-task-section,.checklist-section {
+  position: relative;
+  z-index: 3; 
+}
+.add-task-section input[type="text"] {
+  width: 60%;
+  padding: 10px;
+  margin-left:12px;
+  margin-right: 12px;
+  font-size: 18px;
+}
+.add-task-section button {
+  padding: 10px 20px;
+  background-color: rgba(242, 199, 199);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight:900;
+}
+.add-task-section button:hover {
+  background-color: rgba(242, 199, 199, 0.756);
+}
+.add-task-section button:active {
+  background-color: rgba(242, 199, 199, 0.337);
+}
+.checklist-section {
+  max-height: 55%; /* Set the maximum height for the checklist section */
+  overflow-y: auto; /* Enable vertical scrolling when tasks overflow */
+}
+.checklist-section ul {
+  list-style-type: style type none;;
+  padding: 0;
+}
+.checklist-section li {
+  background-color: #8bade1;
+  padding: 15px;
+  margin-left:3%;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  width:90%;
+}
+.checklist-section li span {
+  font-size: 18px;
+  font-weight:bold;
+  color: white;
+}
+
+.checklist-section li input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.checklist-section li:hover {
+  background-color: #8eb2d3c9;
+}
+.task-item.completed {
+  background-color: #88d698; /* Light green background */
+  transition: background-color 0.1s ease; /* Smooth transition effect */
+}
+/* Friends Part*/
+.friend-search-container,.friend-conatiner{
+  position: relative;
+  width: 35%;
+  margin-left: 18%;
+  margin-top:3%;
+  text-align: center;
+}
+#friend-search-input {
+  width: 500px;
+  height:80px;
+  padding: 10px 10px 10px 55px;
+  border: 2px solid white;
+  border-radius: 5px;
+  font-size: 22px;
+  background: rgba(142, 178, 211, 0.85);;
+  background-image: url("../images/search.png");
+  background-repeat: no-repeat;
+  background-position: 20px;
+  background-size: 24px 24px;
+  box-sizing: border-box;
+  
+}
+#friend-search-input::placeholder {
+  color: black; 
+  font-style: italic; 
+  opacity: 1; 
+  font-weight: bold;
+  font-size:22px;
+}
+.friend-dropdown-content {
+  position: absolute;
+  width: 100%;  
+  max-height: 200px;  /* Limit the dropdown height */
+  background-color: white;  
+  border: 2px solid rgba(142, 178, 211, 0.85);  
+  border-radius: 5px; 
+  justify-content: center; 
+  overflow-y: auto;  
+  z-index: 10;  
+  display: none;  /* Hidden by default */
+  text-align: left;
+}
+
+.friend-dropdown-content div {
+  padding: 12px;
+  font-size: 22px;
+  color: black;
+  cursor: pointer;
+  background-color: rgb(160, 199, 235);  
+}
+
+.friend-dropdown-content div:hover {
+  background-color: rgba(160, 199, 235, 0.725);  
+  color: white;  
+}
+.add-friend-btn {
+    background-color:rgb(76, 175, 80); 
+    color: white;  
+    border: none;  
+    border-radius: 5px;  
+    padding: 5px 10px;  
+    cursor: pointer;  
+    font-size: 16px;  
+}
+
+.add-friend-btn:hover {
+    background-color:rgb(81, 221, 86);   
+}
+.added-text {
+  color: rgba(76, 80, 87, 0.66);
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+/* Friend List*/
+.friend-conatiner {
+  position:relative;
+  width:500px;
+  height:350px;
+  top:25%;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: white;
+  border-radius: 15px;
+  border: 2px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  font-family: Arial, sans-serif;
+  overflow-y: auto;
+  font-size:18px;
+}
+.friend-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.friend-list li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.friend-list img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.friend-list li  {
+  color: #85B2F5;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight:bold;
+}
+/* Friend request*/
+.friend-requests-container {
+  position: absolute;
+  right: 5%;  
+  top: 6%;  
+  width: 500px; 
+  height:655px; 
+  background-color: rgba(0, 0, 0, 0.80);
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border: 2px solid white;
+  padding: 10px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+}
+.ellipse5, .ellipse6, .ellipse7, .ellipse8 {
+  width: 30px; 
+  height: 30px;
+  position: absolute;
+}
+.ellipse5 { top: 2%; left: 5%; }
+.ellipse6 { top: 2%; right: 5%; }
+.ellipse7 { bottom: 2%; left: 5%; }
+.ellipse8 { bottom: 2%; right: 5%; }
+
+.friends-request-section{
+  position:relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height:600px;
+}
+.request-list {
+  list-style-type: none;  
+  padding: 0;
+  margin: 0;
+}
+
+.request-list li {
+  display: flex;  
+  align-items: center;
+  justify-content: space-between;  
+  background-color: rgba(0, 0, 0, 0.7); 
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;  /* Space between requests */
+  transition: background-color 0.3s ease;
+  position:relative;
+}
+.request-list img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.request-list  {
+  color: #85B2F5;  /* Light blue text */
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: auto;  /* Push the name to the left */
+}
+.accept-friend-btn {
+  background-color: rgb(76, 175, 80);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.accept-friend-btn:hover {
+  background-color: rgba(76, 175, 79, 0.635);
+}
+
+.decline-friend-btn {
+  background-color: rgb(223, 126, 178);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.decline-friend-btn:hover {
+  background-color: rgba(223, 126, 178, 0.616);
+}
+/* Notification dot for pending friend requests */
+.vertical-nav ul li .notification-dot {
+  position: absolute;
+  top: 400px; 
+  right:40px;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(255, 82, 82); 
+  border-radius: 50%;
+  display: none; /* Hidden by default */
+  z-index: 1;
 }
