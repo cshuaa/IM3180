@@ -1,5 +1,39 @@
 //includes code for the search room dropdown, the show/hide password toggle and the private/public room toggle
 
+document.addEventListener("DOMContentLoaded", function () {
+    const dropdown = document.getElementById("dropdown");
+
+    // Fetch study rooms from the MainServlet
+    fetch("/IM3180/MainServlet")
+        .then(response => response.json())
+        .then(rooms => {
+            dropdown.innerHTML = ''; // Clear any existing items
+
+            // Populate the dropdown with study rooms
+            rooms.forEach(room => {
+                const roomItem = document.createElement("div");
+                roomItem.classList.add("dropdown-item");
+
+                const roomName = document.createElement("span");
+                roomName.textContent = room.session_name;
+
+                const joinButton = document.createElement("button");
+                joinButton.classList.add("join-btn");
+                joinButton.textContent = "Join";
+                joinButton.onclick = () => {
+                    window.location.href = `main-join.html?session_id=${room.session_id}`;
+                };
+
+                roomItem.appendChild(roomName);
+                roomItem.appendChild(joinButton);
+                dropdown.appendChild(roomItem);
+            });
+        })
+        .catch(error => console.error('Error fetching rooms:', error));
+});
+
+
+// Filter function to search for study rooms
 function filterFunction() {
     var input, filter, dropdown, items, i;
     input = document.getElementById("search-input");
