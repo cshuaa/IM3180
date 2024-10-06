@@ -64,8 +64,6 @@ function fetchFriendData() {
         .catch(error => console.error('Error fetching friend data:', error));
 }
 
-
-
 // Function to load friends dynamically
 function loadFriends() {
     const friendList = document.getElementById('friendList');
@@ -80,24 +78,6 @@ function loadFriends() {
         friendList.appendChild(li);
     });
 }
-
-// Function to load friend requests dynamically
-function loadFriendRequests() {
-    const requestList = document.getElementById('requestList');
-    requestList.innerHTML = ''; // Clear the list
-
-    friendRequests.forEach(request => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <img src="${request.avatar}" alt="${request.name}">
-            <span>${request.name}</span>
-            <button onclick="acceptFriendRequest(${request.id})">Accept</button>
-            <button onclick="declineFriendRequest(${request.id})">Decline</button>
-        `;
-        requestList.appendChild(li);
-    });
-}
-
 
 // Filter function for the friend search input
 function filterFriends() {
@@ -140,42 +120,14 @@ function filterFriends() {
 
 // Function to simulate adding a friend request
 function addFriend(friendId) {
-    fetch(`/IM3180/friend-request?id=${friendId}`, { method: 'POST' })
-        .then(response => {
-            if (response.ok) {
-                alert('Friend request sent!');
-                document.getElementById('friend-dropdown').style.display = 'none'; // Hide dropdown
-            } else {
-                alert('Failed to send friend request.');
-            }
-        })
-        .catch(error => console.error('Error:', error));
-}
-
-
-// Function for adding friend
-function acceptFriendRequest(requestId) {
-    fetch(`/IM3180/friend-accept?id=${requestId}`, { method: 'POST' })
-        .then(response => {
-            if (response.ok) {
-                alert('Friend request accepted!');
-                // Remove the request from the list
-                friendRequests = friendRequests.filter(req => req.id !== requestId);
-                loadFriendRequests();
-                fetchFriendData(); // Reload friend data to update friend list
-            } else {
-                alert('Failed to accept friend request.');
-            }
-        })
-        .catch(error => console.error('Error:', error));
-}
-
-// Function for declining friend request
-function declineFriendRequest(requestId) {
-    alert('Friend request declined!');
-    // Remove the request from the list
-    friendRequests = friendRequests.filter(req => req.id !== requestId);
-    loadFriendRequests();
+    const newFriend = allUsers.find(user => user.id === friendId);
+    if (newFriend) {
+        friendRequests.push(newFriend);
+        alert(`Friend request sent to ${newFriend.name}`);
+        
+        loadFriendRequests(); // Reload the friend requests section
+        document.getElementById('friend-dropdown').style.display = 'none'; // Hide dropdown
+    }
 }
 
 
