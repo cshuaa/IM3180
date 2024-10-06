@@ -1,5 +1,6 @@
 let username = "";
 
+// Function to fetch current user's data from the session
 function getUserName(callback) {
   const xhr = new XMLHttpRequest();
   xhr.open("GET", "/IM3180/userdata", true); // Replace with the correct path to the servlet

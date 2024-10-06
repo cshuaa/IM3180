@@ -1,39 +1,70 @@
-// Declare globally shared arrays for friends, friend requests, and all users
-friends = [
-    { id: 1, name: 'user1', avatar: '../images/Ellipse 22.png' },
-    { id: 2, name: 'user2', avatar: '../images/Ellipse 22.png' },
-    { id: 3, name: 'user3', avatar: '../images/Ellipse 22.png' },
-    { id: 9, name: 'user4', avatar: '../images/Ellipse 22.png' },
-    { id: 10, name: 'user5', avatar: '../images/Ellipse 22.png' }
-];
 
-friendRequests = [
-    { id: 4, name: 'queeeniee', avatar: '../images/Ellipse 22.png' },
-    { id: 5, name: 'oliviastudy', avatar: '../images/Ellipse 22.png' },
-    { id: 6, name: 'stephen22', avatar: '../images/Ellipse 22.png' },
-    { id: 7, name: 'charlottexx', avatar: '../images/Ellipse 22.png' },
-    { id: 11, name: 'user6', avatar: '../images/Ellipse 22.png' },
-    { id: 12, name: 'user9', avatar: '../images/Ellipse 22.png' },
-    { id: 13, name: 'user10', avatar: '../images/Ellipse 22.png' }
-];
+var friends = [];
+var friendRequests = [];
+var allUsers = [];
 
-// Full user list including friends and users not in the friends list
-allUsers = [
-    { id: 1, name: 'user1', avatar: '../images/Ellipse 22.png' },
-    { id: 2, name: 'user2', avatar: '../images/Ellipse 22.png' },
-    { id: 3, name: 'user3', avatar: '../images/Ellipse 22.png' },
-    { id: 4, name: 'queeeniee', avatar: '../images/Ellipse 22.png' },
-    { id: 5, name: 'oliviastudy', avatar: '../images/Ellipse 22.png' },
-    { id: 6, name: 'stephen22', avatar: '../images/Ellipse 22.png' },
-    { id: 7, name: 'charlottexx', avatar: '../images/Ellipse 22.png' },
-    { id: 9, name: 'user4', avatar: '../images/Ellipse 22.png' },
-    { id: 10, name: 'user5', avatar: '../images/Ellipse 22.png' },
-    { id: 11, name: 'user6', avatar: '../images/Ellipse 22.png' },
-    { id: 12, name: 'user9', avatar: '../images/Ellipse 22.png' },
-    { id: 13, name: 'user10', avatar: '../images/Ellipse 22.png' },
-    { id: 14, name: 'newuser1', avatar: '../images/Ellipse 22.png' }, // Non-friend user
-    { id: 15, name: 'newuser2', avatar: '../images/Ellipse 22.png' }  // Non-friend user
-];
+let username = "";
+
+// Function to fetch current user's data from the session
+function getUserName(callback) {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", "/IM3180/userdata", true); // Replace with the correct path to the servlet
+
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      const userData = JSON.parse(xhr.responseText);
+      username = userData.userName;
+      document.querySelector(".username").innerHTML = username;
+      if (callback) callback();
+    } else {
+      console.error("Error fetching session data");
+    }
+  };
+
+  xhr.send();
+}
+
+// Function to fetch friend data from the servlet
+function fetchFriendData() {
+    fetch(`/IM3180/friend-search?username=${encodeURIComponent(username)}`)
+        .then(response => {
+            if (!response.ok) {
+                // Handle HTTP errors
+                return response.json().then(error => {
+                    throw new Error(error.message || 'Failed to fetch friend data');
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data); // Check the structure of data
+            // Populate the friends, friendRequests, and allUsers arrays
+            friends = data.friends.map(friend => ({
+                id: friend.id,
+                name: friend.name,
+                avatar: '../images/Ellipse 22.png'
+            }));
+
+            friendRequests = data.friendRequests.map(request => ({
+                id: request.id,
+                name: request.name || "Unknown User",  // Handle name if not available
+                avatar: '../images/Ellipse 22.png'
+            }));
+
+            allUsers = data.allUsers.map(user => ({
+                id: user.id,
+                name: user.name,
+                avatar: '../images/Ellipse 22.png'
+            }));
+
+            // Now load friends and friend requests
+            loadFriends();
+            loadFriendRequests();
+        })
+        .catch(error => console.error('Error fetching friend data:', error));
+}
+
+
 
 // Function to load friends dynamically
 function loadFriends() {
@@ -50,6 +81,24 @@ function loadFriends() {
     });
 }
 
+// Function to load friend requests dynamically
+function loadFriendRequests() {
+    const requestList = document.getElementById('requestList');
+    requestList.innerHTML = ''; // Clear the list
+
+    friendRequests.forEach(request => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <img src="${request.avatar}" alt="${request.name}">
+            <span>${request.name}</span>
+            <button onclick="acceptFriendRequest(${request.id})">Accept</button>
+            <button onclick="declineFriendRequest(${request.id})">Decline</button>
+        `;
+        requestList.appendChild(li);
+    });
+}
+
+
 // Filter function for the friend search input
 function filterFriends() {
     const searchInput = document.getElementById('friend-search-input').value.toLowerCase();
@@ -64,6 +113,8 @@ function filterFriends() {
             user.name.toLowerCase().includes(searchInput)
         );
 
+        console.log("Filtered Users:", filteredUsers);
+
         if (filteredUsers.length > 0) {
             dropdown.style.display = 'block'; // Show dropdown when there are matches
 
@@ -71,15 +122,15 @@ function filterFriends() {
                 const userDiv = document.createElement('div');
                 userDiv.className = 'dropdown-item';
 
-                // Check if the user is already in the friends list
-                const isFriend = friends.some(friend => friend.id === user.id);
+                // Check if the user exists in the friends array
+                const isFriend = friends.some(friend => friend.id === user.id); // Check if the user is already a friend
+                console.log(`User: ${user.name}, isFriend: ${isFriend}`); // Debugging log
 
                 userDiv.innerHTML = `
                     <span>${user.name}</span>
                     ${isFriend 
                         ? '<span class="added-text">Added</span>'  // Show "Added" for friends
-                        : `<button class="add-friend-btn" onclick="addFriend(${user.id})">Add</button>`} <!-- Show "Add" for non-friends -->
-                `;
+                        : `<button class="add-friend-btn" onclick="addFriend(${user.id})">Add</button>`}`; // Show "Add" for non-friends
 
                 dropdown.appendChild(userDiv);
             });
@@ -89,17 +140,48 @@ function filterFriends() {
 
 // Function to simulate adding a friend request
 function addFriend(friendId) {
-    const newFriend = allUsers.find(user => user.id === friendId);
-    if (newFriend) {
-        friendRequests.push(newFriend);
-        alert(`Friend request sent to ${newFriend.name}`);
-        
-        loadFriendRequests(); // Reload the friend requests section
-        document.getElementById('friend-dropdown').style.display = 'none'; // Hide dropdown
-    }
+    fetch(`/IM3180/friend-request?id=${friendId}`, { method: 'POST' })
+        .then(response => {
+            if (response.ok) {
+                alert('Friend request sent!');
+                document.getElementById('friend-dropdown').style.display = 'none'; // Hide dropdown
+            } else {
+                alert('Failed to send friend request.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
 }
+
+
+// Function for adding friend
+function acceptFriendRequest(requestId) {
+    fetch(`/IM3180/friend-accept?id=${requestId}`, { method: 'POST' })
+        .then(response => {
+            if (response.ok) {
+                alert('Friend request accepted!');
+                // Remove the request from the list
+                friendRequests = friendRequests.filter(req => req.id !== requestId);
+                loadFriendRequests();
+                fetchFriendData(); // Reload friend data to update friend list
+            } else {
+                alert('Failed to accept friend request.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Function for declining friend request
+function declineFriendRequest(requestId) {
+    alert('Friend request declined!');
+    // Remove the request from the list
+    friendRequests = friendRequests.filter(req => req.id !== requestId);
+    loadFriendRequests();
+}
+
 
 // Ensure friend list is loaded when the page is loaded
 window.addEventListener('load', function() {
-    loadFriends();
+    getUserName(function () { // Fetch the username from the servlet on page load
+        fetchFriendData();  // Fetch the data from the servlet only if username is loaded
+    });  
 });
