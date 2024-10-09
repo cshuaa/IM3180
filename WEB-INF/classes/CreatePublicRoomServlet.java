@@ -67,16 +67,16 @@ public class CreatePublicRoomServlet extends HttpServlet {
                         session.setAttribute("public", true);
 
                         // Step 3: Execute a SQL SELECT query
-                        String sqlStr1 = "INSERT INTO Sessions (session_name, host_id) VALUES (?, ?);"; // Single-quote
+                        String sqlStr1 = "INSERT INTO active_room (user_id, username) VALUES (?, ?);"; // Single-quote
                         PreparedStatement preparedStatement = conn.prepareStatement(sqlStr1);
 
                         // Set parameters for the prepared statement
-                        preparedStatement.setString(1, sessionName);
-                        preparedStatement.setString(2, userId);
+                        preparedStatement.setString(1, userId);
+                        preparedStatement.setString(2, userName);
                         preparedStatement.executeUpdate(); // Send the query to the server
 
                         // Redirect to video-room.html
-                        response.sendRedirect("video-room.html");
+                        response.sendRedirect("virtual-study-webapp/frontend/pages/video-room.html");
 
                 } catch (Exception ex) {
                         out.println("<script type=\"text/javascript\">");

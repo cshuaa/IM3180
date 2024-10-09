@@ -83,7 +83,7 @@ public class LoginServlet extends HttpServlet {
                                 System.out.println("LoginServlet userName: " + userId);
 
                                 // Redirect to testLandingPage
-                                response.sendRedirect("testLandingPage.html");
+                                response.sendRedirect("virtual-study-webapp/frontend/pages/main-home.html");
 
                         } else {
                                 message = "Incorrect username or password";

@@ -42,7 +42,11 @@ window.onload = fetchSessionData;
 
 function fetchSessionData() {
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", "roomdata", true); // Replace with the correct path to the servlet
+  xhr.open("GET", "/IM3180/roomdata", true); // Replace with the correct path to the servlet
+
+  xhr.setRequestHeader("Cross-Origin-Opener-Policy", "same-origin");
+  xhr.setRequestHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  xhr.setRequestHeader("Permissions-Policy", "compute-pressure=(self)");
 
   xhr.onload = function () {
     if (xhr.status === 200) {
@@ -57,11 +61,6 @@ function fetchSessionData() {
       sessionKey = sessionData.sessionPassword;
       userName = sessionData.userName;
       userId = sessionData.userId;
-
-      // Optionally display the sessionName and sessionPassword on the HTML page
-      document.getElementById("sessionName").textContent = sessionName;
-      document.getElementById("sessionPassword").textContent = sessionKey;
-      document.getElementById("userName").textContent = userName;
 
       // Log the updated sessionName and sessionKey (optional)
       console.log("Updated sessionName: ", sessionName);
@@ -109,11 +108,11 @@ function fetchSessionData() {
       };
 
       // Bind the session data to the call initiation function
-      document
-        .getElementById("startCallBtn")
-        .addEventListener("click", function () {
-          startCall(config);
-        });
+      // document
+      //   .getElementById("startCallBtn")
+      //   .addEventListener("click", function () {
+      startCall(config);
+      // });
     } else {
       console.error("Error fetching session data");
     }
@@ -138,13 +137,13 @@ var sessionClosed = () => {
 
   // Call Servlet to delete session from active sessions
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "closeroom", true);
+  xhr.open("POST", "/IM3180/closeroom", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
   xhr.onload = function () {
     if (xhr.status === 200) {
       // Redirect to HTML Page 2
-      window.location.href = "video-room.html";
+      window.location.href = "main-home.html";
     } else {
       console.error("Error sending data to the servlet");
     }

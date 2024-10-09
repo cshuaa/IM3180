@@ -1,75 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create - Cloudy</title>
-    <link rel="stylesheet" href="../css/styles-main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles-main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap"
+      rel="stylesheet"
+    />
 
-</head>
-<body>
+    <script>
+      function sendRoomData(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const sessionName = document.getElementById("username-field").value;
+        const sessionPassword = document.getElementById("password-field").value;
+
+        // Create private room
+        if (document.getElementById("/IM3180/privacy-toggle").checked) {
+          // Create an AJAX request
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", "/IM3180/createprivateroom", true);
+          xhr.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+          );
+
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              // Redirect to HTML Page 2
+              window.location.href = "../../../video-room.html";
+            } else {
+              console.error("Error sending data to the servlet");
+            }
+          };
+
+          // Send session data to the servlet
+          xhr.send(
+            `sessionName=${encodeURIComponent(
+              sessionName
+            )}&sessionPassword=${encodeURIComponent(
+              sessionPassword
+            )}&userName=${encodeURIComponent(userName)}`
+          );
+        } else {
+          // Create public room
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", "/IM3180/createpublicroom", true);
+          xhr.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+          );
+
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              // Redirect to HTML Page 2
+              window.location.href = "video-room.html";
+            } else {
+              console.error("Error sending data to the servlet");
+            }
+          };
+
+          // Send session data to the servlet
+          xhr.send(
+            `sessionName=${encodeURIComponent(
+              sessionName
+            )}&userName=${encodeURIComponent(
+              userName
+            )}&userId=${encodeURIComponent(userId)}`
+          );
+        }
+      }
+    </script>
+  </head>
+  <body>
     <div class="background"></div>
 
     <div class="logoHome">
-        <div class="logoBackground"></div>
-        <a href="main-home.html"
-        ><img src="../images/logoHome.png" alt="Cloudy Logo Home Page"
-      /></a>
+      <div class="logoBackground"></div>
+      <a href="main-home.html"
+        ><img src="../images/logoHome.png" alt="ClouDy Logo Home Page" /> /></a
+      >
     </div>
 
     <div class="logoRectangle"></div>
 
     <nav class="vertical-nav">
-        <ul>
-            <li>
-                <a href="main-username.html" class="username">
-                    &lt;Username&gt;
-                    <img src="../images/Ellipse22.png" alt="Profile Picture" class="profile-pic">
-                </a>
-            </li>
-            <li><a class="current" href="main-home.html">Main</a></li>
-            <li><a href="main-rules.html">Rules</a></li>
-            <li><a href="main-task.html">Set Tasks</a></li>
-            <li><a href="main-friends.html">Friends</a></li>
-            <li><a href="../../../index.html">Log Out</a></li>
-        </ul>
+      <ul>
+        <li>
+          <a href="#" class="username">
+            Username
+            <img
+              src="../images/Ellipse 22.png"
+              alt="Profile Picture"
+              class="profile-pic"
+            />
+          </a>
+        </li>
+        <li><a class="current" href="main-home.html">Main</a></li>
+        <li><a href="main-rules.html">Rules</a></li>
+        <li><a href="main-task.html">Set Tasks</a></li>
+        <li><a href="main-friends.html">Friends</a></li>
+        <li><a href="../../../index.html">Log Out</a></li>
+      </ul>
     </nav>
-    
-    <div class="create-call-container">
-        <img src="../images/newRoom.png" alt="newRoom" class="newRoom-image">
-    
-        <!-- Room name and input container -->
-        <div class="room-name-container">
-            <h1 class="create-room-name">Room Name:</h1>
-            <input type="text" class="name" placeholder="Enter room name">
-        </div>
-    
-        <!-- Room password and input container -->
-        <div class="room-password-container">
-            <h1 class="create-room-password">Password:</h1>
-            
-            <div class="password-input-container">
-                <input type="password" class="password" placeholder="Enter password" id="password-field">
-                <img src="../images/show-password-white.png" alt="Toggle Password" class="toggle-password" id="eye-icon" onclick="togglePassword()">
-            </div>
-        </div>
 
-        <!-- Room type toggle switch container -->
-        <div class="room-toggle-container">
-            <h1 class="create-room-type"></h1>
-            <label class="toggle-switch">
-                <input type="checkbox" id="privacy-toggle" checked> <!-- Set checked by default -->
-                <span class="slider"></span>
-                <span class="toggle-label">Private Room</span> <!-- Default label -->
-            </label>
+    <div class="create-call-container">
+      <img src="../images/newRoom.png" alt="newRoom" class="newRoom-image" />
+      <!-- Room name and input container -->
+      <div class="room-name-container">
+        <h1 class="create-room-name">Room Name:</h1>
+        <input
+          type="text"
+          id="username-field"
+          class="name"
+          placeholder="Enter room name"
+        />
+      </div>
+
+      <!-- Room password and input container -->
+      <div class="room-password-container">
+        <h1 class="create-room-password">Password:</h1>
+
+        <div class="password-input-container">
+          <input
+            type="password"
+            class="password"
+            placeholder="Enter password"
+            id="password-field"
+          />
+          <img
+            src="../images/show-password-white.png"
+            alt="Toggle Password"
+            class="toggle-password"
+            id="eye-icon"
+            onclick="togglePassword()"
+          />
         </div>
-    
-        <button class="enter-create-room-btn">Join room</button>
-    </div>    
-    
+      </div>
+
+      <!-- Room type toggle switch container -->
+      <div class="room-toggle-container">
+        <h1 class="create-room-type"></h1>
+        <label class="toggle-switch">
+          <input type="checkbox" id="privacy-toggle" checked />
+          <span class="slider"></span>
+          <span class="toggle-label">Private Room</span>
+        </label>
+      </div>
+
+      <button class="enter-create-room-btn" onclick="sendRoomData(event)">
+        Join room
+      </button>
+    </div>
+
+    <!-- Move JavaScript to the bottom of the page -->
+    <script src="../js/userinfo.js"></script>
+    <script>
+      function sendRoomData(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const sessionName = document.getElementById("username-field").value;
+        const sessionPassword = document.getElementById("password-field").value;
+
+        // Create private room
+        if (document.getElementById("privacy-toggle").checked) {
+          // Create an AJAX request
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", "/IM3180/createprivateroom", true);
+          xhr.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+          );
+
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              window.location.href = "video-room.html";
+            } else {
+              console.error("Error sending data to the servlet");
+            }
+          };
+
+          // Send session data to the servlet
+          xhr.send(
+            `sessionName=${encodeURIComponent(
+              sessionName
+            )}&sessionPassword=${encodeURIComponent(
+              sessionPassword
+            )}&userName=${encodeURIComponent(userName)}`
+          );
+        } else {
+          // Create public room
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", "/IM3180/createpublicroom", true);
+          xhr.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+          );
+
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              window.location.href = "video-room.html";
+            } else {
+              console.error("Error sending data to the servlet");
+            }
+          };
+
+          // Send session data to the servlet
+          xhr.send(
+            `sessionName=${encodeURIComponent(
+              sessionName
+            )}&userName=${encodeURIComponent(
+              userName
+            )}&userId=${encodeURIComponent(userId)}`
+          );
+        }
+      }
+    </script>
     <script src="../js/script.js"></script>
-</body>
+  </body>
 </html>
