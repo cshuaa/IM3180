@@ -63,10 +63,10 @@ function togglePassword() {
     // Toggle password visibility
     if (passwordField.type === "password") {
         passwordField.type = "text";
-        eyeIcon.src = "../images/password-white.png"; // Change icon to open eye
+        eyeIcon.src = "../images/show-password-white.png"; // Change icon to open eye
     } else {
         passwordField.type = "password";
-        eyeIcon.src = "../images/show-password-white.png"; // Change icon to closed eye
+        eyeIcon.src = "../images/password-white.png"; // Change icon to closed eye
     }
 }
 

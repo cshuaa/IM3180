@@ -24,12 +24,12 @@
     <nav class="vertical-nav">
         <ul>
             <li>
-                <a href="main-username.html" class="username">
+                <a class="current" href="main-username.html" class="username">
                     &lt;Username&gt;
                     <img src="../images/Ellipse22.png" alt="Profile Picture" class="profile-pic">
                 </a>
             </li>
-            <li><a class="current" href="main-home.html">Main</a></li>
+            <li><a href="main-home.html">Main</a></li>
             <li><a href="main-rules.html">Rules</a></li>
             <li><a href="main-task.html">Set Tasks</a></li>
             <li><a href="main-friends.html">Friends</a></li>
@@ -67,23 +67,45 @@
     </div>
     
     <script>
-      // Wait for the DOM to fully load
-      document.addEventListener("DOMContentLoaded", function () {
-        // Select all images in the .option class (the clickable small profile pics)
-        const pictureOptions = document.querySelectorAll(".option");
-        
-        // Select the big profile image that will change
-        const mainProfilePicture = document.querySelector(".profile-img");
-        
-        // Add click event listener to each small picture
-        pictureOptions.forEach(option => {
-          option.addEventListener("click", function () {
-            // Update the big profile picture's src to match the clicked image's src
-            mainProfilePicture.src = this.src;
+        document.addEventListener("DOMContentLoaded", function () {
+          // Select all images in the .option class (the clickable small profile pics)
+          const pictureOptions = document.querySelectorAll(".option");
+      
+          // Select the big profile image that will change
+          const mainProfilePicture = document.querySelector(".profile-img");
+      
+          // Select the save button
+          const saveButton = document.querySelector(".edit-button");
+      
+          // Load the saved profile picture from localStorage, if any
+          const savedProfilePicture = localStorage.getItem("profilePicture");
+          if (savedProfilePicture) {
+            mainProfilePicture.src = savedProfilePicture;
+          }
+      
+          // Add click event listener to each small picture
+          let selectedPicture = "";
+          pictureOptions.forEach(option => {
+            option.addEventListener("click", function () {
+              // Update the big profile picture's src to match the clicked image's src
+              selectedPicture = this.src;
+              mainProfilePicture.src = selectedPicture;
+            });
+          });
+      
+          // Add click event listener to the save button
+          saveButton.addEventListener("click", function () {
+            if (selectedPicture) {
+              // Save the selected picture to localStorage
+              localStorage.setItem("profilePicture", selectedPicture);
+              alert("Profile picture saved!");
+            } else {
+              alert("Please select a picture before saving.");
+            }
           });
         });
-      });
-    </script>
+      </script>
+      
 
 </body>
 </html>
