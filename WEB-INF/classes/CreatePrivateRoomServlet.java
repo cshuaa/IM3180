@@ -61,7 +61,7 @@ public class CreatePrivateRoomServlet extends HttpServlet {
             session.setAttribute("public", false);
 
             // Redirect to video-room.html
-            response.sendRedirect("video-room.html");
+            response.sendRedirect("virtual-study-webapp/frontend/pages/video-room.html");
 
         } catch (Exception ex) {
             out.println("<script type=\"text/javascript\">");
