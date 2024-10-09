@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClouDy</title>
+    <title>Profile - Cloudy</title>
     <link rel="stylesheet" href="../css/styles-main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,9 @@
 
     <div class="logoHome">
         <div class="logoBackground"></div>
-        <img src="../images/logoHome.png" alt="ClouDy Logo Home Page">
+        <a href="main-home.html"
+        ><img src="../images/logoHome.png" alt="Cloudy Logo Home Page"
+      /></a>
     </div>
 
     <div class="logoRectangle"></div>
@@ -22,12 +24,12 @@
     <nav class="vertical-nav">
         <ul>
             <li>
-                <a class="currentUsername" href="main-username.html">
+                <a href="main-username.html" class="username">
                     &lt;Username&gt;
                     <img src="../images/Ellipse22.png" alt="Profile Picture" class="profile-pic">
                 </a>
             </li>
-            <li><a href="main-home.html">Main</a></li>
+            <li><a class="current" href="main-home.html">Main</a></li>
             <li><a href="main-rules.html">Rules</a></li>
             <li><a href="main-task.html">Set Tasks</a></li>
             <li><a href="main-friends.html">Friends</a></li>
@@ -37,33 +39,51 @@
     
     <div class="username-container">
         <div class="profile-container">
-            <div class="username">
+            <div class="username-textbox">
                 <p><span class="username-text">&lt;Username&gt;</span></p>
             </div>
             <div class="profile-details">
                 <div class="profile-picture">
                     <img src="../images/cow.png" alt="Profile Picture" class="profile-img">
                 </div>
-                <button class="edit-button">Change Profile Picture</button>
+                <button class="edit-button">Save Profile Picture</button>
             </div>
         </div>
         <div class="picture-selection">
             <p>Choose your Picture:</p>
             <div class="picture-options">
-                <img src="../images/bear.png" alt="Picture 1" class="option">
-                <img src="../images/cat.png" alt="Picture 2" class="option">
-                <img src="../images/redpanda.png" alt="Picture 3" class="option">
-                <img src="../images/penguin.png" alt="Picture 4" class="option">
-                <img src="../images/koala.png" alt="Picture 5" class="option">
-                <img src="../images/rabbit.png" alt="Picture 6" class="option">
-                <img src="../images/chick.png" alt="Picture 1" class="option">
-                <img src="../images/cow.png" alt="Picture 1" class="option">
-                <img src="../images/dog.png" alt="Picture 1" class="option">
-                <img src="../images/panda.png" alt="Picture 1" class="option">
+                <img src="../images/bear.png" alt="bear profile pic" class="option">
+                <img src="../images/cat.png" alt="cat profile pic" class="option">
+                <img src="../images/redpanda.png" alt="redpanda profile pic" class="option">
+                <img src="../images/penguin.png" alt="penguin profile pic" class="option">
+                <img src="../images/koala.png" alt="koala profile pic" class="option">
+                <img src="../images/rabbit.png" alt="rabbit profile pic" class="option">
+                <img src="../images/chick.png" alt="chick profile pic" class="option">
+                <img src="../images/cow.png" alt="cow profile pic" class="option">
+                <img src="../images/dog.png" alt="dog profile pic" class="option">
+                <img src="../images/panda.png" alt="panda profile pic" class="option">
             </div>
         </div>
     </div>
     
-    <script src="../script.js"></script>
+    <script>
+      // Wait for the DOM to fully load
+      document.addEventListener("DOMContentLoaded", function () {
+        // Select all images in the .option class (the clickable small profile pics)
+        const pictureOptions = document.querySelectorAll(".option");
+        
+        // Select the big profile image that will change
+        const mainProfilePicture = document.querySelector(".profile-img");
+        
+        // Add click event listener to each small picture
+        pictureOptions.forEach(option => {
+          option.addEventListener("click", function () {
+            // Update the big profile picture's src to match the clicked image's src
+            mainProfilePicture.src = this.src;
+          });
+        });
+      });
+    </script>
+
 </body>
 </html>
