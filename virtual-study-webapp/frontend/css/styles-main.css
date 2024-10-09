@@ -132,7 +132,6 @@ body, html {
   justify-content: flex-end; /* Align the search bar to the right */
   z-index: 15; /* Ensure it appears above the logo */
   padding-left: 220px; /* Ensure padding from the logo background */
-  border-radius: 0px;
 }
 
 /* Input field styling */
@@ -140,16 +139,17 @@ body, html {
   width: 1090px !important; /* Enforce width change with !important */
   padding: 30px; /* Padding inside the input */
   border: 3px solid white; /* 3px white border */
-  border-radius: 0px; /* Rounded corners */
+  border-radius: 10px; /* Rounded corners */
   background-color: rgba(142, 178, 211, 0.8); /* Background with 70% opacity */
   font-size: 22px; /* Font size */
   color: rgb(56, 54, 54); /* Text color inside input */
   text-align: center; /* Centralize the placeholder text */
   box-sizing: border-box;
-  background-image: url(images/search.png);
+  background-image: url("../images/search.png");
   background-repeat: no-repeat;
   background-position: 365px;
   background-size: 24px 24px;
+  border: 1px solid white;
 }
 
 /* Placeholder text color */
@@ -169,7 +169,7 @@ body, html {
   overflow-y: auto; /* Scroll if content is too long */
   background-color: white; /* Background color */
   border: 1px solid #ccc; /* Border */
-  border-radius: 4px; /* Rounded corners */
+  border-radius: 10px; /* Rounded corners */
   display: none; /* Hide by default */
   z-index: 1000; /* Ensure it appears above other elements */
 }
@@ -216,7 +216,7 @@ body, html {
   position: absolute; /* Position it relative to the viewport */
   right: 30px; /* Distance from the right edge of the screen (adds a gap) */
   top: 40px; /* Adjust the distance from the top to come under the vertical nav */
-  border-radius: 0px;
+  border-radius: 10px;
   border: 3px solid #1C1212; /* Top border */
   display: flex; /* Use flexbox to align elements horizontally */
   align-items: center; /* Vertically center text and button */
@@ -225,6 +225,7 @@ body, html {
   font-size: 24px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 10; /* Ensure it's above other elements */
+  border: 1px solid white;
 }
 
 .create-room-text {
@@ -250,13 +251,13 @@ body, html {
 /*new container*/
 .content-container {
   position: absolute; /* Allow precise positioning */
-  top: 180px; /* Space from the top edge of the screen */
+  top: 165px; /* Space from the top edge of the screen */
   right: 80px; /* Space from the right edge */
   width: calc(100% - 240px); /* Adjust width considering the left-side nav and padding */
   display: flex;
   justify-content: flex-end; /* Align the search bar to the right */
   padding-left: 220px; /* Ensure padding from the logo background */
-  border-radius: 0px;
+  border-radius: 10px;
   margin-top: 110px; /* Gap between search container and content */
   padding: 20px 80px 40px 80px; /* Padding around the container */
   display: flex;
@@ -265,7 +266,7 @@ body, html {
   height: calc(100vh - 350px); /* Fill the rest of the screen */
   background-color: rgba(142, 178, 211, 0.8);
   width: 925px !important;
-  border: 3px solid white;
+  border: 1px solid white;
 }
 
 /* Main heading styling */
@@ -1072,4 +1073,164 @@ input:checked + .slider:before {
   border-radius: 50%;
   display: none; /* Hidden by default */
   z-index: 1;
+}
+.username-container {
+  position: absolute;
+  top: 50%;
+  left: 57%; /* Center horizontally */
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 600px;
+  padding: 40px; /* Reduced padding to create more space */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Move content to the top of the container */
+  align-items: center;
+  background-color: rgba(142, 178, 211, 0.8);
+  border: 3px solid #fff;
+  box-sizing: border-box;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+}
+
+.profile-details {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between profile picture and button */
+}
+
+.profile-picture {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-img {
+  width: 100%;
+  height: auto;
+}
+
+.edit-button {
+  background-color: #ffcccc;
+  color: #333;
+  border: 3px solid #fff;
+  padding: 8px 12px;
+  border-radius: 0px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #f88b8b;
+  color: #ffffff;
+}
+
+/* Username Part*/
+.username-container {
+  position: absolute;
+  top: 50%;
+  left: 57%; /* Center horizontally */
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 600px;
+  padding: 40px; /* Reduced padding to create more space */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Move content to the top of the container */
+  align-items: center;
+  background-color: rgba(142, 178, 211, 0.8);
+  border: 3px solid #fff;
+  box-sizing: border-box;
+}
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+}
+.profile-details {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between profile picture and button */
+}
+
+.profile-picture {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-img {
+  width: 500px;
+  height: auto;
+}
+
+.edit-button {
+  background-color: #ffcccc;
+  color: #333;
+  border: 3px solid #fff;
+  padding: 8px 12px;
+  border-radius: 0px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #f88b8b;
+  color: #ffffff;
+}
+.picture-selection {
+  margin-top: -10px;
+  text-align: center;
+}
+
+.picture-selection p {
+  font-size: 21px;
+  font-weight: bold;
+  color: #333;
+}
+
+.picture-options {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns */
+  gap: 10px;
+  justify-items: center; /* Center-aligns each image in its grid cell */
+  margin-top: 10px;
+}
+
+.option {
+  width: 130px;
+  height: 90px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.username-textbox{
+  background-color: rgba(197, 217, 223, 0.7);
+  border: 3px solid #fff;
+  padding: 0 60px; /* Remove vertical padding, keep horizontal */
+  height: 40px; /* Set the desired height */
+  line-height: 40px; /* Match line-height to height to center text vertically */
+  border-radius: 0px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #000;
+}
+.username-text {
+  display: inline-block; /* Allow positioning */
+  position: relative; /* Set position context */
+  top: -30px; /* Move up */
+  left: 0px; /* Move left */
 }

@@ -42,19 +42,19 @@ function fetchFriendData() {
             friends = data.friends.map(friend => ({
                 id: friend.id,
                 name: friend.name,
-                avatar: '../images/Ellipse 22.png'
+                avatar: '../images/Ellipse22.png'
             }));
 
             friendRequests = data.friendRequests.map(request => ({
                 id: request.id,
                 name: request.name || "Unknown User",  // Handle name if not available
-                avatar: '../images/Ellipse 22.png'
+                avatar: '../images/Ellipse22.png'
             }));
 
             allUsers = data.allUsers.map(user => ({
                 id: user.id,
                 name: user.name,
-                avatar: '../images/Ellipse 22.png'
+                avatar: '../images/Ellipse22.png'
             }));
 
             // Now load friends and friend requests
