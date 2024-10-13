@@ -3,25 +3,25 @@
 document.addEventListener("DOMContentLoaded", function () {
     const dropdown = document.getElementById("dropdown");
 
-    // Fetch study rooms from the MainServlet
+    // Fetch active rooms from the MainServlet
     fetch("/IM3180/MainServlet")
         .then(response => response.json())
         .then(rooms => {
             dropdown.innerHTML = ''; // Clear any existing items
 
-            // Populate the dropdown with study rooms
+            // Populate the dropdown with active rooms
             rooms.forEach(room => {
                 const roomItem = document.createElement("div");
                 roomItem.classList.add("dropdown-item");
 
                 const roomName = document.createElement("span");
-                roomName.textContent = room.session_name;
+                roomName.textContent = room.room_name; // Updated to use room_name from Active_Room
 
                 const joinButton = document.createElement("button");
                 joinButton.classList.add("join-btn");
                 joinButton.textContent = "Join";
                 joinButton.onclick = () => {
-                    window.location.href = `main-join.html?session_id=${room.session_id}`;
+                    window.location.href = `main-join.html?active_room_id=${room.active_room_id}`; // Updated to use active_room_id
                 };
 
                 roomItem.appendChild(roomName);
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 dropdown.appendChild(roomItem);
             });
         })
-        .catch(error => console.error('Error fetching rooms:', error));
+        .catch(error => console.error('Error fetching active rooms:', error));
 });
 
 
