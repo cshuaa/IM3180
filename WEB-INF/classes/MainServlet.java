@@ -9,7 +9,7 @@ import java.util.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-@WebServlet("/MainServlet")  // Define the servlet mapping as "MainServlet"
+@WebServlet("/MainServlet")
 public class MainServlet extends HttpServlet {
 
     private static final String DB_URL = "jdbc:mysql://localhost:3306/cloudydb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
@@ -22,27 +22,28 @@ public class MainServlet extends HttpServlet {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
 
-        JSONArray sessionsArray = new JSONArray();  // To store the sessions
+        JSONArray activeRoomsArray = new JSONArray();  // To store the active rooms
 
-        // Query to get sessions from the database
-        String query = "SELECT session_id, session_name FROM Sessions";
+        // Query to get active rooms from the database
+        String query = "SELECT active_room_id, room_name FROM Active_Room";
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                JSONObject session = new JSONObject();
-                session.put("session_id", rs.getInt("session_id"));
-                session.put("session_name", rs.getString("session_name"));
-                sessionsArray.put(session);  // Add session to JSON array
+                JSONObject activeRoom = new JSONObject();
+                activeRoom.put("active_room_id", rs.getInt("active_room_id"));
+                activeRoom.put("room_name", rs.getString("room_name"));
+                activeRoomsArray.put(activeRoom);  // Add active room to JSON array
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        out.print(sessionsArray.toString());
+        out.print(activeRoomsArray.toString());
         out.flush();
     }
 }
+
