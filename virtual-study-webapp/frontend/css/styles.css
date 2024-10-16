@@ -145,11 +145,32 @@ nav ul li a:active {
   top: 18%; /* Adjust this value to move the text box down */
   z-index: 1;
 }
-.input-container {
+
+.password-container {
   position: relative;
   margin-bottom: 5px; 
   top: 20px;
 }
+
+.username-container {
+  position: relative;
+  margin-bottom: 5px; 
+  top: 20px;
+}
+
+/* Style the toggle icon */
+.enter-toggle-password {
+  position: absolute;
+  right: 100px;
+  top: 63%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
+}
+
 .login-text-box label {
   position: relative; 
   display: block; 
@@ -159,6 +180,7 @@ nav ul li a:active {
   padding-left: 15%;
   top: 2px;
 }
+
 .login-text-box input[type="text"], .login-text-box input[type="password"], 
 .login-text-box input[type="email"] {
   width: 70%;

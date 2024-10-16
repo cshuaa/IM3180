@@ -28,7 +28,7 @@
       </div>
       <div class="login-text-box">
         <form action="/IM3180/login" method="post">
-          <div class="input-container">
+          <div class="username-container">
             <label for="userName"><b>Username</b></label>
             <input
               type="text"
@@ -39,15 +39,16 @@
             />
           </div>
 
-          <div class="input-container">
+          <div class="password-container">
             <label for="password"><b>Password</b></label>
             <input
               type="password"
-              id="password"
+              id="password-field"
               placeholder="Enter Password"
               name="password"
               required
             />
+            <img src="../images/password-white.png" alt="Toggle Password" class="enter-toggle-password" id="eye-icon" onclick="togglingPassword()">
           </div>
 
           <button type="submit">Login</button>
@@ -57,5 +58,20 @@
         </div>
       </div>
     </main>
+    <script>
+    function togglingPassword() {
+        var passwordField = document.getElementById("password-field");
+        var eyeIcon = document.getElementById("eye-icon");
+
+        // Toggle password visibility
+        if (passwordField.type === "password") {
+          passwordField.type = "text";
+          eyeIcon.src = "../images/show-password-white.png"; // Change icon to open eye
+        } else {
+          passwordField.type = "password";
+          eyeIcon.src = "../images/password-white.png"; // Change icon to closed eye
+        }
+      }
+    </script>
   </body>
 </html>
