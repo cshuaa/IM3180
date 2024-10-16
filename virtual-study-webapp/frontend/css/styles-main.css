@@ -946,13 +946,14 @@ input:checked + .slider:before {
   border: 2px solid white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   font-family: Arial, sans-serif;
-  overflow-y: auto;
   font-size:18px;
 }
 .friend-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  overflow-y: auto;
+  max-height: 280px;
 }
 
 .friend-list li {
@@ -980,7 +981,7 @@ input:checked + .slider:before {
   right: 5%;  
   top: 6%;  
   width: 500px; 
-  height:655px; 
+  height:656px; 
   background-color: rgba(0, 0, 0, 0.80);
   color: white;
   border-radius: 15px;
@@ -1001,16 +1002,12 @@ input:checked + .slider:before {
 .ellipse7 { bottom: 2%; left: 5%; }
 .ellipse8 { bottom: 2%; right: 5%; }
 
-.friends-request-section{
-  position:relative;
-  overflow-y: auto;
-  overflow-x: hidden;
-  max-height:600px;
-}
 .request-list {
   list-style-type: none;  
   padding: 0;
   margin: 0;
+  overflow-y: auto;
+  max-height: 500px;
 }
 
 .request-list li {
@@ -1040,6 +1037,7 @@ input:checked + .slider:before {
 .accept-friend-btn {
   background-color: rgb(76, 175, 80);
   color: white;
+  font-size:16px;
   border: none;
   border-radius: 5px;
   padding: 8px 12px;
@@ -1048,12 +1046,13 @@ input:checked + .slider:before {
 }
 
 .accept-friend-btn:hover {
-  background-color: rgba(76, 175, 79, 0.635);
+  background-color: rgb(129, 199, 132); 
 }
 
 .decline-friend-btn {
   background-color: rgb(223, 126, 178);
   color: white;
+  font-size:16px;
   border: none;
   border-radius: 5px;
   padding: 8px 12px;
@@ -1062,7 +1061,7 @@ input:checked + .slider:before {
 }
 
 .decline-friend-btn:hover {
-  background-color: rgba(223, 126, 178, 0.616);
+  background-color: rgb(244, 169, 205);;
 }
 /* Notification dot for pending friend requests */
 .vertical-nav ul li .notification-dot {
