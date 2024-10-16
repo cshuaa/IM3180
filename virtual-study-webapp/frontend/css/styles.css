@@ -127,7 +127,7 @@ nav ul li a:active {
   font-family: Arial, sans-serif;
   font-size: 18px;
   position: relative;
-  top: 20%; /* Adjust this value to move the text box down */
+  top: 18%; /* Adjust this value to move the text box down */
   border: 1px solid white;
   z-index: 1;
 }
@@ -142,7 +142,7 @@ nav ul li a:active {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   font-family: Arial, sans-serif;
   position: relative;
-  top: 20%; /* Adjust this value to move the text box down */
+  top: 18%; /* Adjust this value to move the text box down */
   z-index: 1;
 }
 .input-container {

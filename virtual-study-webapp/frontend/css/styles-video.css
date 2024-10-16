@@ -1,0 +1,153 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  height: 100vh;
+}
+.mainContainer {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.friendSection, .taskSection {
+  background-color: rgba(21, 20, 20, 0.57);
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.friendSection h2, .taskSection h2 {
+  font-size: 24px;
+  color: #000;
+  background-color:  #C5D9DF;
+  padding: 10px;
+  border-radius: 10px;
+  border: 3px solid #000;
+  width: 80%;
+  text-align: center;
+}
+
+/* Video Section */
+.videoSection {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+/* Friend List */
+.friend-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+  width: 100%;
+  max-height: 550px;
+  max-width:250px; 
+  overflow-y: auto; 
+  overflow-x:auto;
+}
+
+.friend-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.friend-list li span {
+  font-size: 18px;
+  color: white;
+  font-weight:bold;
+}
+/* Container for the avatar and the online indicator */
+.avatar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar-container img {
+  width: 100px;
+  height: auto;
+  border-radius: 50%; /* Makes the avatar circular */
+}
+
+/* Online status indicator (green dot) */
+.online-indicator {
+  position: absolute;
+  bottom: 5px; 
+  right: 20px;
+  width: 15px;
+  height: 15px;
+  background-color: #70F475; 
+  border-radius: 50%;
+  border: 2px solid white; 
+}
+
+
+.ellipse1, .ellipse2, .ellipse3, .ellipse4 {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+}
+.ellipse1 { top: 10px; left: 10px; }
+.ellipse2 { top: 10px; right: 10px; }
+.ellipse3 { bottom: 10px; left: 10px; }
+.ellipse4 { bottom: 10px; right: 10px; }
+
+/* Task Section */
+.checklist {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+  width: 100%;
+  max-height: 550px;
+  overflow-y: auto;
+}
+
+.checklist li{
+  display: flex;
+  justify-content: space-between;
+  background-color: #d8e7f1;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  font-size: 1.2em;
+  color: #000;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.taskSection li input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor:pointer;
+}
+
+.taskSection li:hover {
+  background-color: #8eb2d3c9;
+}
+.task-item.completed {
+  background-color: #88d698; 
+  transition: background-color 0.1s ease; 
+}
+
+.ellipse5, .ellipse6, .ellipse7, .ellipse8 {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+}
+.ellipse5 { top: 10px; left: 10px; }
+.ellipse6 { top: 10px; right: 10px; }
+.ellipse7 { bottom: 10px; left: 10px; }
+.ellipse8 { bottom: 10px; right: 10px; }
