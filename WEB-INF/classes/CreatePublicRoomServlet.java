@@ -70,6 +70,7 @@ public class CreatePublicRoomServlet extends HttpServlet {
 <<<<<<< HEAD
                         String sqlStr1 = "INSERT INTO active_room (user_id, username, public, room_name) VALUES (?, ?, ?, ?);"; // Single-quote
 =======
+                        String sqlStr1 = "INSERT INTO active_room (user_id, username, room_name) VALUES (?, ?, ?);"; // Single-quote
 >>>>>>> main
                         PreparedStatement preparedStatement = conn.prepareStatement(sqlStr1);
 
@@ -80,6 +81,7 @@ public class CreatePublicRoomServlet extends HttpServlet {
                         preparedStatement.setBoolean(3, true);
                         preparedStatement.setString(4, sessionName);
 
+=======
                         preparedStatement.executeUpdate(); // Send the query to the server
 
                         // Redirect to video-room.html
