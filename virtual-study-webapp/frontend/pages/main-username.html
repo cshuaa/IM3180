@@ -27,8 +27,8 @@
     <nav class="vertical-nav">
       <ul>
         <li>
-          <a class="current" href="main-username.html" class="username">
-            &lt;Username&gt;
+          <a href="main-username.html" class="username current">
+            Username
             <img
               src="../images/Ellipse22.png"
               alt="Profile Picture"
@@ -47,7 +47,7 @@
     <div class="username-container">
       <div class="profile-container">
         <div class="username-textbox">
-          <p><span class="username-text">&lt;Username&gt;</span></p>
+          <p><span class="username-text">Username</span></p>
         </div>
         <div class="profile-details">
           <div class="profile-picture">
@@ -105,18 +105,53 @@
       document.addEventListener("DOMContentLoaded", function () {
         // Select all images in the .option class (the clickable small profile pics)
         const pictureOptions = document.querySelectorAll(".option");
+        let profileImagePath = "";
 
         // Select the big profile image that will change
         const mainProfilePicture = document.querySelector(".profile-img");
+
+        // Small profile image on navigation bar
+        const smallProfilePicture = document.querySelector(".profile-pic");
 
         // Select the save button
         const saveButton = document.querySelector(".edit-button");
 
         // Load the saved profile picture from localStorage, if any
-        const savedProfilePicture = localStorage.getItem("profilePicture");
-        if (savedProfilePicture) {
-          mainProfilePicture.src = savedProfilePicture;
-        }
+        // const savedProfilePicture = localStorage.getItem("profilePicture");
+        // if (savedProfilePicture) {
+        //   mainProfilePicture.src = savedProfilePicture;
+        // }
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "/IM3180/loadprofile", true); // Replace with the correct path to the servlet
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            // Parse the JSON response
+            const profileData = JSON.parse(xhr.responseText);
+
+            // Log the sessionData to check the values (optional)
+            console.log(profileData);
+
+            if (
+              Object.keys(profileData).length === 0 &&
+              profileData.constructor === Object
+            ) {
+              //Profile data is empty
+            } else {
+              // Set the global sessionName and sessionKey variables with the retrieved data
+              profileImagePath = profileData.imagePath;
+              mainProfilePicture.src = profileImagePath;
+              smallProfilePicture.src = profileImagePath;
+              document.querySelector(".profile-pic");
+
+              // Log the updated imagePath
+              console.log("Updated imagePath: ", profileImagePath);
+            }
+          } else {
+            console.error("Error fetching profile image data");
+          }
+        };
+
+        xhr.send();
 
         // Add click event listener to each small picture
         let selectedPicture = "";
@@ -132,7 +167,30 @@
         saveButton.addEventListener("click", function () {
           if (selectedPicture) {
             // Save the selected picture to localStorage
-            localStorage.setItem("profilePicture", selectedPicture);
+            // localStorage.setItem("profilePicture", selectedPicture);
+            const relativeSrc = selectedPicture.substring(
+              selectedPicture.indexOf("/images")
+            );
+
+            // Call Servlet to save profile icon
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/IM3180/saveprofile", true);
+            xhr.setRequestHeader(
+              "Content-Type",
+              "application/x-www-form-urlencoded"
+            );
+
+            xhr.onload = function () {
+              if (xhr.status === 200) {
+                // Redirect to HTML Page 2
+                window.location.href = "main-username.html";
+              } else {
+                console.error("Error sending data to the servlet");
+              }
+            };
+
+            // Send session data to the servlet
+            xhr.send(`image_path=${encodeURIComponent(`..` + relativeSrc)}`);
             alert("Profile picture saved!");
           } else {
             alert("Please select a picture before saving.");
@@ -140,5 +198,7 @@
         });
       });
     </script>
+    <script src="../js/userinfo.js"></script>
+    <script></script>
   </body>
 </html>
