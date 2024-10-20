@@ -44,9 +44,9 @@ function fetchSessionData() {
   const xhr = new XMLHttpRequest();
   xhr.open("GET", "/IM3180/roomdata", true); // Replace with the correct path to the servlet
 
-  xhr.setRequestHeader("Cross-Origin-Opener-Policy", "same-origin");
-  xhr.setRequestHeader("Cross-Origin-Embedder-Policy", "require-corp");
-  xhr.setRequestHeader("Permissions-Policy", "compute-pressure=(self)");
+  // xhr.setRequestHeader("Cross-Origin-Opener-Policy", "same-origin");
+  // xhr.setRequestHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  // xhr.setRequestHeader("Permissions-Policy", "compute-pressure=(self)");
 
   xhr.onload = function () {
     if (xhr.status === 200) {
