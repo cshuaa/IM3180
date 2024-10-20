@@ -68,12 +68,20 @@ public class CreatePublicRoomServlet extends HttpServlet {
 
                         // Step 3: Execute a SQL SELECT query
                         String sqlStr1 = "INSERT INTO active_room (user_id, username, room_name) VALUES (?, ?, ?);"; // Single-quote
+=======
+                        String sqlStr1 = "INSERT INTO active_room (user_id, username, public, room_name) VALUES (?, ?, ?, ?);"; // Single-quote
+>>>>>>> Stashed changes
                         PreparedStatement preparedStatement = conn.prepareStatement(sqlStr1);
 
                         // Set parameters for the prepared statement
                         preparedStatement.setString(1, userId);
                         preparedStatement.setString(2, userName);
                         preparedStatement.setString(3, sessionName);
+=======
+                        preparedStatement.setBoolean(3, true);
+                        preparedStatement.setString(4, sessionName);
+
+>>>>>>> Stashed changes
                         preparedStatement.executeUpdate(); // Send the query to the server
 
                         // Redirect to video-room.html
