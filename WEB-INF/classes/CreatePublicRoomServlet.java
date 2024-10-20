@@ -82,6 +82,8 @@ public class CreatePublicRoomServlet extends HttpServlet {
                         preparedStatement.setString(4, sessionName);
 
 =======
+                        preparedStatement.setString(3, sessionName);
+>>>>>>> main
                         preparedStatement.executeUpdate(); // Send the query to the server
 
                         // Redirect to video-room.html
