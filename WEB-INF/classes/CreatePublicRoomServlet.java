@@ -67,12 +67,14 @@ public class CreatePublicRoomServlet extends HttpServlet {
                         session.setAttribute("public", true);
 
                         // Step 3: Execute a SQL SELECT query
+<<<<<<< HEAD
                         String sqlStr1 = "INSERT INTO active_room (user_id, username, public, room_name) VALUES (?, ?, ?, ?);"; // Single-quote
                         PreparedStatement preparedStatement = conn.prepareStatement(sqlStr1);
 
                         // Set parameters for the prepared statement
                         preparedStatement.setString(1, userId);
                         preparedStatement.setString(2, userName);
+<<<<<<< HEAD
                         preparedStatement.setBoolean(3, true);
                         preparedStatement.setString(4, sessionName);
 
