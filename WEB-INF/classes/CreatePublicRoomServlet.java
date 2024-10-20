@@ -70,6 +70,7 @@ public class CreatePublicRoomServlet extends HttpServlet {
 <<<<<<< HEAD
                         String sqlStr1 = "INSERT INTO active_room (user_id, username, public, room_name) VALUES (?, ?, ?, ?);"; // Single-quote
 =======
+>>>>>>> main
                         PreparedStatement preparedStatement = conn.prepareStatement(sqlStr1);
 
                         // Set parameters for the prepared statement
