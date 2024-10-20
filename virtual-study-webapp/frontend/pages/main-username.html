@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile - Cloudy</title>
-    <link rel="stylesheet" href="../css/styles-main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/styles-main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="background"></div>
 
     <div class="logoHome">
-        <div class="logoBackground"></div>
-        <a href="main-home.html"
+      <div class="logoBackground"></div>
+      <a href="main-home.html"
         ><img src="../images/logoHome.png" alt="Cloudy Logo Home Page"
       /></a>
     </div>
@@ -22,90 +25,128 @@
     <div class="logoRectangle"></div>
 
     <nav class="vertical-nav">
-        <ul>
-            <li>
-                <a class="current" href="main-username.html" class="username">
-                    &lt;Username&gt;
-                    <img src="../images/Ellipse22.png" alt="Profile Picture" class="profile-pic">
-                </a>
-            </li>
-            <li><a href="main-home.html">Main</a></li>
-            <li><a href="main-rules.html">Rules</a></li>
-            <li><a href="main-task.html">Set Tasks</a></li>
-            <li><a href="main-friends.html">Friends</a></li>
-            <li><a href="../../../index.html">Log Out</a></li>
-        </ul>
+      <ul>
+        <li>
+          <a href="main-username.html" class="username current">
+            Username
+            <img
+              src="../images/Ellipse22.png"
+              alt="Profile Picture"
+              class="profile-pic"
+            />
+          </a>
+        </li>
+        <li><a href="main-home.html">Main</a></li>
+        <li><a href="main-rules.html">Rules</a></li>
+        <li><a href="main-task.html">Set Tasks</a></li>
+        <li><a href="main-friends.html">Friends</a></li>
+        <li><a href="../../../logout">Log Out</a></li>
+      </ul>
     </nav>
-    
+
     <div class="username-container">
-        <div class="profile-container">
-            <div class="username-textbox">
-                <p><span class="username-text">&lt;Username&gt;</span></p>
-            </div>
-            <div class="profile-details">
-                <div class="profile-picture">
-                    <img src="../images/cow.png" alt="Profile Picture" class="profile-img">
-                </div>
-                <button class="edit-button">Save Profile Picture</button>
-            </div>
+      <div class="profile-container">
+        <div class="username-textbox">
+          <p><span class="username-text">Username</span></p>
         </div>
-        <div class="picture-selection">
-            <p>Choose your Picture:</p>
-            <div class="picture-options">
-                <img src="../images/bear.png" alt="bear profile pic" class="option">
-                <img src="../images/cat.png" alt="cat profile pic" class="option">
-                <img src="../images/redpanda.png" alt="redpanda profile pic" class="option">
-                <img src="../images/penguin.png" alt="penguin profile pic" class="option">
-                <img src="../images/koala.png" alt="koala profile pic" class="option">
-                <img src="../images/rabbit.png" alt="rabbit profile pic" class="option">
-                <img src="../images/chick.png" alt="chick profile pic" class="option">
-                <img src="../images/cow.png" alt="cow profile pic" class="option">
-                <img src="../images/dog.png" alt="dog profile pic" class="option">
-                <img src="../images/panda.png" alt="panda profile pic" class="option">
-            </div>
+        <div class="profile-details">
+          <div class="profile-picture">
+            <img
+              src="../images/cow.png"
+              alt="Profile Picture"
+              class="profile-img"
+            />
+          </div>
+          <button class="edit-button">Save Profile Picture</button>
         </div>
+      </div>
+      <div class="picture-selection">
+        <p>Choose your Picture:</p>
+        <div class="picture-options">
+          <img src="../images/bear.png" alt="bear profile pic" class="option" />
+          <img src="../images/cat.png" alt="cat profile pic" class="option" />
+          <img
+            src="../images/redpanda.png"
+            alt="redpanda profile pic"
+            class="option"
+          />
+          <img
+            src="../images/penguin.png"
+            alt="penguin profile pic"
+            class="option"
+          />
+          <img
+            src="../images/koala.png"
+            alt="koala profile pic"
+            class="option"
+          />
+          <img
+            src="../images/rabbit.png"
+            alt="rabbit profile pic"
+            class="option"
+          />
+          <img
+            src="../images/chick.png"
+            alt="chick profile pic"
+            class="option"
+          />
+          <img src="../images/cow.png" alt="cow profile pic" class="option" />
+          <img src="../images/dog.png" alt="dog profile pic" class="option" />
+          <img
+            src="../images/panda.png"
+            alt="panda profile pic"
+            class="option"
+          />
+        </div>
+      </div>
     </div>
-    
+
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          // Select all images in the .option class (the clickable small profile pics)
-          const pictureOptions = document.querySelectorAll(".option");
-      
-          // Select the big profile image that will change
-          const mainProfilePicture = document.querySelector(".profile-img");
-      
-          // Select the save button
-          const saveButton = document.querySelector(".edit-button");
-      
-          // Load the saved profile picture from localStorage, if any
-          const savedProfilePicture = localStorage.getItem("profilePicture");
-          if (savedProfilePicture) {
-            mainProfilePicture.src = savedProfilePicture;
-          }
-      
-          // Add click event listener to each small picture
-          let selectedPicture = "";
-          pictureOptions.forEach(option => {
-            option.addEventListener("click", function () {
-              // Update the big profile picture's src to match the clicked image's src
-              selectedPicture = this.src;
-              mainProfilePicture.src = selectedPicture;
-            });
-          });
-      
-          // Add click event listener to the save button
-          saveButton.addEventListener("click", function () {
-            if (selectedPicture) {
-              // Save the selected picture to localStorage
-              localStorage.setItem("profilePicture", selectedPicture);
-              alert("Profile picture saved!");
-            } else {
-              alert("Please select a picture before saving.");
-            }
+      document.addEventListener("DOMContentLoaded", function () {
+        // Select all images in the .option class (the clickable small profile pics)
+        const pictureOptions = document.querySelectorAll(".option");
+
+        // Select the big profile image that will change
+        const mainProfilePicture = document.querySelector(".profile-img");
+
+        // Select the save button
+        const saveButton = document.querySelector(".edit-button");
+
+        // Load the saved profile picture from localStorage, if any
+        const savedProfilePicture = localStorage.getItem("profilePicture");
+        if (savedProfilePicture) {
+          mainProfilePicture.src = savedProfilePicture;
+        }
+
+        // Add click event listener to each small picture
+        let selectedPicture = "";
+        pictureOptions.forEach((option) => {
+          option.addEventListener("click", function () {
+            // Update the big profile picture's src to match the clicked image's src
+            selectedPicture = this.src;
+            mainProfilePicture.src = selectedPicture;
           });
         });
-      </script>
-      
 
-</body>
+        // Add click event listener to the save button
+        saveButton.addEventListener("click", function () {
+          if (selectedPicture) {
+            // Save the selected picture to localStorage
+            localStorage.setItem("profilePicture", selectedPicture);
+            alert("Profile picture saved!");
+          } else {
+            alert("Please select a picture before saving.");
+          }
+        });
+      });
+    </script>
+    <script src="../js/userinfo.js"></script>
+    <script>
+      const userNameDisplay = document.querySelector("a.username");
+      userNameDisplay.innerHTML = userNameDisplay.innerHTML.replace(
+        "Username",
+        userName
+      );
+    </script>
+  </body>
 </html>

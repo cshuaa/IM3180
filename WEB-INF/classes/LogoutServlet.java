@@ -10,8 +10,8 @@ import org.json.JSONObject;
 //import javax.servlet.http.*;
 //import javax.servlet.annotation.*;
 
-@WebServlet("/createprivateroom") // Configure the request URL for this servlet (Tomcat 7/Servlet 3.0 upwards)
-public class CreatePrivateRoomServlet extends HttpServlet {
+@WebServlet("/logout") // Configure the request URL for this servlet (Tomcat 7/Servlet 3.0 upwards)
+public class LogoutServlet extends HttpServlet {
 
     // The doGet() runs once per HTTP GET request to this servlet.
     @Override
@@ -21,7 +21,7 @@ public class CreatePrivateRoomServlet extends HttpServlet {
         response.setContentType("text/html");
         // Get a output writer to write the response message into the network socket
         PrintWriter out = response.getWriter();
-        String sessionName = "", sessionPassword = "", message = "", userName = "", userId = "";
+        String message = "", userName = "", userId = "";
         // Print an HTML page as the output of the query
         out.println("<html>");
         out.println("<head>");
@@ -52,37 +52,25 @@ public class CreatePrivateRoomServlet extends HttpServlet {
                 // Step 2: Allocate a 'Statement' object in the Connection
                 Statement stmt = conn.createStatement();) {
 
-            sessionName = request.getParameter("sessionName");
-            sessionPassword = request.getParameter("sessionPassword");
-            userName = request.getParameter("userName");
-            userId = request.getParameter("userId");
-
-            System.out.println("CreatePrivateRoomServlet sessionName: " + sessionName);
-            System.out.println("CreatePrivateRoomServlet sessionPassword: " + sessionPassword);
-            System.out.println("CreatePrivateRoomServlet userName: " + userName);
-            System.out.println("CreatePrivateRoomServlet userId: " + userId);
-
-            // Store session data in HttpSession
+            // Retrieve session data from HttpSession
             HttpSession session = request.getSession();
-            session.setAttribute("sessionName", sessionName);
-            session.setAttribute("sessionPassword", sessionPassword);
-            session.setAttribute("userName", userName);
-            session.setAttribute("public", false);
+            userName = (String) session.getAttribute("userName");
+            userId = (String) session.getAttribute("userId");
+            System.out.println("LogoutServlet userId " + userId);
+            System.out.println("LogoutServlet username " + userName);
 
             // Step 3: Execute a SQL SELECT query
-            String sqlStr1 = "INSERT INTO active_room (user_id, username, public, room_name) VALUES (?, ?, ?, ?);"; // Single-quote
-            PreparedStatement preparedStatement = conn.prepareStatement(sqlStr1);
-
-            // Set parameters for the prepared statement
-            preparedStatement.setString(1, userId);
-            preparedStatement.setString(2, userName);
-            preparedStatement.setBoolean(3, false);
-            preparedStatement.setString(4, sessionName);
-
+            String sqlStr = "update users set online = ? where user_id = ?;";
+            PreparedStatement preparedStatement = conn.prepareStatement(sqlStr);
+            // Set parameter for the prepared statement
+            preparedStatement.setBoolean(1, false);
+            preparedStatement.setString(2, userId);
             preparedStatement.executeUpdate(); // Send the query to the server
 
+            System.out.println(userName + " logged out successfully");
+
             // Redirect to video-room.html
-            response.sendRedirect("virtual-study-webapp/frontend/pages/video-room.html");
+            response.sendRedirect("virtual-study-webapp/frontend/pages/login.html");
 
         } catch (Exception ex) {
             out.println("<script type=\"text/javascript\">");
