@@ -82,6 +82,15 @@ public class LoginServlet extends HttpServlet {
 
                                 System.out.println("LoginServlet userName: " + userId);
 
+                                String sqlStr2 = "UPDATE users SET online = ? WHERE user_id = ?;"; // Single-quote
+                                PreparedStatement preparedStatement2 = conn.prepareStatement(sqlStr2);
+
+                                // Set parameters for the prepared statement
+                                preparedStatement2.setBoolean(1, true);
+                                preparedStatement2.setString(2, userId);
+
+                                preparedStatement2.executeUpdate(); // Send the query to the server
+
                                 // Redirect to testLandingPage
                                 response.sendRedirect("virtual-study-webapp/frontend/pages/main-home.html");
 
