@@ -43,7 +43,14 @@ public class CreatePrivateRoomServlet extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
 
-        try {
+        try (
+                // Step 1: Allocate a database 'Connection' object
+                Connection conn = DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/cloudydb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC",
+                        "myuser", "xxxx"); // For MySQL
+
+                // Step 2: Allocate a 'Statement' object in the Connection
+                Statement stmt = conn.createStatement();) {
 
             sessionName = request.getParameter("sessionName");
             sessionPassword = request.getParameter("sessionPassword");
@@ -59,6 +66,20 @@ public class CreatePrivateRoomServlet extends HttpServlet {
             session.setAttribute("sessionPassword", sessionPassword);
             session.setAttribute("userName", userName);
             session.setAttribute("public", false);
+
+            String userId = (String) session.getAttribute("userId");
+
+            // Step 3: Execute a SQL SELECT query
+            String sqlStr1 = "INSERT INTO active_room (user_id, username, public, room_name) VALUES (?, ?, ?, ?);"; // Single-quote
+            PreparedStatement preparedStatement = conn.prepareStatement(sqlStr1);
+
+            // Set parameters for the prepared statement
+            preparedStatement.setString(1, userId);
+            preparedStatement.setString(2, userName);
+            preparedStatement.setBoolean(3, false);
+            preparedStatement.setString(4, sessionName);
+
+            preparedStatement.executeUpdate(); // Send the query to the server
 
             // Redirect to video-room.html
             response.sendRedirect("virtual-study-webapp/frontend/pages/video-room.html");
