@@ -45,44 +45,19 @@
       </ul>
     </nav>
 
-    <!--
-    <div class="search-container">
-        <input type="text" id="search-input" placeholder="Search for a study room..." onkeyup="filterFunction()">
-        <div id="dropdown" class="dropdown-content">
-            <div class="dropdown-item">
-                <span>Option 1</span>
-                <button class="join-btn" onclick="location.href='main-join.html';">Join</button>
-            </div>
-            <div class="dropdown-item">
-                <span>Option 2</span>
-                <button class="join-btn" onclick="location.href='main-join.html';">Join</button>
-            </div>
-            <div class="dropdown-item">
-                <span>Option 3</span>
-                <button class="join-btn" onclick="location.href='main-join.html';">Join</button>
-            </div>
-            <div class="dropdown-item">
-                <span>Option 4</span>
-                <button class="join-btn" onclick="location.href='main-join.html';">Join</button>
-            </div>
-        </div>
-    </div>
--->
-
     <!-- Search Container -->
     <div class="search-container">
       <input
         type="text"
         id="search-input"
         placeholder="Search for a study room..."
-        onkeyup="filterFunction()"
-      />
+        onkeyup="filterFunction()" <!-- This will trigger the search functionality -->
       <div id="dropdown" class="dropdown-content">
         <!-- Dropdown items will be populated dynamically by JavaScript -->
       </div>
     </div>
 
-    <script src="../js/script.js"></script>
+    <script src="../js/room-search.js"></script>
     <script src="../js/loadProfileIcon.js"></script>
 
     <div class="create-room-box">
@@ -97,43 +72,16 @@
 
     <!-- Room Containers Section -->
     <div class="rooms-container">
-      <div class="room-section public-rooms">
-        <h2>
-          <img src="../images/Globe.png" alt="Description of image" class="room-image-home"> Public rooms
-        </h2>
-        <div class="room">
-          <div class="room-info">
-            <span class="room-name">studyroomm</span>
-            <span class="room-creator">
-              <span class="dot"></span>created by user09
-            </span>
-          </div>
-          <button class="joinCall-btn"onclick="location.href='main-join.html';">Join</button>
+        <div class="room-section public-rooms">
+            <h2><img src="../images/Globe.png" alt="Public Rooms Icon" class="room-image-home"> Public rooms</h2>
+            <!-- Public rooms will be dynamically populated here -->
         </div>
-        <div class="room">
-          <div class="room-info">
-            <span class="room-name">studyzone</span>
-            <span class="room-creator">
-              <span class="dot"></span>created by franz08
-            </span>
-          </div>
-          <button class="joinCall-btn"onclick="location.href='main-join.html';">Join</button>
+    
+        <div class="room-section private-rooms">
+            <h2><img src="../images/Lock.png" alt="Private Rooms Icon" class="room-image-home"> Private rooms</h2>
+            <!-- Private rooms will be dynamically populated here -->
         </div>
-      </div>
-      <div class="room-section private-rooms">
-        <h2>
-          <img src="../images/Lock.png" alt="Description of image" class="room-image-home"> Private rooms
-        </h2>
-        <div class="room">
-          <div class="room-info">
-            <span class="room-name">10hoursfocus</span>
-            <span class="room-creator">
-              <span class="dot"></span>created by tristanstudy
-            </span>
-          </div>
-          <button class="joinCall-btn"onclick="location.href='main-join.html';">Join</button>
-        </div>
-      </div>
+    </div>
     </div>
   </body>
 </html>
