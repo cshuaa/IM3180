@@ -119,14 +119,33 @@ function filterFriends() {
 }
 
 // Function to simulate adding a friend request
+// TODO: send to Friendreq
 function addFriend(friendId) {
     const newFriend = allUsers.find(user => user.id === friendId);
     if (newFriend) {
-        friendRequests.push(newFriend);
-        alert(`Friend request sent to ${newFriend.name}`);
+
+        const xhr = new XMLHttpRequest();
+        const uname = document.querySelector(".username").innerHTML;
+        xhr.open("GET", `/IM3180/friend-req?username=${uname}&action=add&friendId=${friendId}`, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                const redirectUrl = xhr.getResponseHeader("Location");
+                if (redirectUrl) {
+                    window.location.href = redirectUrl;
+                } else {
+                    console.error("Redirect URL not found");
+                }
+            } else {
+                console.error("Error fetching session data");
+            }
+        };
+        xhr.send();
+
+        //friendRequests.push(newFriend);
+        //alert(`Friend request sent to ${newFriend.name}`);
         
-        loadFriendRequests(); // Reload the friend requests section
-        document.getElementById('friend-dropdown').style.display = 'none'; // Hide dropdown
+        //loadFriendRequests(); // Reload the friend requests section
+        //document.getElementById('friend-dropdown').style.display = 'none'; // Hide dropdown
     }
 }
 

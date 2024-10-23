@@ -1,3 +1,25 @@
+function callback() {
+    console.log("Callback function executed successfully.");
+}
+
+function getUserName(callback) {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/IM3180/userdata", true); // Replace with the correct path to the servlet
+  
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        const userData = JSON.parse(xhr.responseText);
+        username = userData.userName;
+        document.querySelector(".username").innerHTML = username;
+        if (callback) callback();
+      } else {
+        console.error("Error fetching session data");
+      }
+    };
+  
+    xhr.send();
+  }
+
 // Function to load friend requests dynamically with Accept and Decline buttons
 function loadFriendRequests() {
     const requestList = document.getElementById('requestList');
@@ -22,12 +44,31 @@ function loadFriendRequests() {
 function acceptFriendRequest(requestId) {
     const friendToAdd = friendRequests.find(request => request.id === requestId);
     if (friendToAdd) {
-        friends.push(friendToAdd);
-        friendRequests = friendRequests.filter(request => request.id !== requestId);
+        // friends.push(friendToAdd);
+        // friendRequests = friendRequests.filter(request => request.id !== requestId);
 
-        loadFriends();       // Reload the friends list
-        loadFriendRequests(); // Reload friend requests
-        alert(`You accepted the friend request from ${friendToAdd.name}`);
+         
+
+        const xhr = new XMLHttpRequest();
+        const uname = document.querySelector(".username").innerHTML;
+        xhr.open("GET", `/IM3180/friend-req?username=${uname}&action=accept&friendId=${requestId}`, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                const redirectUrl = xhr.getResponseHeader("Location");
+                if (redirectUrl) {
+                    window.location.href = redirectUrl;
+                } else {
+                    console.error("Redirect URL not found");
+                }
+            } else {
+                console.error("Error fetching session data");
+            }
+        };
+        xhr.send();
+
+        //loadFriends();       // Reload the friends list
+        //loadFriendRequests(); // Reload friend requests
+    
     }
     updateFriendNotificationDot();
 }
@@ -35,8 +76,27 @@ function acceptFriendRequest(requestId) {
 // Function to decline a friend request
 function declineFriendRequest(requestId) {
     friendRequests = friendRequests.filter(request => request.id !== requestId);
-    loadFriendRequests();
-    alert('You declined the friend request');
+    //loadFriendRequests();
+    //alert('You declined the friend request');
+
+    const xhr = new XMLHttpRequest();
+    const uname = document.querySelector(".username").innerHTML;
+    xhr.open("GET", `/IM3180/friend-req?username=${uname}&action=decline&friendId=${requestId}`, true);
+    console.log(uname);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            const redirectUrl = xhr.getResponseHeader("Location");
+            if (redirectUrl) {
+                window.location.href = redirectUrl;
+            } else {
+                console.error("Redirect URL not found");
+            }
+        } else {
+            console.error("Error fetching session data");
+        }
+    };
+    xhr.send();
+
     updateFriendNotificationDot();
 }
 
