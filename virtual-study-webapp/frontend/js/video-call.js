@@ -84,7 +84,7 @@ function fetchFriendData() {
 
             // Now load friends and friend requests
             loadFriends();
-            loadFriendRequests();
+            //loadFriendRequests();
         })
         .catch(error => console.error('Error fetching friend data:', error));
 }
@@ -150,7 +150,7 @@ function addFriend(friendId) {
         friendRequests.push(newFriend);
         alert(`Friend request sent to ${newFriend.name}`);
         
-        loadFriendRequests(); // Reload the friend requests section
+        //loadFriendRequests(); // Reload the friend requests section
         document.getElementById('friend-dropdown').style.display = 'none'; // Hide dropdown
     }
 }
