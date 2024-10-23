@@ -127,14 +127,17 @@ function filterFriends() {
                 const userDiv = document.createElement('div');
                 userDiv.className = 'dropdown-item';
 
-                // Check if the user exists in the friends array
+                // Check if the user exists in the friends array or friendRequests array
                 const isFriend = friends.some(friend => friend.id === user.id); // Check if the user is already a friend
-                console.log(`User: ${user.name}, isFriend: ${isFriend}`); // Debugging log
+                const isRequested = friendRequests.some(request => request.id === user.id); // Check if the user is in friendRequests
 
+                console.log(`User: ${user.name}, isFriend: ${isFriend}, isRequested: ${isRequested}`); // Debugging log
+
+                // Show "Added" if the user is already a friend or if a friend request has been sent
                 userDiv.innerHTML = `
                     <span>${user.name}</span>
-                    ${isFriend 
-                        ? '<span class="added-text">Added</span>'  // Show "Added" for friends
+                    ${(isFriend || isRequested)
+                        ? '<span class="added-text">Added</span>'  // Show "Added" for friends or friend requests
                         : `<button class="add-friend-btn" onclick="addFriend(${user.id})">Add</button>`}`; // Show "Add" for non-friends
 
                 dropdown.appendChild(userDiv);
@@ -173,7 +176,6 @@ function addFriend(friendId) {
         //document.getElementById('friend-dropdown').style.display = 'none'; // Hide dropdown
     }
 }
-
 
 // Ensure friend list is loaded when the page is loaded
 window.addEventListener('load', function() {
