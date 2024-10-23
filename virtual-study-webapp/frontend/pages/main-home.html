@@ -31,7 +31,7 @@
           <a href="main-username.html" class="username">
             Username
             <img
-              src="../images/Ellipse22.png"
+              src="../images/panda.png"
               alt="Profile Picture"
               class="profile-pic"
             />
@@ -91,19 +91,51 @@
         class="create-room-btn"
         onclick="location.href='main-create.html';"
       >
-        Click to create a room
+        Create room
       </button>
     </div>
 
-    <div class="content-container">
-      <h1 class="main-heading">About Our CLOUDY Users</h1>
-      <h2 class="subheading">Average time users spend on CLOUDY: 128 Hrs</h2>
-      <img src="../images/graph1.png" alt="Image 1" class="centered-image" />
-
-      <h2 class="subheading">
-        Average time users spend on CLOUDY per session: 2 Hrs
-      </h2>
-      <img src="../images/graph2.png" alt="Image 2" class="centered-image" />
+    <!-- Room Containers Section -->
+    <div class="rooms-container">
+      <div class="room-section public-rooms">
+        <h2>
+          <img src="../images/Globe.png" alt="Description of image" class="room-image-home"> Public rooms
+        </h2>
+        <div class="room">
+          <div class="room-info">
+            <span class="room-name">studyroomm</span>
+            <span class="room-creator">
+              <span class="dot"></span>created by user09
+            </span>
+          </div>
+          <button class="joinCall-btn"onclick="location.href='main-join.html';">Join</button>
+        </div>
+        <div class="room">
+          <div class="room-info">
+            <span class="room-name">studyzone</span>
+            <span class="room-creator">
+              <span class="dot"></span>created by franz08
+            </span>
+          </div>
+          <button class="joinCall-btn"onclick="location.href='main-join.html';">Join</button>
+        </div>
+      </div>
+      <div class="room-section private-rooms">
+        <h2>
+          <img src="../images/Lock.png" alt="Description of image" class="room-image-home"> Private rooms
+        </h2>
+        <div class="room">
+          <div class="room-info">
+            <span class="room-name">10hoursfocus</span>
+            <span class="room-creator">
+              <span class="dot"></span>created by tristanstudy
+            </span>
+          </div>
+          <button class="joinCall-btn"onclick="location.href='main-join.html';">Join</button>
+        </div>
+      </div>
     </div>
+
+    
   </body>
 </html>

@@ -1,19 +1,44 @@
 let username = "";
+let userid = "";
 
-// Function to fetch current user's data from the session
-function getUserName(callback) {
+// Function to get user information
+function getUserInfo(callback) {
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", "/IM3180/userdata", true); // Replace with the correct path to the servlet
+  xhr.open("GET", "../../../userdata", true); // Ensure this path is correct
 
   xhr.onload = function () {
     if (xhr.status === 200) {
+      // Parse the JSON response
       const userData = JSON.parse(xhr.responseText);
+
+      // Log user data to check values (optional)
+      console.log(userData);
+
+      // Set global variables with the retrieved data
       username = userData.userName;
-      document.querySelector(".username").innerHTML = username;
-      if (callback) callback();
+      userid = userData.userId;
+
+      // Update the username display in the DOM
+      const userNameDisplay = document.querySelector("a.username");
+      if (userNameDisplay) {
+        userNameDisplay.innerHTML = userNameDisplay.innerHTML.replace("Username", username);
+      }
+
+      // Log the updated username and userid (optional)
+      console.log("Retrieved userName:", username);
+      console.log("Retrieved userId:", userid);
+
+      // If a callback is provided, call it after fetching user data
+      if (callback && typeof callback === "function") {
+        callback();  // Now call the callback after retrieving user data
+      }
     } else {
-      console.error("Error fetching session data");
+      console.error("Error fetching session data. Status code:", xhr.status);
     }
+  };
+
+  xhr.onerror = function () {
+    console.error("Request failed");
   };
 
   xhr.send();
@@ -133,7 +158,7 @@ function renumberTasks() {
 
 // Load tasks when the page loads
 window.onload = function () {
-  getUserName(function () {
+  getUserInfo(function () {
     loadTasks(); // Load tasks only after username is retrieved
 
     // Add event listener to the add task form
