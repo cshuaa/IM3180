@@ -1179,3 +1179,100 @@ input:checked + .slider:before {
   border-radius: 50%;
   cursor: pointer;
 }
+
+/* General Styling for Room Containers */
+.rooms-container {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  margin: 250px 4.7% 0 auto; /* Increased margin to move lower on the screen */
+  padding: 20px; /* Optional: you can remove padding if not needed */
+  background-color: transparent;
+  height: 60%;
+}
+
+.room-section {
+  width: 48%;
+  padding: 20px;
+  background-color: rgba(21, 20, 20, 0.57); /* Updated background for room sections */
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Shadow for room sections */
+  position: relative; /* Ensure positioning for potential z-index */
+  z-index: 10; /* Ensure this is above other elements if needed */
+  margin-right: 20px; /* Add margin to the right for spacing */
+}
+
+/* Remove margin-right from the last room section to avoid extra space */
+.room-section:last-child {
+  margin-right: 0; /* Remove right margin for the last section */
+}
+
+h2 {
+  font-size: 1.5em;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.room {
+  display: flex;
+  justify-content: space-between; /* Space between elements */
+  align-items: center; /* Center items vertically */
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* New container for stacking room name and creator */
+.room-info {
+  display: flex;
+  flex-direction: column; /* Stack vertically */
+  justify-content: center; /* Center items vertically */
+}
+
+.room-name {
+  font-size: 1.2em;
+  color: rgb(0, 0, 0);
+  margin-bottom: 10px; /* Adjust this value as needed for spacing */
+}
+
+.room-creator {
+  font-size: 0.9em;
+  color: #383838;
+  background-color: #C5D9DF; /* Background color for room creator */
+  padding: 5px 10px; /* Padding for room creator text */
+  border-radius: 5px; /* Rounded corners for background */
+  display: flex; /* Enable flexbox for dot alignment */
+  align-items: center; /* Center items vertically */
+}
+
+/* Dot styling */
+.dot {
+  width: 10px; /* Width of the dot */
+  height: 10px; /* Height of the dot */
+  background-color: green; /* Color of the dot */
+  border-radius: 50%; /* Make it circular */
+  margin-right: 5px; /* Space between dot and text */
+}
+
+.joinCall-btn {
+  background-color: #c26beb;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.joinCall-btn:hover {
+  background-color: #a737e0;
+}
+
+.room-image-home {
+  width: 30px; /* Set the desired width */
+  height: auto; /* Maintain aspect ratio */
+  margin-top: -5px;
+  margin-right: 10px; /* Space between the image and heading text */
+  vertical-align: middle; /* Align image vertically with text */
+}
