@@ -2,10 +2,9 @@
 //to be fetched by the main-home.html search bar
 import java.io.*;
 import java.sql.*;
-import jakarta.servlet.*; // Tomcat 10
+import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import java.util.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -19,30 +18,58 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        // Set response type to JSON
         response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
         PrintWriter out = response.getWriter();
+        JSONArray publicRoomsArray = new JSONArray();
+        JSONArray privateRoomsArray = new JSONArray();
 
-        JSONArray activeRoomsArray = new JSONArray();  // To store the active rooms
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            // Step 1: Fetch public rooms
+            String publicRoomsQuery = "SELECT active_room_id, room_name, username FROM Active_Room WHERE public = true";
+            try (PreparedStatement publicStmt = conn.prepareStatement(publicRoomsQuery);
+                 ResultSet publicRs = publicStmt.executeQuery()) {
 
-        // Query to get active rooms from the database
-        String query = "SELECT active_room_id, room_name FROM Active_Room";
+                while (publicRs.next()) {
+                    JSONObject room = new JSONObject();
+                    room.put("id", publicRs.getInt("active_room_id"));
+                    room.put("room_name", publicRs.getString("room_name"));
+                    room.put("username", publicRs.getString("username"));
+                    publicRoomsArray.put(room);
+                }
+            }
 
-        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(query);
-             ResultSet rs = stmt.executeQuery()) {
+            // Step 2: Fetch private rooms
+            String privateRoomsQuery = "SELECT active_room_id, room_name, username FROM Active_Room WHERE public = false";
+            try (PreparedStatement privateStmt = conn.prepareStatement(privateRoomsQuery);
+                 ResultSet privateRs = privateStmt.executeQuery()) {
 
-            while (rs.next()) {
-                JSONObject activeRoom = new JSONObject();
-                activeRoom.put("active_room_id", rs.getInt("active_room_id"));
-                activeRoom.put("room_name", rs.getString("room_name"));
-                activeRoomsArray.put(activeRoom);  // Add active room to JSON array
+                while (privateRs.next()) {
+                    JSONObject room = new JSONObject();
+                    room.put("id", privateRs.getInt("active_room_id"));
+                    room.put("room_name", privateRs.getString("room_name"));
+                    room.put("username", privateRs.getString("username"));
+                    privateRoomsArray.put(room);
+                }
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            out.print("{\"error\": \"Database error.\"}");
+            out.flush();
+            return;
         }
 
-        out.print(activeRoomsArray.toString());
+        // Step 3: Return JSON response
+        JSONObject responseObject = new JSONObject();
+        responseObject.put("publicRooms", publicRoomsArray);
+        responseObject.put("privateRooms", privateRoomsArray);
+
+        out.print(responseObject.toString());
         out.flush();
     }
 }
