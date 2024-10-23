@@ -63,7 +63,7 @@ body {
 .friend-list li {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .friend-list li span {
@@ -76,11 +76,10 @@ body {
   position: relative;
   display: inline-block;
 }
-
-.avatar-container img {
-  width: 100px;
-  height: auto;
-  border-radius: 50%; /* Makes the avatar circular */
+.friend-list img{
+  width:80px;
+  height: 80px;
+  margin-right:15px;
 }
 
 /* Online status indicator (green dot) */
@@ -119,6 +118,7 @@ body {
 .checklist li{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: #d8e7f1;
   padding: 15px;
   margin-bottom: 10px;
@@ -127,11 +127,14 @@ body {
   color: #000;
   font-weight: bold;
   transition: background-color 0.3s ease;
+  height:auto;
 }
-.taskSection li input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
+.checklist li input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
   cursor:pointer;
+  flex-shrink: 0;
+  margin-left: 10px;
 }
 
 .taskSection li:hover {
