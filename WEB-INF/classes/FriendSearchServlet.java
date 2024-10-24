@@ -9,7 +9,6 @@ import java.util.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
 @WebServlet("/friend-search")
 public class FriendSearchServlet extends HttpServlet {
 
@@ -24,7 +23,7 @@ public class FriendSearchServlet extends HttpServlet {
         // Ensure the response is set to JSON format
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        
+
         PrintWriter out = response.getWriter();
         JSONArray friendsArray = new JSONArray();
         JSONArray friendRequestsArray = new JSONArray();
@@ -47,7 +46,7 @@ public class FriendSearchServlet extends HttpServlet {
             response.getWriter().write("{\"error\": \"User not authenticated.\"}");
             return;
         }
-  
+
         // Fetch friend data
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             // Step 1: Get all users except the current user
@@ -57,7 +56,8 @@ public class FriendSearchServlet extends HttpServlet {
             ResultSet userRs = userStmt.executeQuery();
 
             // Step 2: Get friends and pending requests for the current user
-            String friendQuery = "SELECT friend_id, status FROM Friendships WHERE user_id = ?";
+            String friendQuery = "SELECT * FROM Friendships f INNER JOIN Images i ON i.user_id = f.friend_id WHERE f.user_id = ?;";
+            // "SELECT friend_id, status FROM Friendships WHERE user_id = ?";
             PreparedStatement friendStmt = conn.prepareStatement(friendQuery);
             friendStmt.setInt(1, currentUserId);
             ResultSet friendRs = friendStmt.executeQuery();
@@ -66,20 +66,25 @@ public class FriendSearchServlet extends HttpServlet {
             while (friendRs.next()) {
                 int friendId = friendRs.getInt("friend_id");
                 String status = friendRs.getString("status");
+                String imageURL = friendRs.getString("image_path");
 
                 if (status.equals("accepted")) {
-                    friendIds.add(friendId);  // Store friend IDs
+                    friendIds.add(friendId); // Store friend IDs
                     // Add friend to friendsArray
                     JSONObject friendJson = new JSONObject();
                     friendJson.put("id", friendId);
                     friendJson.put("name", getUserNameById(friendId, conn)); // Fetch username
+                    friendJson.put("imageURL", imageURL);
                     friendsArray.put(friendJson);
                 } else if (status.equals("pending")) {
                     JSONObject friendRequestJson = new JSONObject();
                     friendRequestJson.put("id", friendId);
                     friendRequestJson.put("name", getUserNameById(friendId, conn)); // Fetch username
+                    friendRequestJson.put("imageURL", imageURL);
                     friendRequestsArray.put(friendRequestJson); // Store pending requests
                 }
+                System.out.println("FriendSearchServlet: " + imageURL);
+
             }
 
             // Step 3: Populate all users except the current user
@@ -93,10 +98,10 @@ public class FriendSearchServlet extends HttpServlet {
                     userObject.put("name", userRs.getString("username"));
 
                     // Add an "isFriend" flag for frontend use
-                    //boolean isFriend = friendIds.contains(userId);
-                    //userObject.put("isFriend", isFriend);
+                    // boolean isFriend = friendIds.contains(userId);
+                    // userObject.put("isFriend", isFriend);
 
-                    allUsersArray.put(userObject);  // Add to all users array
+                    allUsersArray.put(userObject); // Add to all users array
                 }
             }
 
@@ -122,9 +127,9 @@ public class FriendSearchServlet extends HttpServlet {
     private int getUserIdByUsername(String username) {
         int userId = -1;
         try (
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            PreparedStatement preparedStatement = conn.prepareStatement("SELECT user_id FROM Users WHERE username = ?");
-        ) {
+                Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                PreparedStatement preparedStatement = conn
+                        .prepareStatement("SELECT user_id FROM Users WHERE username = ?");) {
             preparedStatement.setString(1, username);
             ResultSet rset = preparedStatement.executeQuery();
 
@@ -151,6 +156,3 @@ public class FriendSearchServlet extends HttpServlet {
         return username;
     }
 }
-
-
-

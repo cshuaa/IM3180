@@ -109,8 +109,8 @@ body, html {
 }
 
 .vertical-nav .profile-pic {
-  width: 60px; /* Slightly larger profile picture */
-  height: 60px; 
+  width: 120px; /* Slightly larger profile picture */
+  height: 80px; 
   border-radius: 50%; 
   display: block;
   margin: 0 auto; 
