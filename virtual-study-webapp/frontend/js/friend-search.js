@@ -186,7 +186,7 @@ function filterFriends() {
       });
     }
   }
-
+}
 
 // Function to simulate adding a friend request
 // TODO: send to Friendreq
