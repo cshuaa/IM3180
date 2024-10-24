@@ -159,22 +159,27 @@ function filterFriends() {
         const userDiv = document.createElement("div");
         userDiv.className = "dropdown-item";
 
-                // Check if the user exists in the friends array or friendRequests array
-                const isFriend = friends.some(friend => friend.id === user.id); // Check if the user is already a friend
-                const isRequested = friendRequests.some(request => request.id === user.id); // Check if the user is in friendRequests
+        // Check if the user exists in the friends array or friendRequests array
+        const isFriend = friends.some((friend) => friend.id === user.id); // Check if the user is already a friend
+        const isRequested = friendRequests.some(
+          (request) => request.id === user.id
+        ); // Check if the user is in friendRequests
 
-                console.log(`User: ${user.name}, isFriend: ${isFriend}, isRequested: ${isRequested}`); // Debugging log
+        console.log(
+          `User: ${user.name}, isFriend: ${isFriend}, isRequested: ${isRequested}`
+        ); // Debugging log
 
-                // Show "Added" if the user is already a friend or if a friend request has been sent
-                userDiv.innerHTML = `
+        // Show "Added" if the user is already a friend or if a friend request has been sent
+        userDiv.innerHTML = `
                     <span>${user.name}</span>
-                    ${(isFriend || isRequested)
-                        ? '<span class="added-text">Added</span>'  // Show "Added" for friends or friend requests
-                        : `<button class="add-friend-btn" onclick="addFriend(${user.id})">Add</button>`}`; // Show "Add" for non-friends
+                    ${
+                      isFriend || isRequested
+                        ? '<span class="added-text">Added</span>' // Show "Added" for friends or friend requests
+                        : `<button class="add-friend-btn" onclick="addFriend(${user.id})">Add</button>`
+                    }`; // Show "Add" for non-friends
 
-                dropdown.appendChild(userDiv);
-            });
-        }
+        dropdown.appendChild(userDiv);
+      });
     }
   }
 }
@@ -182,32 +187,35 @@ function filterFriends() {
 // Function to simulate adding a friend request
 // TODO: send to Friendreq
 function addFriend(friendId) {
-    const newFriend = allUsers.find(user => user.id === friendId);
-    if (newFriend) {
+  const newFriend = allUsers.find((user) => user.id === friendId);
+  if (newFriend) {
+    const xhr = new XMLHttpRequest();
+    const uname = document.querySelector(".username").innerHTML;
+    xhr.open(
+      "GET",
+      `/IM3180/friend-req?username=${uname}&action=add&friendId=${friendId}`,
+      true
+    );
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        const redirectUrl = xhr.getResponseHeader("Location");
+        if (redirectUrl) {
+          window.location.href = redirectUrl;
+        } else {
+          console.error("Redirect URL not found");
+        }
+      } else {
+        console.error("Error fetching session data");
+      }
+    };
+    xhr.send();
 
-        const xhr = new XMLHttpRequest();
-        const uname = document.querySelector(".username").innerHTML;
-        xhr.open("GET", `/IM3180/friend-req?username=${uname}&action=add&friendId=${friendId}`, true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                const redirectUrl = xhr.getResponseHeader("Location");
-                if (redirectUrl) {
-                    window.location.href = redirectUrl;
-                } else {
-                    console.error("Redirect URL not found");
-                }
-            } else {
-                console.error("Error fetching session data");
-            }
-        };
-        xhr.send();
+    //friendRequests.push(newFriend);
+    //alert(`Friend request sent to ${newFriend.name}`);
 
-        //friendRequests.push(newFriend);
-        //alert(`Friend request sent to ${newFriend.name}`);
-        
-        //loadFriendRequests(); // Reload the friend requests section
-        //document.getElementById('friend-dropdown').style.display = 'none'; // Hide dropdown
-    }
+    //loadFriendRequests(); // Reload the friend requests section
+    //document.getElementById('friend-dropdown').style.display = 'none'; // Hide dropdown
+  }
 }
 
 // Ensure friend list is loaded when the page is loaded

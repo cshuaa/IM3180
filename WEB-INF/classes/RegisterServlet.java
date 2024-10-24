@@ -58,6 +58,21 @@ public class RegisterServlet extends HttpServlet {
                                                 + request.getParameter("password") + "')";
                                 int count = stmt.executeUpdate(sqlStr2);
 
+                                String sqlStr3 = "SELECT * from users WHERE username = ?";
+                                PreparedStatement preparedStatement2 = conn.prepareStatement(sqlStr3);
+                                // Set parameter for the prepared statement
+                                preparedStatement2.setString(1, request.getParameter("username"));
+                                ResultSet rset2 = preparedStatement2.executeQuery();
+
+                                String sqlStr4 = "INSERT INTO images (user_id, image_path) VALUES (?, ?);";
+                                PreparedStatement preparedStatement3 = conn.prepareStatement(sqlStr4);
+                                // Set parameter for the prepared statement
+                                if (rset2.next()) {
+                                        preparedStatement3.setInt(1, rset2.getInt("user_id"));
+                                        preparedStatement3.setString(2, "../images/cow.png");
+                                        preparedStatement3.executeUpdate();
+                                }
+
                                 message = "Please log into your account";
                                 out.println("<script type=\"text/javascript\">");
                                 out.println("Swal.fire({\r\n" + //
