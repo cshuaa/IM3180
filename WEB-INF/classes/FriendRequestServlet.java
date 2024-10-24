@@ -83,17 +83,35 @@ public class FriendRequestServlet extends HttpServlet {
                 e.printStackTrace();
             }
         } else if ("add".equals(action)) {
-            String friendId = request.getParameter("friendId");
-            String sql = "INSERT INTO friendships (user_id, friend_id, status)" +
-            "VALUES (?,?,\'pending\')";
+            int friendId = Integer.parseInt(request.getParameter("friendId"));
+            String checkSql = "SELECT * FROM friendships WHERE user_id = ? AND friend_id = ?;";
+            String insertSql = "INSERT INTO friendships (user_id, friend_id, status) VALUES (?, ?, 'pending');";
 
             try (
                 Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
             ) {
-                preparedStatement.setString(1, friendId);
-                preparedStatement.setInt(2, userId);
-                preparedStatement.executeUpdate();
+            // Step 1: Check if the friend request already exists
+            try (PreparedStatement checkStatement = conn.prepareStatement(checkSql)) {
+                checkStatement.setInt(1, friendId);
+                checkStatement.setInt(2, userId);
+                System.err.println(checkStatement);
+                
+                ResultSet rs = checkStatement.executeQuery();
+                
+                if (!rs.next()) {
+                    // Step 2: If the friendship does not exist, insert the new friendship
+                    try (PreparedStatement insertStatement = conn.prepareStatement(insertSql)) {
+                        insertStatement.setInt(2, userId);
+                        insertStatement.setInt(1, friendId);
+                        System.err.println(insertStatement);
+                        insertStatement.executeUpdate();
+                        System.out.println("Friend request sent.");
+                    }
+                } else {
+                    // Friend request already exists
+                    System.out.println("Friendship already exists.");
+                }
+            }
             } catch (SQLException e) {
                 e.printStackTrace();
             }

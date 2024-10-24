@@ -24,6 +24,8 @@ public class FriendSearchServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
+        
+
         PrintWriter out = response.getWriter();
         JSONArray friendsArray = new JSONArray();
         JSONArray friendRequestsArray = new JSONArray();
@@ -49,14 +51,15 @@ public class FriendSearchServlet extends HttpServlet {
 
         // Fetch friend data
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            System.out.println("Entered friend-search connection");
             // Step 1: Get all users except the current user
-            String userQuery = "SELECT user_id, username FROM Users WHERE user_id != ?";
+            String userQuery = "SELECT user_id, username FROM users WHERE user_id != ?";
             PreparedStatement userStmt = conn.prepareStatement(userQuery);
             userStmt.setInt(1, currentUserId);
             ResultSet userRs = userStmt.executeQuery();
 
             // Step 2: Get friends and pending requests for the current user
-            String friendQuery = "SELECT * FROM Friendships f INNER JOIN Images i ON i.user_id = f.friend_id WHERE f.user_id = ?;";
+            String friendQuery = "SELECT * FROM friendships as f INNER JOIN images as i ON i.user_id = f.friend_id WHERE f.user_id = ?;";
             // "SELECT friend_id, status FROM Friendships WHERE user_id = ?";
             PreparedStatement friendStmt = conn.prepareStatement(friendQuery);
             friendStmt.setInt(1, currentUserId);
@@ -64,6 +67,7 @@ public class FriendSearchServlet extends HttpServlet {
 
             HashSet<Integer> friendIds = new HashSet<>();
             while (friendRs.next()) {
+                
                 int friendId = friendRs.getInt("friend_id");
                 String status = friendRs.getString("status");
                 String imageURL = friendRs.getString("image_path");

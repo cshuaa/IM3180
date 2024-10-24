@@ -5,6 +5,10 @@ var allUsers = [];
 let username = "";
 let userid = "";
 
+function callback() {
+  console.log("Callback function executed successfully.");
+}
+
 // Function to get user information
 function getUserInfo(callback) {
   const xhr = new XMLHttpRequest();
@@ -177,7 +181,7 @@ function filterFriends() {
         }
     }
   }
-}
+
 
 // Function to simulate adding a friend request
 // TODO: send to Friendreq
@@ -186,8 +190,10 @@ function addFriend(friendId) {
     if (newFriend) {
 
         const xhr = new XMLHttpRequest();
-        const uname = document.querySelector(".username").innerHTML;
-        xhr.open("GET", `/IM3180/friend-req?username=${uname}&action=add&friendId=${friendId}`, true);
+        console.log(friendId);
+        console.log("the user name is");
+        console.log(username);
+        xhr.open("GET", `/IM3180/friend-req?username=${username}&action=add&friendId=${friendId}`, true);
         xhr.onload = function () {
             if (xhr.status === 200) {
                 const redirectUrl = xhr.getResponseHeader("Location");
@@ -224,13 +230,26 @@ function acceptFriendRequest(requestId) {
     (request) => request.id === requestId
   );
   if (friendToAdd) {
-    friends.push(friendToAdd);
-    friendRequests = friendRequests.filter(
-      (request) => request.id !== requestId
-    );
+    // friends.push(friendToAdd);
+    // friendRequests = friendRequests.filter(request => request.id !== requestId);
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", `/IM3180/friend-req?username=${username}&action=accept&friendId=${requestId}`, true);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            const redirectUrl = xhr.getResponseHeader("Location");
+            if (redirectUrl) {
+                window.location.href = redirectUrl;
+            } else {
+                console.error("Redirect URL not found");
+            }
+        } else {
+            console.error("Error fetching session data");
+        }
+    };
+    xhr.send();
 
-    loadFriends(); // Reload the friends list
-    loadFriendRequests(); // Reload friend requests
+    //loadFriends(); // Reload the friends list
+    //loadFriendRequests(); // Reload friend requests
     alert(`You accepted the friend request from ${friendToAdd.name}`);
   }
   updateFriendNotificationDot();
@@ -239,8 +258,24 @@ function acceptFriendRequest(requestId) {
 // Function to decline a friend request
 function declineFriendRequest(requestId) {
   friendRequests = friendRequests.filter((request) => request.id !== requestId);
-  loadFriendRequests();
-  alert("You declined the friend request");
+  //loadFriendRequests();
+  //alert('You declined the friend request');
+
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", `/IM3180/friend-req?username=${username}&action=decline&friendId=${requestId}`, true);
+  xhr.onload = function () {
+      if (xhr.status === 200) {
+          const redirectUrl = xhr.getResponseHeader("Location");
+          if (redirectUrl) {
+              window.location.href = redirectUrl;
+          } else {
+              console.error("Redirect URL not found");
+          }
+      } else {
+          console.error("Error fetching session data");
+      }
+  };
+  xhr.send();
   updateFriendNotificationDot();
 }
 
