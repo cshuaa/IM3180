@@ -32,17 +32,16 @@ public class FriendRequestServlet extends HttpServlet {
 
         // Handle adding a new task
         if ("accept".equals(action)) {
-            int friendId = Integer.parseInt(request.getParameter("friendId")) ;
+            int friendId = Integer.parseInt(request.getParameter("friendId"));
 
             // Update the friend request for one side
             String sql = "UPDATE friendships " +
-             "SET status = ? " +
-             "WHERE user_id = ? " +
-             "AND friend_id = ?";
+                    "SET status = ? " +
+                    "WHERE user_id = ? " +
+                    "AND friend_id = ?";
             try (
-                Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            ) {
+                    Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);) {
                 preparedStatement.setInt(3, friendId);
                 preparedStatement.setInt(2, userId);
                 preparedStatement.setString(1, "accepted");
@@ -52,30 +51,28 @@ public class FriendRequestServlet extends HttpServlet {
             }
 
             sql = "INSERT INTO friendships (user_id, friend_id, status)" +
-            "VALUES (?,?,?)"; 
+                    "VALUES (?,?,?)";
             try (
-                Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            ) {
+                    Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);) {
                 preparedStatement.setInt(1, friendId);
                 preparedStatement.setInt(2, userId);
                 preparedStatement.setString(3, "accepted");
                 preparedStatement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-            }           
+            }
 
-        // Handle deleting a task
+            // Handle deleting a task
         } else if ("decline".equals(action)) {
             String friendId = request.getParameter("friendId");
             String sql = "DELETE FROM friendships " +
-            "WHERE user_id = ? " +
-            "AND friend_id = ?";
+                    "WHERE user_id = ? " +
+                    "AND friend_id = ?";
 
             try (
-                Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            ) {
+                    Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);) {
                 preparedStatement.setString(2, friendId);
                 preparedStatement.setInt(1, userId);
                 preparedStatement.executeUpdate();
@@ -115,21 +112,20 @@ public class FriendRequestServlet extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        } 
-        
+        }
+
         response.setStatus(HttpServletResponse.SC_OK);
         response.setHeader("Location", "/IM3180/virtual-study-webapp/frontend/pages/main-friends.html");
 
-        
     }
 
     // Helper function to fetch user_id from the database using username
     private int getUserIdByUsername(String username) {
         int userId = -1;
         try (
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            PreparedStatement preparedStatement = conn.prepareStatement("SELECT user_id FROM Users WHERE username = ?");
-        ) {
+                Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                PreparedStatement preparedStatement = conn
+                        .prepareStatement("SELECT user_id FROM Users WHERE username = ?");) {
             preparedStatement.setString(1, username);
             ResultSet rset = preparedStatement.executeQuery();
 
@@ -142,6 +138,4 @@ public class FriendRequestServlet extends HttpServlet {
         return userId;
     }
 
-
 }
-
