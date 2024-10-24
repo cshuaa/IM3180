@@ -108,7 +108,7 @@ body, html {
   font-weight: bold; /* Make username bold */
 }
 
-.vertical-nav .profile-pic{
+.vertical-nav .profile-pic {
   width: 120px; /* Slightly larger profile picture */
   height: 80px; 
   border-radius: 50%; 
