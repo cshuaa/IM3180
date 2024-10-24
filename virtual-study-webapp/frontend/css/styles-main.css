@@ -82,7 +82,7 @@ body, html {
 .vertical-nav ul li a {
   display: block; 
   width: 100%; /* Adjust width */
-  padding: 27px; /* Adjust padding for height */
+  padding: 25px; /* Adjust padding for height */
   text-decoration: none; 
   color: #8bade1; /* Lighter blue for the text */
   font-weight: bold; /* Bold font */
@@ -150,7 +150,7 @@ body, html {
   background-repeat: no-repeat;
   background-position: 365px;
   background-size: 24px 24px;
-  border: 2px solid white;
+  border: 1px solid white;
 }
 
 /* Placeholder text color */
@@ -248,51 +248,102 @@ body, html {
   background-color: #8e44ad;
 }
 
-/*new container*/
-.content-container {
-  position: absolute; /* Allow precise positioning */
-  top: 165px; /* Space from the top edge of the screen */
-  right: 80px; /* Space from the right edge */
-  width: calc(100% - 240px); /* Adjust width considering the left-side nav and padding */
+/* General Styling for Room Containers */
+.rooms-container {
   display: flex;
-  justify-content: flex-end; /* Align the search bar to the right */
-  padding-left: 220px; /* Ensure padding from the logo background */
-  border-radius: 10px;
-  margin-top: 110px; /* Gap between search container and content */
-  padding: 20px 80px 40px 80px; /* Padding around the container */
-  display: flex;
-  flex-direction: column; /* Stack elements vertically */
   justify-content: space-between;
-  height: calc(100vh - 350px); /* Fill the rest of the screen */
-  background-color: rgba(142, 178, 211, 0.8);
-  width: 925px !important;
-  border: 2px solid white;
+  width: 75%;
+  margin: 250px 4.7% 0 auto; /* Increased margin to move lower on the screen */
+  padding: 20px; /* Optional: you can remove padding if not needed */
+  background-color: transparent;
+  height: 60%;
 }
 
-/* Main heading styling */
-.main-heading {
-  font-size: 25px;
-  color: rgb(35, 34, 34);
-  text-align: center; /* Left-align the main heading */
-  margin-bottom: 10px; /* Space below the heading */
-  font-family: Arial;
+.room-section {
+  width: 48%;
+  padding: 20px;
+  background-color: rgba(21, 20, 20, 0.57); /* Updated background for room sections */
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Shadow for room sections */
+  position: relative; /* Ensure positioning for potential z-index */
+  z-index: 10; /* Ensure this is above other elements if needed */
+  margin-right: 20px; /* Add margin to the right for spacing */
+  border: 1px solid black;
 }
 
-/* Subheading styling */
-.subheading {
-  font-size: 20px;
-  color: rgb(35, 34, 34);
-  text-align: center; /* Left-align the subheading */
-  margin: 10px 0; /* Space around the subheadings */
-  font-family: Arial;
+/* Remove margin-right from the last room section to avoid extra space */
+.room-section:last-child {
+  margin-right: 0; /* Remove right margin for the last section */
 }
 
-/* Image styling */
-.centered-image {
-  display: block;
-  margin: 0 auto 10px auto; /* Center the image and space it below */
-  max-width: 20%; /* Make sure the image is responsive */
-  height: auto;
+h2 {
+  font-size: 1.5em;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.room {
+  display: flex;
+  justify-content: space-between; /* Space between elements */
+  align-items: center; /* Center items vertically */
+  background-color: rgba(255, 255, 255, 0.408);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* New container for stacking room name and creator */
+.room-info {
+  display: flex;
+  flex-direction: column; /* Stack vertically */
+  justify-content: center; /* Center items vertically */
+}
+
+.room-name {
+  font-size: 1.2em;
+  color: rgb(0, 0, 0);
+  margin-bottom: 10px; /* Adjust this value as needed for spacing */
+}
+
+.room-creator {
+  font-size: 0.9em;
+  color: #383838;
+  background-color: #C5D9DF; /* Background color for room creator */
+  padding: 5px 10px; /* Padding for room creator text */
+  border-radius: 5px; /* Rounded corners for background */
+  display: flex; /* Enable flexbox for dot alignment */
+  align-items: center; /* Center items vertically */
+}
+
+/* Dot styling */
+.dot {
+  width: 10px; /* Width of the dot */
+  height: 10px; /* Height of the dot */
+  background-color: green; /* Color of the dot */
+  border-radius: 50%; /* Make it circular */
+  margin-right: 5px; /* Space between dot and text */
+}
+
+.joinCall-btn {
+  background-color: #c26beb;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.joinCall-btn:hover {
+  background-color: #a737e0;
+}
+
+.room-image-home {
+  width: 30px; /* Set the desired width */
+  height: auto; /* Maintain aspect ratio */
+  margin-top: -5px;
+  margin-right: 10px; /* Space between the image and heading text */
+  vertical-align: middle; /* Align image vertically with text */
 }
 
 .create-call-container {
