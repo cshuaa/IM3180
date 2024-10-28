@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap"
       rel="stylesheet"
     />
-    <script src="../js/userinfo.js"></script>
+    <script src="../../../virtual-study-webapp/scripts/sweetalert2.all.min.js"></script>
   </head>
   <body>
     <div class="background"></div>
@@ -29,7 +29,7 @@
       <ul>
         <li>
           <a href="main-username.html" class="username">
-            &lt;Username&gt;
+            Username
             <img
               src="../images/cow.png"
               alt="Profile Picture"
@@ -79,10 +79,99 @@
           />
         </div>
       </div>
-      <button class="enter-room-btn">Join Room</button>
+      <button class="enter-room-btn" onclick="joinPrivateRoom()">
+        Join Room
+      </button>
     </div>
 
     <script src="../js/script.js"></script>
     <script src="../js/loadProfileIcon.js"></script>
+    <script>
+      let userName = "";
+      let userId = "";
+
+      window.onload = getUserInfo;
+
+      function getUserInfo() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "../../../userdata", true); // Replace with the correct path to the servlet
+
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            // Parse the JSON response
+            const userData = JSON.parse(xhr.responseText);
+
+            // Log the userData to check the values (optional)
+            console.log(userData);
+
+            // Set the global sessionName and sessionKey variables with the retrieved data
+            userName = userData.userName;
+            userId = userData.userId;
+
+            // Optionally display the sessionName and sessionPassword on the HTML page
+            // document.getElementById("userName").textContent = userName;
+            //   document.getElementById("userId").textContent = userId;
+            // Select the anchor element by class
+            const userNameDisplay = document.querySelector("a.username");
+            userNameDisplay.innerHTML = userNameDisplay.innerHTML.replace(
+              "Username",
+              userName
+            );
+
+            // Log the updated sessionName and sessionKey (optional)
+            console.log("Retrieved userName: ", userName);
+            console.log("Retrieved userId: ", userId);
+          } else {
+            console.error("Error fetching session data");
+          }
+        };
+
+        xhr.send();
+      }
+
+      // Get session name
+      const urlParams = new URLSearchParams(window.location.search);
+      const roomname = urlParams.get("roomname");
+
+      // Change inner html
+      const highlightText = document.querySelector(".highlight-studyspace");
+      const sessionNameText = document.querySelector(".study-space-text");
+      highlightText.innerHTML = roomname;
+      sessionNameText.innerHTML = roomname;
+
+      function joinPrivateRoom() {
+        if (document.getElementById("password-field").value == "") {
+          Swal.fire({
+            icon: "error",
+            title: "Password required",
+            text: "Please enter the room password!",
+          });
+        } else {
+          // Create an AJAX request
+          xhr.open("POST", "/IM3180/createprivateroom", true);
+          xhr.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+          );
+
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              window.location.href = "video-room.html";
+            } else {
+              console.error("Error sending data to the servlet");
+            }
+          };
+
+          // Send session data to the servlet
+          xhr.send(
+            `sessionName=${encodeURIComponent(
+              roomname
+            )}&sessionPassword=${encodeURIComponent(
+              document.getElementById("password-field").value
+            )}&userName=${encodeURIComponent(userName)}`
+          );
+        }
+      }
+    </script>
   </body>
 </html>
