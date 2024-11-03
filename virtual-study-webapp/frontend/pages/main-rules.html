@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rules - Cloudy</title>
+    <title>Rules - ClouDy</title>
     <link rel="stylesheet" href="../css/styles-main.css" />
     <script src="../js/userinfo.js"></script>
   </head>
@@ -34,7 +34,9 @@
         <li><a href="main-home.html">Main</a></li>
         <li><a class="current" href="main-rules.html">Rules</a></li>
         <li><a href="main-task.html">Set Tasks</a></li>
-        <li><a href="main-friends.html">Friends</a></li>
+        <li><a href="main-friends.html">Friends
+          <span class="notification-dot" id="friends-notification"></span>
+        </a></li>
         <li><a href="../../../logout">Log Out</a></li>
       </ul>
     </nav>
@@ -43,15 +45,24 @@
       <img src="../images/rulesCloud2.png" alt="Cloudy's Rules" />
     </div>
     <div class="main-rules-text-box">
-      <p>Cloudy: Your study space on the cloud</p>
+      <h2>
+        ClouDy aims to create a conducive environment for individuals to study
+        together.
+      </h2>
       <p>
-        Cloudy aims to serve as a virtual study space for individuals to study
-        together on the cloud.
+        To ensure that the platform is conducive for everyone, users should
+        adhere to the guidelines below:
       </p>
-      <p>.</p>
-      <p>.</p>
-      <p>.</p>
-    </div>
+      <ol>
+        <li>Treat all participants with kindness and respect. 
+          Harassment, bullying, or discriminatory remarks will not be tolerated.</li>
+        <li>Use Appropriate Language. Inappropriate content or 
+          language will result in removal from the session.</li>
+        <li>If you experience or witness any behaviour that violates these rules, 
+          please report it to the platform moderators immediately.</li>
+      </ol>
+      <script src="../js/notifications.js"></script>
+      <script src="../js/loadProfileIcon.js"></script>
   </body>
 </html>
-<script src="../js/loadProfileIcon.js"></script>
+

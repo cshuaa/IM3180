@@ -77,9 +77,9 @@ body {
   display: inline-block;
 }
 .friend-list img{
-  width:80px;
+  width:120px;
   height: 80px;
-  margin-right:15px;
+  border-radius:50%;
 }
 
 /* Online status indicator (green dot) */

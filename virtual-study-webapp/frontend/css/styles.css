@@ -105,13 +105,33 @@ nav ul li a:active {
   height: auto;
   transform: translateY(15%);
 }
+/* Floating animation for the image */
+.floating-cloud {
+  animation: float 3s ease-in-out infinite;
+  transform-origin: center;
+  transform: translateY(15%);
+}
+
+/* Keyframes for the floating animation */
+@keyframes float {
+  0% {
+    transform: translateY(15%);
+  }
+  50% {
+    transform: translateY(calc(15% - 10px)); 
+  }
+  100% {
+    transform: translateY(15%);
+  }
+}
+
 .cloud-header img{
   display:flex;
   justify-content: center;
   align-items: center;
-  width: 23%;
+  width: 24%;
   height: auto;
-  margin-top: 15px;
+  margin-top: 40px;
   z-index: 10;
   position: relative;
 }
@@ -122,14 +142,61 @@ nav ul li a:active {
   width: 65%; 
   margin: 20px auto;
   border-radius: 10px;
-  text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   font-family: Arial, sans-serif;
-  font-size: 18px;
   position: relative;
   top: 18%; /* Adjust this value to move the text box down */
   border: 1px solid white;
   z-index: 1;
+}
+.about-text-box h2{
+  font-size:30px;
+  text-align:center;
+  justify-content: center;
+  margin-top:7%;
+  padding: 5px 40px;
+  font-weight:bold;
+}
+.rules-text-box h2{
+  font-size:30px;
+  text-align:center;
+  justify-content: center;
+  margin-top:4%;
+  padding: 5px 40px;
+  font-weight:bold;
+
+}
+.about-text-box p{
+  font-size: 20px;
+  font-weight: 1.6;
+  line-height:1.8;
+  text-align:center;
+  justify-content: center;
+  padding: 15px 40px;
+}
+.rules-text-box p{
+  font-size:20px;
+  padding: 3px 20px;
+}
+.rules-text-box ol {
+  padding-left: 20px; 
+  list-style: none;
+  counter-reset: list;
+}
+.rules-text-box ol li {
+  font-size: 20px;
+  margin-bottom: 10px;
+  position: relative;
+  padding: 5px 70px;
+  line-height: 1.2;
+}
+.rules-text-box ol li::before {
+  content: counter(list) ". "; 
+  counter-increment: list;
+  position: absolute;
+  left: 5%;
+  font-weight: bold;
+  font-size: 2ppx;
 }
 .login-text-box {
   background-color: rgba(0, 0, 0, 0.7);
@@ -142,20 +209,20 @@ nav ul li a:active {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   font-family: Arial, sans-serif;
   position: relative;
-  top: 18%; /* Adjust this value to move the text box down */
+  top: 20%; /* Adjust this value to move the text box down */
   z-index: 1;
 }
 
 .password-container {
   position: relative;
   margin-bottom: 5px; 
-  top: 20px;
+  top: 30px;
 }
 
 .username-container {
   position: relative;
   margin-bottom: 5px; 
-  top: 20px;
+  top: 30px;
 }
 
 /* Style the toggle icon */
@@ -180,6 +247,11 @@ nav ul li a:active {
   padding-left: 15%;
   top: 2px;
 }
+.input-container {
+  position: relative;
+  margin-bottom: 5px; 
+  top: 30px;
+}
 
 .login-text-box input[type="text"], .login-text-box input[type="password"], 
 .login-text-box input[type="email"] {
@@ -195,7 +267,7 @@ nav ul li a:active {
 .login-text-box button[type="submit"] {
   width: 70%;
   padding: 15px;
-  margin-top: 30px;
+  margin-top: 40px;
   background-color: rgba(142, 178, 211, 0.90);
   color: white;
   border: none;
@@ -229,3 +301,5 @@ nav ul li a:active {
   margin-top: 10px;
   color: #ccc;
 }
+
+

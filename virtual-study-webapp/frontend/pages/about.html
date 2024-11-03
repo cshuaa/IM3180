@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About - Cloudy</title>
+    <title>About - ClouDy</title>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body>
@@ -26,12 +26,35 @@
         <img src="../images/aboutCloud.png" alt="How It Works" />
       </div>
       <div class="about-text-box">
-        <p>Cloudy: Your study space on the cloud</p>
+        <h2 id="typing-text">ClouDy: Your study space on the cloud</h2>
         <p>
-          Cloudy aims to serve as a virtual study space for individuals to study
-          together on the cloud.
+          ClouDy aims to enhance your learning experience 
+          by connecting you with your peers anytime, anywhere.
+          Through interactive video calls, you can collaborate, 
+          share knowledge, and stay motivated while studying together in real time. 
+          Whether you are preparing for exams, working on projects, or seeking support, 
+          ClouDy provides a safe and engaging environment to help you achieve your academic goals. 
         </p>
       </div>
     </main>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const textElement = document.getElementById("typing-text");
+        const text = "ClouDy: Your study space on the cloud";
+        let index = 0;
+    
+        function type() {
+          if (index < text.length) {
+            textElement.innerHTML += text.charAt(index);
+            index++;
+            setTimeout(type, 100); // Adjust speed by changing the delay in ms
+          }
+        }
+    
+        textElement.innerHTML = ""; // Clear initial text
+        type(); // Start typing
+      });
+    </script>
+    
   </body>
 </html>

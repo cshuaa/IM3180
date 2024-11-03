@@ -82,11 +82,12 @@ body, html {
 .vertical-nav ul li a {
   display: block; 
   width: 100%; /* Adjust width */
-  padding: 25px; /* Adjust padding for height */
+  padding: 26px; /* Adjust padding for height */
   text-decoration: none; 
   color: #8bade1; /* Lighter blue for the text */
   font-weight: bold; /* Bold font */
   font-size: 20px; /* Adjusted font size */
+  font-family: Arial, sans-serif;
   background: rgba(0, 0, 0, 0.95); 
   border: 1px solid #fff; 
   border-radius: 0; 
@@ -143,6 +144,7 @@ body, html {
   border-radius: 10px; /* Rounded corners */
   background-color: rgba(142, 178, 211, 0.8); /* Background with 70% opacity */
   font-size: 22px; /* Font size */
+  font-style:italic;
   color: rgb(56, 54, 54); /* Text color inside input */
   text-align: center; /* Centralize the placeholder text */
   box-sizing: border-box;
@@ -211,20 +213,21 @@ body, html {
 
 /* Grey box*/
 .create-room-box {
-  background-color: #030405B2; /* Background color with 70% opacity */
+  background-color: rgba(3, 4, 5, 0.7); /* Background color with 70% opacity */
   width: 1130px; /* Adjustable width */
   padding: 20px;
   position: absolute; /* Position it relative to the viewport */
   right: 30px; /* Distance from the right edge of the screen (adds a gap) */
   top: 40px; /* Adjust the distance from the top to come under the vertical nav */
   border-radius: 10px;
-  border: 3px solid #1C1212; /* Top border */
+  border: 2px solid #1C1212; /* Top border */
   display: flex; /* Use flexbox to align elements horizontally */
   align-items: center; /* Vertically center text and button */
   justify-content: center; /* Evenly space out the elements */
   color: #dbdbdb;
   font-size: 24px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   z-index: 10; /* Ensure it's above other elements */
 }
 
@@ -234,18 +237,20 @@ body, html {
 }
 
 .create-room-btn {
-  background-color: #9b59b6;
-  color: #fff;
+  background-color: rgba(242, 199, 199, 0.70);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: black;
   padding: 10px 20px;
-  border: none;
+  border: 1px solid white;
   border-radius: 3px;
   font-size: 20px;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .create-room-btn:hover {
-  background-color: #8e44ad;
+  background-color: rgba(242, 199, 199, 0.918);
 }
 
 /* General Styling for Room Containers */
@@ -262,7 +267,7 @@ body, html {
 .room-section {
   width: 48%;
   padding: 20px;
-  background-color: rgba(21, 20, 20, 0.57); /* Updated background for room sections */
+  background-color: rgba(3, 4, 5, 0.7); /* Updated background for room sections */
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Shadow for room sections */
   position: relative; /* Ensure positioning for potential z-index */
@@ -277,7 +282,8 @@ body, html {
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 24px;
+  font-family: Arial, sans-serif;
   color: white;
   margin-bottom: 20px;
 }
@@ -300,13 +306,16 @@ h2 {
 }
 
 .room-name {
-  font-size: 1.2em;
+  font-size: 20px;
+  font-weight:bold;
+  font-family: Arial, sans-serif;
   color: rgb(0, 0, 0);
   margin-bottom: 10px; /* Adjust this value as needed for spacing */
 }
 
 .room-creator {
   font-size: 0.9em;
+  font-family: Arial, sans-serif;
   color: #383838;
   background-color: #C5D9DF; /* Background color for room creator */
   padding: 5px 10px; /* Padding for room creator text */
@@ -325,17 +334,19 @@ h2 {
 }
 
 .joinCall-btn {
-  background-color: #c26beb;
+  background-color:rgba(229, 156, 219, 0.743);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   border: none;
   padding: 10px 20px;
   font-size: 1em;
+  font-weight:bold;
   color: white;
   cursor: pointer;
   border-radius: 5px;
 }
 
 .joinCall-btn:hover {
-  background-color: #a737e0;
+  background-color: rgba(229, 156, 219, 0.51);
 }
 
 .room-image-home {
@@ -444,7 +455,7 @@ input.password {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-color: #030405B2;
+  background-color: rgba(0, 0, 0, 0.75);
   border: 3px solid #1C1212;
   box-sizing: border-box;
 }
@@ -464,13 +475,15 @@ input.password {
 .create-room-name {
   margin-right: 400px;
   color: #fff;
-  font-size: 22px; /* Same size for all labels */
+  font-size: 20px; /* Same size for all labels */
+  font-family: Arial, sans-serif;
 }
 
 .create-room-password {
   margin-right: 425px;
   color: #fff;
-  font-size: 22px; /* Same size for all labels */
+  font-size: 20px; /* Same size for all labels */
+  font-family: Arial, sans-serif;
 }
 
 /* Style the input fields */
@@ -480,7 +493,7 @@ input.password {
   border: 3px solid #fff;
   padding: 10px 40px 10px 10px;
   color: #000;
-  font-size: 16px;
+  font-size: 18px;
   border-radius: 5px;
   width: 100%; /* Ensure all input fields are of the same width */
   box-sizing: border-box;
@@ -643,7 +656,7 @@ input:checked + .slider:before {
 
 .enter-call-container {
   position: absolute;
-  top: 60%;
+  top: 58%;
   left: 57%;
   transform: translate(-50%, -50%);
   width: 1000px;
@@ -653,8 +666,8 @@ input:checked + .slider:before {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-color: #030405B2;
-  border: 3px solid #1C1212;
+  background-color: rgba(0, 0, 0, 0.75);
+  border: 2px solid #1C1212;
   box-sizing: border-box;
   border-radius:10px;
   padding-top: 0;
@@ -662,6 +675,7 @@ input:checked + .slider:before {
 
 .highlight-studyspace {
   color: #85B2F5; /* You can specify any shade of blue, e.g., #0000FF */
+  font-weight:bold;
 }
 
 /* Wrapping image and text */
@@ -712,9 +726,10 @@ input:checked + .slider:before {
   margin-left: -310px; /* Push the heading slightly to the left */
   color: #fff;
   font-size: 22px; /* Adjust font size if necessary */
+  font-family: Arial, sans-serif;
   margin-top: 0px;
   position: relative;
-  top: -10px;
+  top: -1px;
 }
 
 /* Password input container with eye icon */
@@ -788,7 +803,7 @@ input:checked + .slider:before {
 
 }
 .main-rules-text-box {
-  background-color: rgba(142, 178, 211, 0.80);
+  background-color: rgba(142, 178, 211, 0.90);
   color:white;
   padding: 2%;
   width: 70%;
@@ -796,13 +811,44 @@ input:checked + .slider:before {
   margin-left:20%;
   margin-top: -2.5%;
   border-radius: 10px;
-  text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
-  font-size: 20px;
-  font-weight: bold;
   position: relative; 
   border: 2px solid white;
+}
+.main-rules-text-box h2{
+  font-size:30px;
+  text-align:center;
+  justify-content: center;
+  margin-top:2%;
+  padding: 5px 40px;
+  font-weight:bold;
+}
+.main-rules-text-box p{
+  font-size:24px;
+  padding: 5px 80px;
+  font: bold;
+  text-align:center;
+}
+.main-rules-text-box ol {
+  padding-left: 20px; 
+  list-style: none;
+  counter-reset: list;
+}
+.main-rules-text-box ol li {
+  font-size: 22px;
+  margin-bottom: 10px;
+  position: relative;
+  padding: 5px 150px;
+  line-height: 1.6;
+}
+.main-rules-text-box ol li::before {
+  content: counter(list) ". "; 
+  counter-increment: list;
+  position: absolute;
+  left: 13%;
+  font-weight: bold;
+  font-size: 2ppx;
 }
 /* Task Part*/
 .task-container {
@@ -835,10 +881,10 @@ input:checked + .slider:before {
   height: 30px;
   position: absolute;
 }
-.ellipse1 { top: 5%; left: 5%; }
-.ellipse2 { top: 5%; right: 5%; }
-.ellipse3 { top: 90%; left: 5%; }
-.ellipse4 { top: 90%; right: 5%; }
+.ellipse1 { top: 3%; left: 3%; }
+.ellipse2 { top: 3%; right: 3%; }
+.ellipse3 { top: 93%; left: 3%; }
+.ellipse4 { top: 93%; right: 3%; }
 
 .task-label {
   font-size: 20px;         
@@ -873,7 +919,7 @@ input:checked + .slider:before {
   background-color: rgba(242, 199, 199, 0.337);
 }
 .checklist-section {
-  max-height: 55%; /* Set the maximum height for the checklist section */
+  max-height: 60%; /* Set the maximum height for the checklist section */
   overflow-y: auto; /* Enable vertical scrolling when tasks overflow */
 }
 .checklist-section ul {
@@ -1007,17 +1053,10 @@ input:checked + .slider:before {
   max-height: 280px;
 }
 
-.friend-list li {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-}
-
 .friend-list img {
-  width: 80px;
+  width: 120px;
   height: 80px;
   border-radius: 50%;
-  margin-right: 15px;
 }
 
 .friend-list li  {
@@ -1025,6 +1064,9 @@ input:checked + .slider:before {
   text-decoration: none;
   font-size: 22px;
   font-weight:bold;
+  display: flex;
+  align-items: center;
+  padding: 10px;
 }
 /* Friend request*/
 .friend-requests-container {
@@ -1065,7 +1107,7 @@ input:checked + .slider:before {
   display: flex;  
   align-items: center;
   justify-content: space-between;  
-  background-color: rgba(0, 0, 0, 0.7); 
+  background-color: rgba(85, 81, 81, 0.7); 
   padding: 15px;
   border-radius: 10px;
   margin-bottom: 10px;  /* Space between requests */
@@ -1073,14 +1115,13 @@ input:checked + .slider:before {
   position:relative;
 }
 .request-list img {
-  width: 50px;
-  height: 50px;
+  width: 120px;
+  height: 80px;
   border-radius: 50%;
-  margin-right: 15px;
 }
 .request-list  {
   color: #85B2F5;  /* Light blue text */
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
   text-decoration: none;
   margin-right: auto;  /* Push the name to the left */
@@ -1146,13 +1187,14 @@ input:checked + .slider:before {
 }
 .username-textbox{
   background-color: rgba(197, 217, 223, 0.7);
-  border: 3px solid #fff;
+  border: 2px solid #fff;
+  border-radius:10px;
   padding: 0 60px; /* Remove vertical padding, keep horizontal */
   height: 50px; /* Set the desired height */
   line-height: 50px; /* Match line-height to height to center text vertically */
-  border-radius: 0px;
   font-size: 28px;
   font-weight: bold;
+  font-family: Arial, sans-serif;
   color: #000;
 }
 .username-text {
@@ -1192,9 +1234,9 @@ input:checked + .slider:before {
 .edit-button {
   background-color: rgb(255, 204, 204);
   color: #333;
-  border: 3px solid #fff;
+  border: 2px solid #fff;
   padding: 10px 12px;
-  border-radius: 0px;
+  border-radius: 5px;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
@@ -1209,8 +1251,9 @@ input:checked + .slider:before {
 }
 
 .picture-selection p {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: bold;
+  font-family: Arial, sans-serif;
   color: black;
   text-align: left;
   padding-left: 30px;;
