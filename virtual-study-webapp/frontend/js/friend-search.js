@@ -238,24 +238,45 @@ function acceptFriendRequest(requestId) {
     // friends.push(friendToAdd);
     // friendRequests = friendRequests.filter(request => request.id !== requestId);
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", `/IM3180/friend-req?username=${username}&action=accept&friendId=${requestId}`, true);
+    xhr.open(
+      "GET",
+      `/IM3180/friend-req?username=${username}&action=accept&friendId=${requestId}`,
+      true
+    );
     xhr.onload = function () {
-        if (xhr.status === 200) {
-            const redirectUrl = xhr.getResponseHeader("Location");
-            if (redirectUrl) {
-                window.location.href = redirectUrl;
-            } else {
-                console.error("Redirect URL not found");
-            }
+      if (xhr.status === 200) {
+        const redirectUrl = xhr.getResponseHeader("Location");
+        if (redirectUrl) {
+          setTimeout(() => {
+            window.location.href = redirectUrl;
+          }, 3000);
         } else {
-            console.error("Error fetching session data");
+          console.error("Redirect URL not found");
         }
+      } else {
+        console.error("Error fetching session data");
+      }
     };
     xhr.send();
 
     //loadFriends(); // Reload the friends list
     //loadFriendRequests(); // Reload friend requests
-    alert(`You accepted the friend request from ${friendToAdd.name}`);
+    //alert(`You accepted the friend request from ${friendToAdd.name}`);
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "bottom-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
+    Toast.fire({
+      icon: "success",
+      title: `You accepted the friend request from ${friendToAdd.name}`,
+    });
   }
   updateFriendNotificationDot();
 }
@@ -267,18 +288,22 @@ function declineFriendRequest(requestId) {
   //alert('You declined the friend request');
 
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", `/IM3180/friend-req?username=${username}&action=decline&friendId=${requestId}`, true);
+  xhr.open(
+    "GET",
+    `/IM3180/friend-req?username=${username}&action=decline&friendId=${requestId}`,
+    true
+  );
   xhr.onload = function () {
-      if (xhr.status === 200) {
-          const redirectUrl = xhr.getResponseHeader("Location");
-          if (redirectUrl) {
-              window.location.href = redirectUrl;
-          } else {
-              console.error("Redirect URL not found");
-          }
+    if (xhr.status === 200) {
+      const redirectUrl = xhr.getResponseHeader("Location");
+      if (redirectUrl) {
+        window.location.href = redirectUrl;
       } else {
-          console.error("Error fetching session data");
+        console.error("Redirect URL not found");
       }
+    } else {
+      console.error("Error fetching session data");
+    }
   };
   xhr.send();
   updateFriendNotificationDot();
