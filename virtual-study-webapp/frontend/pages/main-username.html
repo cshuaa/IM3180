@@ -12,6 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap"
       rel="stylesheet"
     />
+    <script src="../../../virtual-study-webapp/scripts/sweetalert2.all.min.js"></script>
   </head>
   <body>
     <div class="background"></div>
@@ -186,7 +187,9 @@
             xhr.onload = function () {
               if (xhr.status === 200) {
                 // Redirect to HTML Page 2
-                window.location.href = "main-username.html";
+                setTimeout(() => {
+                  window.location.href = "main-username.html";
+                }, 3000);
               } else {
                 console.error("Error sending data to the servlet");
               }
@@ -194,56 +197,85 @@
 
             // Send session data to the servlet
             xhr.send(`image_path=${encodeURIComponent(`..` + relativeSrc)}`);
-            alert("Profile picture saved!");
+            // alert("Profile picture saved!");
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "bottom-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            });
+            Toast.fire({
+              icon: "success",
+              title: "Profile picture saved!",
+            });
           } else {
-            alert("Please select a picture before saving.");
+            // alert("Please select a picture before saving.");
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "bottom-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            });
+            Toast.fire({
+              icon: "error",
+              title: "Please select a picture before saving",
+            });
           }
         });
+
+        let userName = "";
+        let userId = "";
+
+        window.onload = getUserInfo;
+        function getUserInfo() {
+          const xhr = new XMLHttpRequest();
+          xhr.open("GET", "../../../userdata", true); // Replace with the correct path to the servlet
+
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              // Parse the JSON response
+              const userData = JSON.parse(xhr.responseText);
+
+              // Log the userData to check the values (optional)
+              console.log(userData);
+
+              // Set the global sessionName and sessionKey variables with the retrieved data
+              userName = userData.userName;
+              userId = userData.userId;
+
+              // Select the anchor element by class
+              const userNameDisplay = document.querySelector("a.username");
+              userNameDisplay.innerHTML = userNameDisplay.innerHTML.replace(
+                "Username",
+                userName
+              );
+
+              const userNameMiddleDisplay =
+                document.querySelector(".username-text");
+              userNameMiddleDisplay.innerHTML =
+                userNameMiddleDisplay.innerHTML.replace("Username", userName);
+
+              // Log the updated sessionName and sessionKey (optional)
+              console.log("Retrieved userName: ", userName);
+              console.log("Retrieved userId: ", userId);
+            } else {
+              console.error("Error fetching session data");
+            }
+          };
+
+          xhr.send();
+        }
       });
-
-      let userName = "";
-      let userId = "";
-
-      window.onload = getUserInfo;
-
-      function getUserInfo() {
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", "../../../userdata", true); // Replace with the correct path to the servlet
-
-        xhr.onload = function () {
-          if (xhr.status === 200) {
-            // Parse the JSON response
-            const userData = JSON.parse(xhr.responseText);
-
-            // Log the userData to check the values (optional)
-            console.log(userData);
-
-            // Set the global sessionName and sessionKey variables with the retrieved data
-            userName = userData.userName;
-            userId = userData.userId;
-
-            // Select the anchor element by class
-            const userNameDisplay = document.querySelector("a.username");
-            userNameDisplay.innerHTML = userNameDisplay.innerHTML.replace(
-              "Username",
-              userName
-            );
-
-            const userNameMiddleDisplay =
-              document.querySelector(".username-text");
-            userNameMiddleDisplay.innerHTML =
-              userNameMiddleDisplay.innerHTML.replace("Username", userName);
-
-            // Log the updated sessionName and sessionKey (optional)
-            console.log("Retrieved userName: ", userName);
-            console.log("Retrieved userId: ", userId);
-          } else {
-            console.error("Error fetching session data");
-          }
-        };
-
-        xhr.send();
-      }
     </script>
     <script src="../js/notifications.js"></script>
   </body>
