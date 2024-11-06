@@ -5,48 +5,96 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ClouDy</title>
-    <link
-      rel="stylesheet"
-      href="virtual-study-webapp/frontend/css/styles.css"
-    />
-    <link rel="icon" type="image/x-icon" 
-    href="./virtual-study-webapp/frontend/images/favicon.png">
+    <link rel="stylesheet" href="virtual-study-webapp/frontend/css/styles.css" />
+    <link rel="icon" type="image/x-icon" href="virtual-study-webapp/frontend/images/favicon.png" />
   </head>
   <body>
     <header>
       <nav>
         <div class="logo">
-          <a href="index.html"
-            ><img
-              src="virtual-study-webapp/frontend/images/logo.png"
-              alt="Cloudy Logo"
-          /></a>
+          <a href="index.html">
+            <img src="virtual-study-webapp/frontend/images/logo.png" alt="Cloudy Logo" />
+          </a>
         </div>
         <ul>
-          <li>
-            <a href="virtual-study-webapp/frontend/pages/about.html">About</a>
-          </li>
-          <li>
-            <a href="virtual-study-webapp/frontend/pages/rules.html">Rules</a>
-          </li>
-          <li>
-            <a href="virtual-study-webapp/frontend/pages/login.html">Log in</a>
-          </li>
+          <li><a href="virtual-study-webapp/frontend/pages/about.html">About</a></li>
+          <li><a href="virtual-study-webapp/frontend/pages/rules.html">Rules</a></li>
+          <li><a href="virtual-study-webapp/frontend/pages/login.html">Log in</a></li>
         </ul>
       </nav>
     </header>
     <main>
-      <div class="cloud-image-container">
-        <img
-          src="virtual-study-webapp/frontend/images/landingCloud.png"
-          alt="Cloudy - Your study space on the cloud" class="floating-cloud"
-        />
+      <div class="slideshow-container">
+        <!-- Slide 1: Cloud Image -->
+        <div class="slide fade">
+          <div class="cloud-image-container">
+            <img src="virtual-study-webapp/frontend/images/landingCloud.png"
+                 alt="Cloudy - Your study space on the cloud"
+                 class="floating-cloud" />
+          </div>
+        </div>
+
+        <!-- Slide 2: ClouDy Features -->
+        <div class="slide fade">
+          <div class="features-container">
+            <div class="feature-heading">
+              <img src="virtual-study-webapp/frontend/images/featureHeading.png"
+                   alt="As a user on ClouDy:" />
+            </div>
+            <div class="features">
+              
+              <!-- Feature 1 -->
+              <div class="feature">
+                <a href="virtual-study-webapp/frontend/pages/login.html">
+                  <img src="virtual-study-webapp/frontend/images/feature1.svg" alt="Set Tasks" />
+                </a>
+                <div class="feature-description">
+                  <h3>SET TASKS:</h3>
+                  <p>Set your tasks for the study session! 
+                    Tick these tasks off after you're done, 
+                    and they'll disappear from the list.</p>
+                </div>
+              </div>
+
+              <!-- Feature 2 -->
+              <div class="feature">
+                <a href="virtual-study-webapp/frontend/pages/login.html">
+                  <img src="virtual-study-webapp/frontend/images/feature2.svg" alt="Join Study Rooms" />
+                </a>
+                <div class="feature-description">
+                  <h3>JOIN STUDY ROOMS:</h3>
+                  <p>Join a private room of your choice, 
+                    or a public one if you'd like to! 
+                    Unsure of which room to join? 
+                    You could always create one!</p>
+                </div>
+              </div>
+
+              <!-- Feature 3 -->
+              <div class="feature">
+                <a href="virtual-study-webapp/frontend/pages/login.html">
+                  <img src="virtual-study-webapp/frontend/images/feature3.svg" alt="Add Friends" />
+                </a>
+                <div class="feature-description">
+                  <h3>ADD FRIENDS:</h3>
+                  <p>ClouDy encourages collaborative learning. 
+                    Add your friends and start studying together!</p>
+                </div>
+              </div>
+            </div>
+          </div>         
+        </div>
+        <!-- Navigation Dots -->
+        <div class="dots">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
       </div>
+         
       <div class="base-eclipse">
-        <img 
-          src="virtual-study-webapp/frontend/images/Ellipse6.png" 
-          alt="base eclipse">
-    </div>
+        <img src="virtual-study-webapp/frontend/images/Ellipse6.png" alt="base eclipse" />
+      </div>
     </main>
+    <script src="./virtual-study-webapp/frontend/js/slideshow.js"></script>
   </body>
 </html>
