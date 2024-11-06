@@ -233,7 +233,9 @@ body, html {
 
 .create-room-text {
   margin-right: 40px; /* Add some space between text and button */
-  font-size: 29px;
+  font-size: 36px;
+  font-weight:300;
+  font-family: 'Jersey 10','san-serif';
 }
 
 .create-room-btn {
@@ -283,11 +285,13 @@ body, html {
   margin-right: 0; /* Remove right margin for the last section */
 }
 
-h2 {
-  font-size: 24px;
-  font-family: Arial, sans-serif;
+h2 {  
+  font-size: 36px;
+  font-weight:300;
+  font-family: 'Jersey 10','san-serif';
   color: white;
   margin-bottom: 20px;
+  margin-top:5px;
 }
 
 .room {
@@ -376,6 +380,13 @@ h2 {
   border-radius: 10px;
   box-sizing: border-box;
 }
+.create-call-container h1{
+  font-size: 28px;
+  font-weight:300;
+  font-family: 'Jersey 10','san-serif';
+  margin-bottom:5px;
+  margin-top:30px;
+}
 
 /* Centralize the room name, password, and toggle containers */
 .room-name-container,
@@ -433,9 +444,12 @@ input.password {
   background-color: #15141491;
   color: #fff;
   border: 3px solid #fff;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-radius: 3px;
-  font-size: 20px;
+  height:55px;
+  font-size: 48px;
+  font-weight:300;
+  font-family: 'Jersey 10','san-serif';
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -524,6 +538,11 @@ input.password {
 .room-toggle-container {
   margin-bottom: 40px; /* Increase space between toggle and button */
 }
+.room-toggle-container .toggle-label{
+  font-size: 32px;
+  font-weight:300;
+  font-family: 'Jersey 10','san-serif';
+}
 
 /* Button styles */
 .enter-create-room-btn {
@@ -536,6 +555,7 @@ input.password {
   cursor: pointer;
   transition: background-color 0.3s;
   margin-left: 10px;
+  margin-top:-20px;
 }
 
 .enter-create-room-btn:hover {
@@ -703,13 +723,13 @@ input:checked + .slider:before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 28px;
   color: black;
-  font-family: Arial, sans-serif;
-  font-weight: bold;
   z-index: 2; /* Make sure the text is above the image */
   text-align: center;
   white-space: nowrap; /* Prevent text from wrapping */
+  font-size: 36px;
+  font-weight:300;
+  font-family: 'Jersey 10','san-serif'; 
 }
 
 
@@ -725,10 +745,11 @@ input:checked + .slider:before {
 /* Heading for Enter Room Password */
 .enter-room-password {
   margin-bottom: 10px; /* Space between the heading and the input */
-  margin-left: -310px; /* Push the heading slightly to the left */
+  margin-left: -280px; /* Push the heading slightly to the left */
   color: #fff;
-  font-size: 22px; /* Adjust font size if necessary */
-  font-family: Arial, sans-serif;
+  font-size: 36px;
+  font-weight:300;
+  font-family: 'Jersey 10','san-serif';
   margin-top: 0px;
   position: relative;
   top: -1px;
@@ -778,11 +799,13 @@ input:checked + .slider:before {
   border: 3px solid #fff;
   padding: 10px 20px;
   border-radius: 3px;
-  font-size: 20px;
   cursor: pointer;
   transition: background-color 0.3s;
   margin-left: 10px;
   margin-top: 20px;
+  font-size: 28px;
+  font-weight:300;
+  font-family: 'Jersey 10','san-serif';
   
 }
 
@@ -808,13 +831,14 @@ input:checked + .slider:before {
   background-color: rgba(142, 178, 211, 0.90);
   color:white;
   padding: 2%;
-  width: 70%;
+  width: 68%;
   height:70%;
-  margin-left:20%;
+  margin-left:21%;
   margin-top: -2.5%;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
+  font-weight: bold;
   position: relative; 
   border: 2px solid white;
 }
@@ -889,10 +913,17 @@ input:checked + .slider:before {
 .ellipse4 { top: 93%; right: 3%; }
 
 .task-label {
-  font-size: 20px;         
-  font-weight: bold;       
+  font-family: 'Jersey 10','san-serif';
+  font-size: 28px;         
+  font-weight: bold;      
   color: #f2c7c7;                   
   margin-bottom: 10px;     
+}
+.add-task-section h1, .checklist-section h1{
+  font-family: 'Jersey 10','san-serif';
+  font-size:42px;
+  font-style: normal;
+  font-weight: 400;
 }
 .add-task-section,.checklist-section {
   position: relative;
@@ -1046,6 +1077,12 @@ input:checked + .slider:before {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   font-family: Arial, sans-serif;
   font-size:18px;
+}
+.friend-conatiner h2, .friend-requests-container h2{
+  font-family: 'Jersey 10','san-serif';
+  font-size:36px;
+  font-weight:300;
+  margin-top:20px;
 }
 .friend-list {
   list-style: none;
@@ -1239,8 +1276,9 @@ input:checked + .slider:before {
   border: 2px solid #fff;
   padding: 10px 12px;
   border-radius: 5px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 26px;
+  font-weight:300;
+  font-family: 'Jersey 10','san-serif';
   cursor: pointer;
 }
 
@@ -1253,9 +1291,9 @@ input:checked + .slider:before {
 }
 
 .picture-selection p {
-  font-size: 26px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
+  font-size: 36px;
+  font-weight:300;
+  font-family: 'Jersey 10','san-serif';
   color: black;
   text-align: left;
   padding-left: 30px;;
@@ -1266,7 +1304,7 @@ input:checked + .slider:before {
   grid-template-columns: repeat(5, 1fr); /* 5 columns */
   gap: 10px;
   justify-items: center; /* Center-aligns each image in its grid cell */
-  margin-top: 10px;
+  margin-top: -20px;
 }
 
 .option {
@@ -1274,4 +1312,35 @@ input:checked + .slider:before {
   height: auto;
   border-radius: 50%;
   cursor: pointer;
+}
+.enterRoom-image {
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1); /* Slightly bigger */
+  }
+  100% {
+    transform: scale(1); /* Back to original size */
+  }
+}
+
+.newRoom-image {
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1); /* Slightly bigger */
+  }
+  100% {
+    transform: scale(1); /* Back to original size */
+  }
 }

@@ -93,6 +93,11 @@ body {
   border-radius: 50%;
   border: 2px solid white; 
 }
+.taskSection h2, .friendSection h2{
+  font-size: 36px;
+  font-weight:300;
+  font-family: 'Jersey 10','san-serif';
+}
 
 
 .ellipse1, .ellipse2, .ellipse3, .ellipse4 {
