@@ -42,5 +42,5 @@ function resetSlideTimer() {
 // Initialize slideshow
 document.addEventListener("DOMContentLoaded", () => {
   showSlides(slideIndex);
-  slideTimer = setInterval(autoSlides, 7000);
+  slideTimer = setInterval(autoSlides, 8000);
 });

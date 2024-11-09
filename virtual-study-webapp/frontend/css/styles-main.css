@@ -1061,7 +1061,7 @@ input:checked + .slider:before {
   color: rgba(76, 80, 87, 0.66);
   margin-left: 10px;
   font-size: 16px;
-  font-weight: bold;
+  font-family: Arial, sans-serif;
 }
 /* Friend List*/
 .friend-conatiner {
@@ -1343,4 +1343,11 @@ input:checked + .slider:before {
   100% {
     transform: scale(1); /* Back to original size */
   }
+}
+.swal2-popup,
+.swal2-title,
+.swal2-html-container,
+.swal2-content {
+    font-family: 'Arial', sans-serif ;
+    font-size: 16px;
 }
