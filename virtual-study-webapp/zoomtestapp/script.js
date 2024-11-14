@@ -70,8 +70,8 @@ function fetchSessionData() {
 
       // Now that sessionName and sessionKey are updated, you can generate the signature
       const signature = generateSignature(
-        "kC1ECojrY3byf9i2lxjUyYgTs84A4F1zjQKF",
-        "wCFI4yiMMlLo2qEykh8uS8MK2GcqZVCsQIOx",
+        "", //Replace with Video SDK Key
+        "", //Replace with Video SDK Secret
         sessionName,
         1, // Assuming role 1 is constant
         sessionKey,
